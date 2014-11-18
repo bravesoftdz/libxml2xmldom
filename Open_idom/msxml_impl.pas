@@ -43,7 +43,7 @@ interface
 {off $define MSXML3}
 
 uses
-  {$ifdef win32}
+  {$ifdef windows}
     {$ifdef MSXML3}
       MSXML3,
     {$else}

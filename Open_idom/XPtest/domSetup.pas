@@ -3,7 +3,7 @@ unit domSetup;
 interface
 
 uses
-  TestFramework,
+  fpcunit,
   idom2;
 
 const
@@ -18,7 +18,7 @@ type
     function getDocumentBuilder: IDomDocumentBuilder;
   end;
 
-function createDomSetupTest(const vendorID: string; test: ITest): ITest;
+function createDomSetupTest(const vendorID: string; test: TTest): TTest;
 
   (*
    * provides a reference to the current IDomSetup. Use it within the Dom test
@@ -29,24 +29,30 @@ function getCurrentDomSetup: IDomSetup;
 implementation
 
 uses
-  TestExtensions;
+  testdecorator;
 
 type
 
   (*
    * Test decorator that will initialize the DOM for a specific VendorID
   *)
+  TInterfacedObjectMixIn = class(TInterfacedObject) end;
+  { TDomSetup }
   TDomSetup = class(TTestSetup, IDomSetup)
   private
     fVendorID: string;
     fDocumentBuilder: IDomDocumentBuilder;
-
+    fRefCounter: TInterfacedObjectMixIn;
+    { implement methods of IUnknown }
+    function QueryInterface({$IFDEF FPC_HAS_CONSTREF}constref{$ELSE}const{$ENDIF} iid : tguid;out obj) : longint;{$IFNDEF WINDOWS}cdecl{$ELSE}stdcall{$ENDIF};
+    function _AddRef : longint;{$IFNDEF WINDOWS}cdecl{$ELSE}stdcall{$ENDIF};
+    function _Release : longint;{$IFNDEF WINDOWS}cdecl{$ELSE}stdcall{$ENDIF};
   public
-    constructor Create(const vendorID: string; test: ITest);
+    constructor Create(const vendorID: string; test: TTest);
     destructor Destroy; override;
 
-    procedure Setup; override;
-    procedure TearDown; override;
+    procedure OneTimeSetup; override;
+    procedure OneTimeTearDown; override;
 
     (* IDomSetup methods *)
     function getVendorID: string;
@@ -57,18 +63,36 @@ var
   (* reference to the current DomSetup *)
   gCurrentDomSetup: IDomSetup;
 
-constructor TDomSetup.Create(const vendorID: string; test: ITest);
+function TDomSetup.QueryInterface(constref iid: tguid; out obj): longint;
+  stdcall;
+begin
+
+end;
+
+function TDomSetup._AddRef: longint; stdcall;
+begin
+
+end;
+
+function TDomSetup._Release: longint; stdcall;
+begin
+
+end;
+
+constructor TDomSetup.Create(const vendorID: string; test: TTest);
 begin
   inherited Create(test);
   fVendorID := vendorID;
+  fRefCounter:= TInterfacedObjectMixIn.Create;
 end;
 
 destructor TDomSetup.Destroy;
 begin
   fDocumentBuilder := nil;
+  fRefCounter.Free;
 end;
 
-procedure TDomSetup.Setup;
+procedure TDomSetup.OneTimeSetup;
 begin
   {get DocumentBuilder on demand in setup so exceptions will be caught by DUnit}
   if fDocumentBuilder = nil then begin
@@ -79,7 +103,7 @@ begin
   gCurrentDomSetup := self;
 end;
 
-procedure TDomSetup.TearDown;
+procedure TDomSetup.OneTimeTearDown;
 begin
   gCurrentDomSetup := nil;
 end;
@@ -95,7 +119,7 @@ begin
 end;
 
 (* creator for DomSetup *)
-function createDomSetupTest(const vendorID: string; test: ITest): ITest;
+function createDomSetupTest(const vendorID: string; test: TTest): TTest;
 begin
   Result := TDomSetup.Create(vendorID, test);
 end;

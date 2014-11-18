@@ -1,5 +1,7 @@
 unit XPTest_idom2_Shared;
 
+{$MODE Delphi}
+
 interface
 
 uses
@@ -8,7 +10,7 @@ uses
   idom2,
   idom2_ext,
   sysutils,
-  TestFrameWork,
+  fpcunit,
   Classes,
   Dialogs;
 
@@ -159,7 +161,7 @@ function GetDoccount(impl:IDomImplementation):integer;
 procedure debugDom(doc: IDOMDocument;bUnify: boolean=false);
 procedure debugAttributes(attributes: IDOMNamedNodeMap; entities: boolean = False);
 function PrettyPrint(text: WideString): WideString;
-function getEnabledTests(suite: ITestSuite;domVendor,className:string): TStrings;
+function getEnabledTests(suite: TTestSuite;domVendor,className:string): TStrings;
 
 var
   datapath: string = '';
@@ -169,7 +171,7 @@ implementation
 const
   PathDelim  = {$IFNDEF LINUX} '\'; {$ELSE} '/'; {$ENDIF}
 
-function getEnabledTests(suite: ITestSuite;domVendor,className:string): TStrings;
+function getEnabledTests(suite: TTestSuite;domVendor,className:string): TStrings;
 // returns a stringlist with the names of the enabled tests
 // for a given domVendor and className
 // the domvendor is the string, displayed in the testsuite, and not
@@ -178,20 +180,20 @@ function getEnabledTests(suite: ITestSuite;domVendor,className:string): TStrings
 
 var
   i,j,k,l: integer;
-  test,test1,test2,test3: ITest;
+  test,test1,test2,test3: TTestSuite;
 begin
   result := TStringList.Create;
   for i := 0 to suite.tests.Count-1 do begin
-    test := suite.Tests[i] as ITest;
+    test := TTestSuite(suite.Tests[i]);
     for j:=0 to test.Tests.Count-1 do begin
-      test1:=test.tests[j] as ITest;
-      if test1.Name=domVendor then begin
+      test1:=test.tests[j];
+      if test1.TestName=domVendor then begin
         for k:=0 to test1.tests.count-1 do begin
-          test2:=test1.tests[k] as ITest;
-          if test2.Enabled and (test2.Name = className) then begin
+          test2:=test1.tests[k];
+          if test2.EnableIgnores and (test2.TestName = className) then begin
             for l:=0 to test2.tests.count-1 do begin
-              test3:=test2.tests[l] as ITest;
-              if test3.Enabled then result.Add(test3.Name);
+              test3:=test2.tests[l];
+              if test3.EnableIgnores then result.Add(test3.TestName);
             end;
           end;
         end;

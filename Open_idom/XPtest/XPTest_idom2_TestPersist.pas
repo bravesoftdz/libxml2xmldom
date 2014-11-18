@@ -3,17 +3,14 @@ unit XPTest_idom2_TestPersist;
 interface
 
 uses
-  TestFrameWork,
+  fpcunit,
   idom2,
   idom2_ext,
   SysUtils,
   XPTest_idom2_Shared,
   Classes,
   domSetup,
-{$ifdef VER130} // Delphi 5
-  jclUnicode,   // UTF8Encode and UTF8Decode
-{$endif}
-{$ifdef win32}
+{$ifdef MSWINDOWS}
   ActiveX;
 {$endif}
 
@@ -340,7 +337,7 @@ begin
     sl := TStringList.Create;
     tmp := '<?xml version="1.0" encoding="iso-8859-1"?>' +
            '<test>' +
-             'äöüÄÖÜ€' +
+             'Ã¤Ã¶Ã¼Ã„Ã–Ãœâ‚¬' +
            '</test>';
     sl.text:=tmp;
     sl.SaveToFile('temp.xml');
@@ -374,7 +371,7 @@ begin
   sl := TStringList.Create;
   tmp := '<?xml version="1.0"?>' +
          '<test>' +
-           'äöüÄÖÜ€' +
+           'Ã¤Ã¶Ã¼Ã„Ã–Ãœâ‚¬' +
          '</test>';
   sl.text:=tmp;
   sl.SaveToFile('temp.xml');
@@ -399,7 +396,7 @@ begin
     sl := TStringList.Create;
     tmp := '<?xml version="1.0" encoding="iso-8859-1"?>' +
            '<test>' +
-             'äöüÄÖÜ' +
+             'Ã¤Ã¶Ã¼Ã„Ã–Ãœ' +
            '</test>';
     sl.text:=tmp;
     sl.SaveToFile('temp.xml');
@@ -433,7 +430,7 @@ begin
     sl := TStringList.Create;
     tmp := '<?xml version="1.0" encoding="iso-8859-1"?>' +
            '<test>' +
-             'äöüÄÖÜ' +
+             'Ã¤Ã¶Ã¼Ã„Ã–Ãœ' +
            '</test>';
     sl.text:=tmp;
     sl.SaveToFile('temp.xml');
@@ -470,7 +467,7 @@ begin
     sl := TStringList.Create;
     tmp := '<?xml version="1.0" encoding="iso-8859-1"?>' +
            '<test>' +
-           'äöüÄÖÜ' +
+           'Ã¤Ã¶Ã¼Ã„Ã–Ãœ' +
            '</test>';
     sl.text:=tmp;
     sl.SaveToFile('temp.xml');
@@ -507,7 +504,7 @@ begin
     sl := TStringList.Create;
     tmp := '<?xml version="1.0" encoding="iso-8859-1"?>' +
            '<test>' +
-           'äöüÄÖÜ' +
+           'Ã¤Ã¶Ã¼Ã„Ã–Ãœ' +
            '</test>';
     sl.text:=tmp;
     sl.SaveToFile('temp.xml');
@@ -533,15 +530,15 @@ procedure TTestPersist.loadXmlUml;
 var teststr: widestring;
 begin
   // test how loadxml behaves with 'umlauts'
-  teststr := xmldecl+'<root><text>äöüß</text><text>ÄÖÜ</text></root>';
+  teststr := xmldecl+'<root><text>Ã¤Ã¶Ã¼ÃŸ</text><text>Ã„Ã–Ãœ</text></root>';
   (doc as IDOMPersist).loadxml(teststr);
   check(doc.documentElement.hasChildNodes, 'has no childNodes');
   check(doc.documentElement.childNodes.length = 2, 'wrong length');
   check(doc.documentElement.firstChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
   check(doc.documentElement.lastChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
   //showMessage(doc.documentElement.firstChild.firstChild.nodeValue);
-  check(doc.documentElement.firstChild.firstChild.nodeValue = 'äöüß', 'wrong nodeValue');
-  check(doc.documentElement.lastChild.firstChild.nodeValue = 'ÄÖÜ', 'wrong nodeValue');
+  check(doc.documentElement.firstChild.firstChild.nodeValue = 'Ã¤Ã¶Ã¼ÃŸ', 'wrong nodeValue');
+  check(doc.documentElement.lastChild.firstChild.nodeValue = 'Ã„Ã–Ãœ', 'wrong nodeValue');
   check(((unify((doc as IDomPersist).xml)=unify(teststr))), 'xml output is different from parsed text');
 end;
 
@@ -553,7 +550,7 @@ var
 begin
   teststr:= getunicodestr(1);
   parsestr:='';
-  parsestr:=parsestr+'<?xml version="1.0" encoding="utf8"?><root><text>'+teststr+'</text><text>ÄÖÜ</text></root>';
+  parsestr:=parsestr+'<?xml version="1.0" encoding="utf8"?><root><text>'+teststr+'</text><text>Ã„Ã–Ãœ</text></root>';
   //showMessage(parsestr);
   ok:=(doc as IDOMPersist).loadxml(parsestr);
   check(ok,'parse error');
@@ -562,7 +559,7 @@ begin
   check(doc.documentElement.firstChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
   check(doc.documentElement.lastChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
   check(doc.documentElement.firstChild.firstChild.nodeValue = teststr, 'wrong nodeValue');
-  check(doc.documentElement.lastChild.firstChild.nodeValue = 'ÄÖÜ', 'wrong nodeValue');
+  check(doc.documentElement.lastChild.firstChild.nodeValue = 'Ã„Ã–Ãœ', 'wrong nodeValue');
   check((unify((doc as IDomPersist).xml)=unify(parsestr)), 'xml output is different from parsed text');
 end;
 

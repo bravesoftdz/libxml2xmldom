@@ -1,9 +1,11 @@
 unit XPTest_idom2_TestDomExceptions;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  TestFrameWork,
+  {TestFrameWork,}
   idom2,
   idom2_ext,
   domSetup,

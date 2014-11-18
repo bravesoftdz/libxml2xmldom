@@ -76,7 +76,7 @@ unit MSXML2_TLB;
 {$VARPROPSETTER ON}
 interface
 
-uses Windows, ActiveX, Classes, Graphics, OleServer, StdVCL, Variants;
+uses Windows, ActiveX, Classes, Graphics, OleServer, Variants;
   
 
 // *********************************************************************//

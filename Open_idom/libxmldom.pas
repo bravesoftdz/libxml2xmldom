@@ -56,12 +56,8 @@ unit libxmldom;
 interface
 
 
-uses 
-{$ifdef VER130} // Delphi 5
-  jclUnicode,   // UTF8Encode and UTF8Decode
-{$else}
+uses
   StrUtils,
-{$endif}
   classes,
   idom2,
   idom2_ext,

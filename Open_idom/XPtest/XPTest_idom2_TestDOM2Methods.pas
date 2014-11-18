@@ -1,10 +1,12 @@
 unit XPTest_idom2_TestDOM2Methods;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  TestFrameWork,
-  TestExtensions,
+  {TestFrameWork,
+  TestExtensions,}
   libxmldom,
   idom2,
   idom2_ext,
@@ -2043,7 +2045,7 @@ begin
   check((adoc as IDomPersist).loadxml(xmlstr), 'parse error');
   // append new attribute to documentElement of 2nd dom
   attr1 := adoc.createAttributeNs(nsuri, fqname);
-  attr1.value:='grün';
+  attr1.value:='grÃ¼n';
   check(attr1.name=fqname,'wrong name of original attribute');
   adoc.documentElement.setAttributeNodeNs(attr1);
   attr1:=nil;
@@ -2063,7 +2065,7 @@ begin
   attr:=doc.documentElement.attributes[0] as IDomAttr;
   check(attr <> nil, 'attribute is nil');
   check(attr.name=fqname,'wrong name of imported attribute');
-  check(attr.value='grün','wrong value of imported attribute');
+  check(attr.value='grÃ¼n','wrong value of imported attribute');
   check(not myIsSameNode(doc,adoc),'the two documents must not be the same');
   check(myIsSameNode(attr.ownerDocument,doc), 'wrong ownerDocument');
 end;

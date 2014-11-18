@@ -3,7 +3,7 @@ unit XPTest_idom2_TestXSLT;
 interface
 
 uses
-  TestFrameWork,
+  fpcunit,
   idom2,
   idom2_ext,
   SysUtils,

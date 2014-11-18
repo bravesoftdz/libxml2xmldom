@@ -3,13 +3,13 @@ unit XPTest_idom2_TestXPath;
 interface
 
 uses
-  TestFrameWork,
+  fpcunit,
   idom2,
   idom2_ext,
   SysUtils,
   domSetup,
   XPTest_idom2_Shared,
-{$ifdef win32}
+{$ifdef MSWINDOWS}
   ActiveX,
 {$endif}
   Classes;

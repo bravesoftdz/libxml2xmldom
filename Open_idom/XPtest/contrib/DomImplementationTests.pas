@@ -10,7 +10,7 @@ unit DomImplementationTests;
 interface
 
 uses
-  TestFrameWork,
+  fpcunit,
   idom2,
   DomSetup;
 
@@ -49,7 +49,7 @@ type
       procedure ceateDocTypeXMLNSIllegalCharTest;
   end;
 
-  function getUnitTests : ITestSuite;
+  function getUnitTests : TTestSuite;
 
 implementation
 
@@ -386,12 +386,12 @@ end;
  * returns a testSuite containing all tests within this suite
  * if new test cases are created they should be added to this function
 *)
-function getUnitTests : ITestSuite;
+function getUnitTests : TTestSuite;
 var
  suite : TTestSuite;
 begin
  suite := TTestSuite.create('Dom Implementation fundamental tests');
- suite.addSuite(TDomImplementationFundamentalTests.suite);
+ suite.AddTest(TDomImplementationFundamentalTests.suite);
  result := suite;
 end;
 

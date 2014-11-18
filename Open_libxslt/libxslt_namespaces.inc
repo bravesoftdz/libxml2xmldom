@@ -23,9 +23,9 @@
 
   procedure xsltNamespaceAlias(style:xsltStylesheetPtr; node:xmlNodePtr);cdecl;external LIBXSLT_SO;
 
-  function xsltGetNamespace(ctxt:xsltTransformContextPtr; cur:xmlNodePtr; ns:xmlNsPtr; out:xmlNodePtr):xmlNsPtr;cdecl;external LIBXSLT_SO;
+  function xsltGetNamespace(ctxt:xsltTransformContextPtr; cur:xmlNodePtr; ns:xmlNsPtr; out xmlNodePtr):xmlNsPtr;cdecl;external LIBXSLT_SO;
 
-  function xsltGetSpecialNamespace(ctxt:xsltTransformContextPtr; cur:xmlNodePtr; URI:PxmlChar; prefix:PxmlChar; out:xmlNodePtr):xmlNsPtr;cdecl;external LIBXSLT_SO;
+  function xsltGetSpecialNamespace(ctxt:xsltTransformContextPtr; cur:xmlNodePtr; URI:PxmlChar; prefix:PxmlChar; out xmlNodePtr):xmlNsPtr;cdecl;external LIBXSLT_SO;
 
   function xsltCopyNamespace(ctxt:xsltTransformContextPtr; node:xmlNodePtr; cur:xmlNsPtr):xmlNsPtr;cdecl;external LIBXSLT_SO;
 

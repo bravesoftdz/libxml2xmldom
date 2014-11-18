@@ -10,7 +10,7 @@ unit DomDocumentTests;
 interface
 
 uses
-  TestFrameWork,
+  fpcunit,
   idom2,
   DomSetup;
 
@@ -96,7 +96,7 @@ type
 
   end;
 
-  function getUnitTests : ITestSuite;
+  function getUnitTests : TTestSuite;
 
 implementation
 
@@ -917,12 +917,12 @@ end;
  * returns a testSuite containing all tests within this suite
  * if new test cases are created they should be added to this function
 *)
-function getUnitTests : ITestSuite;
+function getUnitTests : TTestSuite;
 var
  suite : TTestSuite;
 begin
  suite := TTestSuite.create('Dom Document fundamental tests');
- suite.addSuite(TDomDocumentFundamentalTests.suite);
+ suite.AddTest(TDomDocumentFundamentalTests.suite);
  result := suite;
 end;
 

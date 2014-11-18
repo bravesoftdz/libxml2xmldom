@@ -58,10 +58,12 @@ type
 
 implementation
 
+{$IFDEF LINUX}
 function RDTSC:Int64;
 asm
   dw 310Fh
 end;
+{$ENDIF}
 
 constructor TQmwFastTime.Create;
 begin

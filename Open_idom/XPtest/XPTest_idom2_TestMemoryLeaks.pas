@@ -1,14 +1,16 @@
 unit XPTest_idom2_TestMemoryLeaks;
 
+{$MODE Delphi}
+
 interface
 
 uses
   idom2,
-  idom2_ext,
+  idom2_ext, FileUtil,
   domSetup,
   SysUtils,
   XPTest_idom2_Shared,
-  TestFrameWork,
+  fpcunit,
   Classes;
 
 type
@@ -75,6 +77,8 @@ function test(Name: string; testexpr: boolean): boolean;
 implementation
 
 uses
+  testregistry,
+  LazLogger,
   MicroTime,
   XPTest_idom2_TestDOM2Methods,
   XPTest_idom2_TestXPath,
@@ -177,10 +181,10 @@ var
   oneResult: string;
   ok: integer;
   total: integer;
-  mySuite: ITestSuite;
+  mySuite: TTestSuite;
   vendor: string;
 begin
-  mySuite:=RegisteredTests;
+  mySuite:=GetTestRegistry;
   if domvendor='LIBXML_4CT'
     then vendor:='Lib XML 2'
     else vendor:='Ms-DOM Rental';
@@ -190,7 +194,7 @@ begin
   total:=sl.Count;
   ok:=total;
   for i := 0 to sl.Count-1 do begin
-    aTest := testClass.Create(sl[i]);
+    aTest := testClass.CreateWithName(sl[i]);
     oneResult:=callMethodByName(aTest,sl[i]);
     if oneResult<>''
       then begin
@@ -1156,7 +1160,7 @@ begin
   check(memdelta < 5000, Format('memory leak with %d bytes', [memdelta]));
 
   // status info if delta is not 0
-  if (memdelta <> 0) then Status(Format('memory leak %d bytes', [memdelta]));
+  if (memdelta <> 0) then DebugLn(Format('memory leak %d bytes', [memdelta]));
 end;
 
 procedure TTestMemoryLeaks.createElement10000Times;
@@ -1269,8 +1273,8 @@ var
   temp:    string;
 begin
   temp := includetrailingpathdelimiter(datapath) + 'test.xml';
-  Check(FileExists(temp), Format('file "%s" does not exist!', [temp]));
-  Status('Be patient...');
+  Check(FileExistsUTF8(temp) { *Konvertiert von FileExists* }, Format('file "%s" does not exist!', [temp]));
+  DebugLn('Be patient...');
   TestSet := 0;
   for j := 1 to 50 do begin
     for i := 1 to 100 do begin
@@ -1305,8 +1309,8 @@ var
   temp:    string;
 begin
   temp := includetrailingpathdelimiter(datapath) + 'test.xml';
-  Check(FileExists(temp), Format('file "%s" does not exist!', [temp]));
-  Status('Be patient...');
+  Check(FileExistsUTF8(temp) { *Konvertiert von FileExists* }, Format('file "%s" does not exist!', [temp]));
+  DebugLn('Be patient...');
   TestSet := 0;
   for j := 1 to 50 do begin
     for i := 1 to 100 do begin
@@ -1324,9 +1328,9 @@ var
   temp:    string;
 begin
   temp := includetrailingpathdelimiter(datapath) + 'test.xml';
-  Check(FileExists(temp), Format('file "%s" does not exist!', [temp]));
+  Check(FileExistsUTF8(temp) { *Konvertiert von FileExists* }, Format('file "%s" does not exist!', [temp]));
   TestSet := 0;
-  Status('Be patient...');
+  DebugLn('Be patient...');
   for j := 1 to 20 do begin
     for i := 1 to 100 do begin
       TestsOK := TestDocument(temp, domvendor, TestSet);
@@ -1483,8 +1487,8 @@ var
   temp:    string;
 begin
   temp := includetrailingpathdelimiter(datapath) + 'test.xml';
-  Check(FileExists(temp), Format('file "%s" does not exist!', [temp]));
-  Status('Be patient...');
+  Check(FileExistsUTF8(temp) { *Konvertiert von FileExists* }, Format('file "%s" does not exist!', [temp]));
+  DebugLn('Be patient...');
   TestSet := 0;
   for j := 1 to 20 do begin
     for i := 1 to 100 do begin
@@ -1638,7 +1642,7 @@ begin
     check((adoc as IDomPersist).loadxml(xmlstr), 'parse error');
     // append new attribute to documentElement of 2nd dom
     attr1 := adoc.createAttributeNs(nsuri, fqname);
-    attr1.value:='grün';
+    attr1.value:='grÃ¼n';
     check(attr1.name=fqname,'wrong name of original attribute');
     adoc.documentElement.setAttributeNodeNs(attr1);
     attr1:=nil;
@@ -1658,7 +1662,7 @@ begin
     attr:=doc.documentElement.attributes[0] as IDomAttr;
     check(attr <> nil, 'attribute is nil');
     check(attr.name=fqname,'wrong name of imported attribute');
-    check(attr.value='grün','wrong value of imported attribute');
+    check(attr.value='grÃ¼n','wrong value of imported attribute');
     check(not myIsSameNode(doc,adoc),'the two documents must not be the same');
     check(myIsSameNode(attr.ownerDocument,doc), 'wrong ownerDocument');
   end;
@@ -1676,15 +1680,15 @@ var
 begin
   for i:=1 to 5000 do begin
     // test how loadxml behaves with 'umlauts'
-    teststr := xmldecl+'<root><text>äöüß</text><text>ÄÖÜ</text></root>';
+    teststr := xmldecl+'<root><text>Ã¤Ã¶Ã¼ÃŸ</text><text>Ã„Ã–Ãœ</text></root>';
     doc := impl.createDocument('', '', nil);
     (doc as IDOMPersist).loadxml(teststr);
     check(doc.documentElement.hasChildNodes, 'has no childNodes');
     check(doc.documentElement.childNodes.length = 2, 'wrong length');
     check(doc.documentElement.firstChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
     check(doc.documentElement.lastChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
-    check(doc.documentElement.firstChild.firstChild.nodeValue = 'äöüß', 'wrong nodeValue');
-    check(doc.documentElement.lastChild.firstChild.nodeValue = 'ÄÖÜ', 'wrong nodeValue');
+    check(doc.documentElement.firstChild.firstChild.nodeValue = 'Ã¤Ã¶Ã¼ÃŸ', 'wrong nodeValue');
+    check(doc.documentElement.lastChild.firstChild.nodeValue = 'Ã„Ã–Ãœ', 'wrong nodeValue');
     check((unify((doc as IDomPersist).xml)=unify(teststr)), 'xml output is different from parsed text');
     doc:=nil;
   end;
@@ -1695,7 +1699,7 @@ procedure TTestMemoryLeaks.AllSelected_DOM2Methods_2x100_be_patient;
 // suite TTestDOM2Methods
 
 begin
-  status(leaktestForOneTestClass(TTestDOM2Methods));
+  DebugLn(leaktestForOneTestClass(TTestDOM2Methods));
 end;
 
 
@@ -1704,23 +1708,23 @@ procedure TTestMemoryLeaks.AllSelected_XPATH_Tests_2x100;
 // suite TTestXPATH
 
 begin
-  status(leaktestForOneTestClass(TTestXPath));
+  DebugLn(leaktestForOneTestClass(TTestXPath));
 end;
 
 
 procedure TTestMemoryLeaks.AllSelected_XSLT_Tests_2x100;
 begin
-  status(leaktestForOneTestClass(TTestXSLT));
+  DebugLn(leaktestForOneTestClass(TTestXSLT));
 end;
 
 procedure TTestMemoryLeaks.AllSelected_DomExceptions_2x100;
 begin
-  status(leaktestForOneTestClass(TTestDomExceptions));
+  DebugLn(leaktestForOneTestClass(TTestDomExceptions));
 end;
 
 procedure TTestMemoryLeaks.AllSelected_IDomPersist_Tests_2x100;
 begin
-  status(leaktestForOneTestClass(TTestPersist));
+  DebugLn(leaktestForOneTestClass(TTestPersist));
 end;
 
 end.

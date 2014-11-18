@@ -12,7 +12,7 @@ unit libxml2;
 interface
 
 uses
-{$IFDEF WIN32}
+{$IFDEF windows}
   Windows,
 {$ENDIF}
 {$IFDEF LINUX}
@@ -20,7 +20,7 @@ uses
 {$ENDIF}
   iconv;
 const
-{$IFDEF WIN32}
+{$IFDEF windows}
   LIBXML2_SO = 'libxml2.dll';
 {$ENDIF}
 {$IFDEF LINUX}

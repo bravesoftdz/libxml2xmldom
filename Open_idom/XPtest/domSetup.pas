@@ -14,6 +14,7 @@ const
 type
 
   IDomSetup = interface
+  ['{10D5ACC8-EE97-4D35-8A9E-5746F3D20B35}']
     function getVendorID: string;
     function getDocumentBuilder: IDomDocumentBuilder;
   end;
@@ -29,7 +30,7 @@ function getCurrentDomSetup: IDomSetup;
 implementation
 
 uses
-  testdecorator;
+  testdecorator, testregistry, Classes;
 
 type
 
@@ -62,21 +63,24 @@ type
 var
   (* reference to the current DomSetup *)
   gCurrentDomSetup: IDomSetup;
+  gDomSetups: TInterfaceList;
 
 function TDomSetup.QueryInterface(constref iid: tguid; out obj): longint;
   stdcall;
 begin
-
+  Result := fRefCounter.QueryInterface(iid, obj);
 end;
 
 function TDomSetup._AddRef: longint; stdcall;
 begin
-
+  Result := fRefCounter._AddRef;
 end;
 
 function TDomSetup._Release: longint; stdcall;
 begin
-
+  Result := fRefCounter._Release;
+  if Result=0 then
+    self.destroy;
 end;
 
 constructor TDomSetup.Create(const vendorID: string; test: TTest);
@@ -89,7 +93,6 @@ end;
 destructor TDomSetup.Destroy;
 begin
   fDocumentBuilder := nil;
-  fRefCounter.Free;
 end;
 
 procedure TDomSetup.OneTimeSetup;
@@ -122,6 +125,7 @@ end;
 function createDomSetupTest(const vendorID: string; test: TTest): TTest;
 begin
   Result := TDomSetup.Create(vendorID, test);
+  gDomSetups.Add(Result as IDomSetup);
 end;
 
 
@@ -131,5 +135,9 @@ begin
   Result := gCurrentDomSetup;
 end;
 
+initialization
+  gDomSetups := TInterfaceList.Create;
+finalization
+  gDomSetups.Free;
 
 end.

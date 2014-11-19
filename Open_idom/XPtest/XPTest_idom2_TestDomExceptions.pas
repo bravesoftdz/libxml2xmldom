@@ -232,11 +232,15 @@ begin
 end;
 
 procedure TTestDomExceptions.SetUp;
+var
+  ADomSetup: IDOMSetup;
+  ADocumentBuilder: IDomDocumentBuilder;
 begin
   // reset all
   ClearUp;
-
-  impl := DomSetup.getCurrentDomSetup.getDocumentBuilder.domImplementation;
+  ADomSetup := DomSetup.getCurrentDomSetup;
+  ADocumentBuilder := ADomSetup.getDocumentBuilder;
+  impl := ADocumentBuilder.domImplementation;
   doc := impl.createDocument('', '', nil);
   (doc as IDomPersist).loadxml(xmlstr);
   doc1 := impl.createDocument('', '', nil);

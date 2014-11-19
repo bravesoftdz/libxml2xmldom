@@ -37,7 +37,7 @@ uses
  *
  * @param name the name of the All Test suite
 *)
-function getAllTests(const Name: string): TTest;
+function getAllTests(const VendorID: string; const Name: string): TTest;
 var
   allTestSuite: TTestSuite;
 begin
@@ -45,14 +45,14 @@ begin
 
   (* add all test suits to the allTestSuite *)
 
-  allTestSuite.AddTest(TTestDOM2Methods.Suite);
-  allTestSuite.AddTest(TTestDomExceptions.Suite);
-  allTestSuite.AddTest(TTestMemoryLeaks.Suite);
-  allTestSuite.AddTest(TTestXPath.Suite);
-  allTestSuite.AddTest(TTestXSLT.Suite);
-  allTestSuite.AddTest(TTestPersist.Suite);
-  allTestSuite.AddTest(TDomImplementationFundamentalTests.Suite);
-  allTestSuite.AddTest(TDomDocumentFundamentalTests.Suite);
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestDOM2Methods.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestDomExceptions.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestMemoryLeaks.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestXPath.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestXSLT.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestPersist.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TDomImplementationFundamentalTests.Suite));
+  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TDomDocumentFundamentalTests.Suite));
 
   Result := allTestSuite;
 end;
@@ -66,12 +66,12 @@ initialization
   {$ifdef MSWINDOWS}
   //if not FindCmdLineSwitch('no_msxml', true)
   //   then
-       RegisterTest(MSXML2Rental, DomSetup.createDomSetupTest(MSXML2Rental, getAllTests('Ms-DOM Rental')));
+       GetTestRegistry.AddTest(getAllTests(MSXML2Rental, 'Ms-DOM Rental'));
   {$endif}
 
   {remove comments to add testing of the Appartment Free Ms version }
   //  TestFramework.RegisterTest(
   //      DomSetup.createDomSetupTest(MSXML2Free, getAllTests('Ms-DOM Free')));
 
-  RegisterTest(SLIBXML, DomSetup.createDomSetupTest(SLIBXML, getAllTests('Lib XML 2')));
+  GetTestRegistry.AddTest(getAllTests(SLIBXML, 'Lib XML 2'));
 end.

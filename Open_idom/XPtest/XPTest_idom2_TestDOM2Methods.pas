@@ -5,8 +5,6 @@ unit XPTest_idom2_TestDOM2Methods;
 interface
 
 uses
-  {TestFrameWork,
-  TestExtensions,}
   libxmldom,
   idom2,
   idom2_ext,
@@ -245,12 +243,17 @@ begin
 end;
 
 procedure TTestDom2Methods.SetUp;
+var
+  ADomSetup: IDOMSetup;
+  ADocumentBuilder: IDomDocumentBuilder;
 begin
   // reset all
   ClearUp;
 
   // init all
-  impl := DomSetup.getCurrentDomSetup.getDocumentBuilder.domImplementation;
+  ADomSetup := DomSetup.getCurrentDomSetup;
+  ADocumentBuilder := ADomSetup.getDocumentBuilder;
+  impl := ADocumentBuilder.domImplementation;
   doc0 := impl.createDocument('', '', nil);
   (doc0 as IDomPersist).loadxml(xmlstr);
   doc1 := impl.createDocument('', '', nil);
@@ -4160,7 +4163,7 @@ end;
 
 initialization
   datapath := getDataPath;
-  {$ifdef win32}
+  {$ifdef mswindows}
   CoInitialize(nil);
   {$endif}
   {$ifdef linux}

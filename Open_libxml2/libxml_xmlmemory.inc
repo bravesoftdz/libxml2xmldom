@@ -84,7 +84,7 @@ type
    *
    * Returns the copy of the string or NULL in case of error.
    *)
-  xmlStrdupFunc = function(str: PChar): PChar; cdecl;
+  xmlStrdupFunc = function(str: PAnsiChar): PAnsiChar; cdecl;
   PxmlStrdupFunc = ^xmlStrdupFunc;
 
 (*
@@ -146,7 +146,7 @@ procedure xmlMemoryDump; cdecl; external LIBXML2_SO;
 
 procedure xmlMallocLoc(size: size_t; filename: PChar; line: Longint);
 procedure xmlReallocLoc(ptr: Pointer; size: size_t; filename: PChar; line: Longint);
-function  xmlMemStrdupLoc(str: PChar; filename: PChar; line: Longint): PChar;
+function  xmlMemStrdupLoc(str: PAnsiChar; filename: PAnsiChar; line: Longint): PChar;
 
 {$ENDIF} // XML_DEBUG_MEMORY_LOCATION
 

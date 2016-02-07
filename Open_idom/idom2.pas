@@ -223,7 +223,7 @@ const
 
 type
 
-  DomString    = WideString;
+  DomString    = UnicodeString;
   DomTimeStamp = Int64;
 
   DomNodeType  = Integer;
@@ -616,8 +616,8 @@ type
      * @Param LocalName [in]
     *)
     function  getAttributeNS(
-            const namespaceURI : DomString;
-            const localName    : DomString) : DomString;
+            const _namespaceURI : DomString;
+            const _localName    : DomString) : DomString;
 
     (*
      * @Param NamespaceURI [in]
@@ -626,7 +626,7 @@ type
      * @Raises EDomException
     *)
     procedure setAttributeNS(
-            const namespaceURI  : DomString;
+            const _namespaceURI  : DomString;
             const qualifiedName : DomString;
             const value         : DomString);
 
@@ -636,15 +636,15 @@ type
      * @Raises EDomException
     *)
     procedure removeAttributeNS(
-            const namespaceURI : DomString;
-            const localName    : DomString);
+            const _namespaceURI : DomString;
+            const _localName    : DomString);
     (*
      * @Param NamespaceURI [in]
      * @Param LocalName [in]
     *)
     function  getAttributeNodeNS(
-            const namespaceURI : DomString;
-            const localName    : DomString) : IDomAttr;
+            const _namespaceURI : DomString;
+            const _localName    : DomString) : IDomAttr;
 
     (*
      * @Param NewAttr [in]
@@ -657,8 +657,8 @@ type
      * @Param LocalName [in]
     *)
     function  getElementsByTagNameNS(
-            const namespaceURI : DomString;
-            const localName    : DomString) : IDomNodeList;
+            const _namespaceURI : DomString;
+            const _localName    : DomString) : IDomNodeList;
 
     (*
      * @Param Name [in]
@@ -670,8 +670,8 @@ type
      * @Param LocalName [in]
     *)
     function  hasAttributeNS(
-            const namespaceURI : DomString;
-            const localName    : DomString) : Boolean;
+            const _namespaceURI : DomString;
+            const _localName    : DomString) : Boolean;
 
     {properties}
     property tagName : DomString  read get_TagName;
@@ -849,7 +849,7 @@ type
      * @Raises EDomException
     *)
     function  createElementNS(
-            const namespaceURI  : DomString;
+            const _namespaceURI  : DomString;
             const qualifiedName : DomString) : IDomElement;
 
     (*
@@ -858,7 +858,7 @@ type
      * @Raises EDomException
     *)
     function  createAttributeNS(
-            const namespaceURI  : DomString;
+            const _namespaceURI  : DomString;
             const qualifiedName : DomString) : IDomAttr;
 
     (*
@@ -867,8 +867,8 @@ type
      * @Raises EDomException
     *)
     function  getElementsByTagNameNS(
-            const namespaceURI : DomString;
-            const localName    : DomString) : IDomNodeList; //FE
+            const _namespaceURI : DomString;
+            const _localName    : DomString) : IDomNodeList; //FE
 
     (*
      * @Param ElementId [in]

@@ -13,7 +13,7 @@
     Please send corrections to: ufechner@4commerce.de
     ------------------------------------------------------------------------------
 }
-{
+
   {
      key.h: interface for the key matching used in template matches.
     

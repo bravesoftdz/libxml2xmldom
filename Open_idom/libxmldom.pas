@@ -1,4 +1,4 @@
-unit libxmldom;
+ï»¿unit libxmldom;
 
 {
   ------------------------------------------------------------------------------
@@ -19,7 +19,7 @@ unit libxmldom;
    Thanks to Jan Kubatzki for testing.
 
    | The routines for testing XML rules were taken from the Extended Document
-   | Object Model (XDOM) package, copyright (c) 1999-2002 by Dieter Köhler.
+   | Object Model (XDOM) package, copyright (c) 1999-2002 by Dieter KÃ¶hler.
    | The latest XDOM version is available at "http://www.philo.de/xml/" under
    | a different open source license.  In addition, the author gave permission
    | to use the routines for testing XML rules included in this file under the
@@ -180,8 +180,8 @@ type
     { IXmlDomNodeRef }
     function GetXmlNodePtr: xmlNodePtr;
     { IDomNodeSelect }
-    function selectNode(const nodePath: WideString): IDomNode;
-    function selectNodes(const nodePath: WideString): IDomNodeList;
+    function selectNode(const nodePath: DOMString): IDomNode;
+    function selectNodes(const nodePath: DOMString): IDomNodeList;
     procedure RegisterNS(const prefix, URI: DomString);
     { IDomNodeExt }
     procedure transformNode(const stylesheet: IDomNode; var output: DomString); overload;
@@ -644,7 +644,7 @@ end;
 function IsReadOnlyNode(node: xmlNodePtr): boolean;
 begin
   if node <> nil
-    then case node.type_ of
+    then case node^.type_ of
            XML_NOTATION_NODE, XML_ENTITY_NODE, XML_ENTITY_DECL: Result := True;
          else Result := False;
          end
@@ -664,7 +664,7 @@ var
 begin
   result:=nil;
   if Node=nil then exit;
-  nodeType := Node.type_;
+  nodeType := Node^.type_;
   if nodeType = XML_ENTITY_DECL then nodeType := ENTITY_REFERENCE_NODE;
   // this is a workaround for handling the result of xslt transformations
   if nodeType = XML_HTML_DOCUMENT_NODE then nodeType := DOCUMENT_NODE;
@@ -683,7 +683,7 @@ begin
   // check for valid argument
   if attr=nil then exit;
   // check for type of attribute
-  if attr.type_ = XML_ATTRIBUTE_DECL then begin
+  if attr^.type_ = XML_ATTRIBUTE_DECL then begin
     // for attributes from the dtd, store the ownerelement in the wrapper
     result:=TDomAttr.Create(attr,AOwnerDocument,AOwnerElement) as IDomAttr;
   end else begin
@@ -705,17 +705,17 @@ function LookUpNs1(node:xmlNodePtr; ns: xmlNsPtr):boolean;
     tmp: xmlNsPtr;
   begin
     result:=false;
-    tmp:=node.nsdef;
+    tmp:=node^.nsdef;
     while tmp <> nil do begin
-      if tmp.prefix<>nil then
-        if (StrComp(tmp.href,ns.href)=0) and (StrComp(tmp.prefix,ns.prefix)=0) then begin
+      if tmp^.prefix<>nil then
+        if (StrComp(tmp^.href,ns^.href)=0) and (StrComp(tmp^.prefix,ns^.prefix)=0) then begin
           // it is already in the list
           result:=true;
           // all done
           exit;
         end;
       // get the next entry
-      tmp:=tmp.next;
+      tmp:=tmp^.next;
     end;
   end;
 
@@ -732,7 +732,7 @@ begin
   while node1 <> nil do begin
     // if found, than exit
     if LookupNs1(node1,ns) then exit;
-    node1:=node1.parent;
+    node1:=node1^.parent;
   end;
   // not found, so return false
   result:=false
@@ -753,7 +753,7 @@ begin
   Result := False;
   last := nil;
   // exit the function, if element isn't an element node
-  if element.type_ <> Element_Node then exit;
+  if element^.type_ <> Element_Node then exit;
 
   // look in the nsdef list, wether the namespace and prefix are
   // already registered
@@ -765,15 +765,15 @@ begin
   // ns will be freed by the wrapper and the copy by libxml2
   newNs:=xmlCopyNamespace(ns);
   // cycle to the end of the list
-  tmp:=element.nsdef;
+  tmp:=element^.nsdef;
   while tmp<>nil do begin
     last:=tmp;
-    tmp:=tmp.next;
+    tmp:=tmp^.next;
   end;
   // now append it at the end
-  if element.nsDef = nil
-    then element.nsDef := newNs
-    else last.Next := newNs;
+  if element^.nsDef = nil
+    then element^.nsDef := newNs
+    else last^.Next := newNs;
   Result := True;
 end;
 
@@ -873,7 +873,7 @@ begin
   result := Copy(Source, p - @Source[1], e - p + 1);
 
   // check for encoding
-  p := PWideChar(@result[1]) + Pos(WideString('encoding='), result) - 1;
+  p := PWideChar(@result[1]) + Pos(DOMString('encoding='), result) - 1;
 
   if (p < @result[1])
      then result := ''
@@ -931,44 +931,44 @@ var
   temp:     AnsiString;
 begin
   // don't do anything on nodes, other than elements
-  if node.type_ <> ELEMENT_NODE then exit;
+  if node^.type_ <> ELEMENT_NODE then exit;
   // get the list of children of this element
-  node1 := node.children;
+  node1 := node^.children;
   // walk through the list of children
   while node1 <> nil do begin
-    if node1.type_ = TEXT_NODE then begin
-      temp:=node1.content;
-      if (not assigned(node1.content) or (temp='')) then begin
+    if node1^.type_ = TEXT_NODE then begin
+      temp:=node1^.content;
+      if (not assigned(node1^.content) or (temp='')) then begin
         // remove empty text nodes
-        new_next:=node1.next;
+        new_next:=node1^.next;
         xmlUnlinkNode(node1);
         xmlFreeNode(node1);
         // go to the next node
         node1:=new_next;
       end else begin
         // check if the following node is a text node, too
-        Next := node1.Next;
+        Next := node1^.Next;
         // loop through the text nodes, that follow this text node
         while Next <> nil do begin
           // leave the inner loop, it the next node isn't a text node
-          if Next.type_ <> TEXT_NODE then break;
+          if Next^.type_ <> TEXT_NODE then break;
           // concat adjesting text nodes
-          temp := Next.content;
+          temp := Next^.content;
           xmlTextConcat(node1, PAnsiChar(temp), length(temp));
-          new_next := Next.Next;
-          Next.parent := nil;
+          new_next := Next^.Next;
+          Next^.parent := nil;
           xmlUnlinkNode(Next);
           xmlFreeNode(Next);
           Next := new_next;
         end;
         // go to the next node
-        node1 := node1.Next;
+        node1 := node1^.Next;
       end;
-    end else if node1.type_ = ELEMENT_NODE then begin
+    end else if node1^.type_ = ELEMENT_NODE then begin
       // if there is an element on the list of children, normalize it
       xmlNormalize(node1);
       // go to the next node
-      node1 := node1.Next;
+      node1 := node1^.Next;
     end;
   end;
 end;
@@ -981,7 +981,7 @@ begin
   // get the root element to test
   root := xmlDocGetRootElement(doc);
   // check if root has children
-  if Assigned(root.children)
+  if Assigned(root^.children)
      then dummy := nil
      else dummy := xmlAddChild(root, xmlNewText(nil));
   // use the libxml2 method
@@ -994,8 +994,8 @@ end;
 
 procedure check_fixedAttr(var attr: xmlAttrPtr; clearDefaultAttr: boolean=false);
 begin
-  if assigned(attr) and (attr.type_ = XML_ATTRIBUTE_DECL) then begin
-    if xmlAttributePtr(attr).def = XML_ATTRIBUTE_FIXED then begin
+  if assigned(attr) and (attr^.type_ = XML_ATTRIBUTE_DECL) then begin
+    if xmlAttributePtr(attr)^.def = XML_ATTRIBUTE_FIXED then begin
       checkError(NO_MODIFICATION_ALLOWED_ERR);
     end;
     // clear the default attribute, if required
@@ -1007,21 +1007,21 @@ procedure xmlAddPropChild(const parent: xmlNodePtr; const xmlAttr: xmlAttrPtr);
 var iloop: xmlAttrPtr;
 begin
   // assign parent property to this scopes parent
-  xmlAttr.parent := parent;
-  xmlAttr.doc := parent.doc;
+  xmlAttr^.parent := parent;
+  xmlAttr^.doc := parent^.doc;
   // first check that properties is intialized
-  if (not Assigned(parent.properties))
+  if (not Assigned(parent^.properties))
      then
        // set new struct
-       parent.properties := xmlAttr
+       parent^.properties := xmlAttr
      else begin
        // cycle to the end
-       iloop := parent.properties;
+       iloop := parent^.properties;
        // check until we point with next to nil
-       while Assigned(iloop.next) do iloop := iloop.next;
+       while Assigned(iloop^.next) do iloop := iloop^.next;
        // insert this new struct
-       iloop.next     := xmlAttr;
-       xmlAttr.prev   := iloop;
+       iloop^.next     := xmlAttr;
+       xmlAttr^.prev   := iloop;
      end;
 end;
 
@@ -1034,27 +1034,27 @@ var
 begin
   // if there are invalid parameters passed, than exit
   if node=nil then exit;
-  if node.type_ <> Element_Node then exit;
+  if node^.type_ <> Element_Node then exit;
   if ns=nil then exit;
   // get the first entry of the nsDef list
-  tmp:=node.nsDef;
+  tmp:=node^.nsDef;
   last:=nil;
   // loop through all entries
   while tmp<>nil do begin
-    if (StrComp(tmp.href,ns.href)=0) and (StrComp(tmp.prefix,ns.prefix)=0) then begin
+    if (StrComp(tmp^.href,ns^.href)=0) and (StrComp(tmp^.prefix,ns^.prefix)=0) then begin
       // now remove the nsdef entry
       // if we are at the beginning of the list:
-      if tmp=node.nsDef then begin
-        node.nsDef:=tmp.next;
+      if tmp=node^.nsDef then begin
+        node^.nsDef:=tmp^.next;
       // if we are in the middle or at the end;
       end else begin
-        last.next:=tmp.next;
+        last^.next:=tmp^.next;
       end;
       // we found and removed the nsdef entry, so we can quit
       exit;
     end;
     last:=tmp;
-    tmp:=tmp.next;
+    tmp:=tmp^.next;
   end;
 end;
 
@@ -1064,11 +1064,11 @@ procedure cleanNsdef(node:xmlNodePtr); overload;
   var
     tmp,next: xmlNsPtr;
   begin
-    if node.type_ <> Element_Node then exit;
-    tmp:=node.nsdef;
+    if node^.type_ <> Element_Node then exit;
+    tmp:=node^.nsdef;
     while tmp<>nil do begin
-      next:=tmp.next;
-      if LookUpNs(node.parent,tmp) then begin
+      next:=tmp^.next;
+      if LookUpNs(node^.parent,tmp) then begin
         // delete the nsdef entry in the node
         removeNamespace(node,tmp);
         xmlFreeNs(tmp);
@@ -1085,36 +1085,36 @@ var
 begin
   cleanNsdef(node);
   if not deep then exit;
-  child:=node.children;
+  child:=node^.children;
   while assigned(child) do begin
     cleanNsdef(child,true);
-    child:=child.next;
+    child:=child^.next;
   end;
 end;
 
 procedure xmlUnlinkPropNode(const parent: xmlNodePtr; const xmlAttr: xmlAttrPtr);
 begin
   // free parent property
-  xmlAttr.parent := nil;
+  xmlAttr^.parent := nil;
   // first check that properties is intialized
-  if (parent.properties = xmlAttr)
+  if (parent^.properties = xmlAttr)
      then begin
-       parent.properties := parent.properties.next;
+       parent^.properties := parent^.properties^.next;
        // check that we have still a list
-       if Assigned(parent.properties)
+       if Assigned(parent^.properties)
           then
             // correct prev link
-            parent.properties.prev := nil;
+            parent^.properties^.prev := nil;
      end
      else begin
        // we are in the middle
-       if Assigned(xmlAttr.next) then xmlAttr.next.prev := xmlAttr.prev;
-       if Assigned(xmlAttr.prev) then xmlAttr.prev.next := xmlAttr.next;
+       if Assigned(xmlAttr^.next) then xmlAttr^.next^.prev := xmlAttr^.prev;
+       if Assigned(xmlAttr^.prev) then xmlAttr^.prev^.next := xmlAttr^.next;
      end;
 
   // now unlink this attribute
-  xmlAttr.prev := nil;
-  xmlAttr.next := nil;
+  xmlAttr^.prev := nil;
+  xmlAttr^.next := nil;
 end;
 
 function xmlCloneAttr(inAttr:xmlAttrPtr; wrapperDoc: IDomDocument; deep: boolean):xmlAttrPtr;
@@ -1130,9 +1130,9 @@ begin
   doc:=xmlDocPtr((wrapperDoc as IXmlDomNodeRef).GetXmlNodePtr);
   node:=xmlNodePtr(xmlCopyProp(nil,inAttr));
   if node <> nil then begin
-    node.doc := doc;
+    node^.doc := doc;
     // it's important, that the first parameter of findOrCreateNewNamespace is nil!
-    node.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,inAttr.ns);
+    node^.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,inAttr^.ns);
     Result := xmlAttrPtr(node);
   end;
 end;
@@ -1146,11 +1146,11 @@ begin
   doc:=xmlDocPtr((wrapperDoc as IXmlDomNodeRef).GetXmlNodePtr);
   if ns=nil then begin
     // create a dummy attribute with the correct content
-    attr:=xmlNewProp(nil,attrDecl.name,attrDecl.defaultValue);
-    attr.doc := doc;
+    attr:=xmlNewProp(nil,attrDecl^.name,attrDecl^.defaultValue);
+    attr^.doc := doc;
   end else begin
-    attr:=xmlNewNsProp(nil,ns,attrDecl.name,attrDecl.defaultValue);
-    attr.doc := doc;
+    attr:=xmlNewNsProp(nil,ns,attrDecl^.name,attrDecl^.defaultValue);
+    attr^.doc := doc;
   end;
   result:=attr;
 end;
@@ -1169,12 +1169,12 @@ var
   deep: boolean; // for debugging only
 begin
   deep:=false;
-  if inNode.type_=XML_ATTRIBUTE_NODE
+  if inNode^.type_=XML_ATTRIBUTE_NODE
     then begin
       result:=xmlNodePtr(xmlCloneAttr(xmlAttrPtr(inNode),wrapperDoc,deep));
       exit;
     end;
-  if inNode.type_=XML_ATTRIBUTE_DECL
+  if inNode^.type_=XML_ATTRIBUTE_DECL
     then begin
       result:=xmlNodePtr(xmlCloneAttrDecl(xmlAttributePtr(inNode),wrapperDoc,deep));
       exit;
@@ -1183,27 +1183,27 @@ begin
   if deep
     then recursive := 1
     else recursive := 0;
-  if inNode.type_= XML_DOCUMENT_FRAG_NODE then begin
+  if inNode^.type_= XML_DOCUMENT_FRAG_NODE then begin
     node := xmlNewDocFragment(doc);
   end else begin
     node := xmlDocCopyNode(inNode, doc, recursive);
     if node <> nil then begin
       // set properties
-      node.doc := doc;
-      node.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,inNode.ns);
-      if inNode.type_=xml_element_node then begin
-        appendNamespace(node,node.ns);
+      node^.doc := doc;
+      node^.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,inNode^.ns);
+      if inNode^.type_=xml_element_node then begin
+        appendNamespace(node,node^.ns);
       end;
       // if not deep, than copy the attributes of the element
       // here in the wrapper
-      if (not deep) and (inNode.type_=xml_element_node) then begin
-        attr:=inNode.properties;
+      if (not deep) and (inNode^.type_=xml_element_node) then begin
+        attr:=inNode^.properties;
         while attr<>nil do begin
           attr1:=xmlCopyProp(node,attr);
-          attr1.doc:=attr.doc;
-          attr1.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,attr.ns);
+          attr1^.doc:=attr^.doc;
+          attr1^.ns:=(wrapperDoc as IDomInternal).findOrCreateNewNamespace(nil,attr^.ns);
           xmlAddPropChild(node,attr1);
-          attr:=attr.next;
+          attr:=attr^.next;
         end;
       end;
     end;
@@ -1218,16 +1218,16 @@ var
   child: xmlNodePtr;
   copy:  xmlNodePtr;
 begin
-  if (inNode.type_=XML_ATTRIBUTE_DECL) or (inNode.type_=XML_ATTRIBUTE_NODE) or (inNode.children=nil)
+  if (inNode^.type_=XML_ATTRIBUTE_DECL) or (inNode^.type_=XML_ATTRIBUTE_NODE) or (inNode^.children=nil)
     then deep:=false;
   result:=xmlCloneNode(inNode,wrapperDoc);
   if deep then begin
-    child:=inNode.children;
+    child:=inNode^.children;
     while assigned(child) do begin
       copy:=xmlCloneNode(child,wrapperDoc,true);
       xmlAddChild(result,copy);
       cleanNsdef(copy,true);
-      child:=child.next;
+      child:=child^.next;
     end;
   end;
 end;
@@ -1283,20 +1283,20 @@ begin
   j:=index;
   inc(j);
   // scan the hash
-  if hash.table<>nil then begin
-    for i:=0 to hash.size-1 do begin
-      hashEntry := @(hash.table^[i]);
-      if hashEntry.valid = 0 then
+  if hash^.table<>nil then begin
+    for i:=0 to hash^.size-1 do begin
+      hashEntry := @(hash^.table^[i]);
+      if hashEntry^.valid = 0 then
          continue;
       while hashEntry<>nil do begin
         dec(j);
         // check if we found the entry with the correct index
         if j=0 then begin
           // return the result
-          result:=hashEntry.payload;
+          result:=hashEntry^.payload;
           break;
         end;
-        hashEntry:=hashEntry.next;
+        hashEntry:=hashEntry^.next;
       end;
     end;
   end;
@@ -1307,17 +1307,17 @@ var
   buffer: PAnsiChar;
   tmp:    xmlNodePtr;
 begin
-  if attr.children <> nil then xmlFreeNodeList(attr.children);
-  attr.children := nil;
-  attr.last := nil;
-  buffer := xmlEncodeEntitiesReentrant(attr.doc, PAnsiChar(sValue));
-  attr.children := xmlStringGetNodeList(attr.doc, PAnsiChar(sValue));
-  tmp := attr.children;
+  if attr^.children <> nil then xmlFreeNodeList(attr^.children);
+  attr^.children := nil;
+  attr^.last := nil;
+  buffer := xmlEncodeEntitiesReentrant(attr^.doc, PAnsiChar(sValue));
+  attr^.children := xmlStringGetNodeList(attr^.doc, PAnsiChar(sValue));
+  tmp := attr^.children;
   while tmp <> nil do begin
-    tmp.parent := xmlNodePtr(attr);
-    tmp.doc := attr.doc;
-    if tmp.Next = nil then attr.last := tmp;
-    tmp := tmp.Next;
+    tmp^.parent := xmlNodePtr(attr);
+    tmp^.doc := attr^.doc;
+    if tmp^.Next = nil then attr^.last := tmp;
+    tmp := tmp^.Next;
   end;
   xmlFree(buffer);
 end;
@@ -1328,8 +1328,8 @@ begin
   result := xmlAttrPtr(xmlReplaceNode(xmlNodePtr(xmlOldPropNode), xmlNodePtr(xmlNewPropNode)));
   // in special case that xmlOldPropNode is pointed to parent.properties
   // xmlReplaceNode did not correct the parent.properties
-  if (xmlNewPropNode.parent.properties = xmlOldPropNode)
-     then xmlNewPropNode.parent.properties := xmlNewPropNode;
+  if (xmlNewPropNode^.parent^.properties = xmlOldPropNode)
+     then xmlNewPropNode^.parent^.properties := xmlNewPropNode;
 end;
 
 function xmlSetPropNode(const parent: xmlNodePtr; const xmlNewPropNode, xmlOldPropNode: xmlAttrPtr): xmlAttrPtr;
@@ -1339,8 +1339,8 @@ begin
   // make sure thats assigned
   if (not Assigned(xmlNewPropNode)) then exit;
   // make sure thats ok
-  if (xmlNewPropNode.doc <> parent.doc) then checkError(WRONG_DOCUMENT_ERR);
-  if Assigned(xmlNewPropNode.parent) then checkError(INUSE_ATTRIBUTE_ERR);
+  if (xmlNewPropNode^.doc <> parent^.doc) then checkError(WRONG_DOCUMENT_ERR);
+  if Assigned(xmlNewPropNode^.parent) then checkError(INUSE_ATTRIBUTE_ERR);
   // check first
   if Assigned(xmlOldPropNode)
      then
@@ -1476,7 +1476,7 @@ function TDomNode.get_nodeName: DOMString;
 const
   emptyWString: WideString = '';
 begin
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     XML_HTML_DOCUMENT_NODE,
     //XML_DOCB_DOCUMENT_NODE,
     XML_DOCUMENT_NODE: Result := '#document';
@@ -1484,10 +1484,10 @@ begin
     XML_DOCUMENT_FRAG_NODE: Result := '#document-fragment';
     XML_ENTITY_DECL: Result := '#text';
     XML_TEXT_NODE,
-    XML_COMMENT_NODE: Result := emptyWString + '#' + UTF8Decode(fXmlNode.Name);
-    else Result := UTF8Decode(fXmlNode.Name);
-      if Assigned(fXmlNode.ns) and Assigned(fXmlNode.ns.prefix)
-         then Result := emptyWString + UTF8Decode(fXmlNode.ns.prefix) + ':' + Result;
+    XML_COMMENT_NODE: Result := emptyWString + '#' + UTF8Decode(fXmlNode^.Name);
+    else Result := UTF8Decode(fXmlNode^.Name);
+      if Assigned(fXmlNode^.ns) and Assigned(fXmlNode^.ns^.prefix)
+         then Result := emptyWString + UTF8Decode(fXmlNode^.ns^.prefix) + ':' + Result;
   end;
 end;
 
@@ -1495,18 +1495,18 @@ function TDomNode.get_nodeValue: DOMString;
 var
   temp1: PAnsiChar;
 begin
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     ATTRIBUTE_NODE:
       begin
-        if fXmlNode.children <> nil
-          then temp1 := fXmlNode.children.content
+        if fXmlNode^.children <> nil
+          then temp1 := fXmlNode^.children^.content
           else temp1 := nil;
       end;
     XML_ATTRIBUTE_DECL:
       begin
-        temp1:=(xmlAttributePtr(fXmlNode)).defaultValue;
+        temp1:=(xmlAttributePtr(fXmlNode))^.defaultValue;
       end;
-    else temp1 := fXmlNode.content;
+    else temp1 := fXmlNode^.content;
   end;
   Result := UTF8Decode(temp1);
 end;
@@ -1521,7 +1521,7 @@ var
   ns: xmlNsPtr;
 begin
   sValue := UTF8Encode(Value);
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     XML_ATTRIBUTE_NODE:
       begin
         attr := xmlAttrPtr(fXmlNode);
@@ -1541,14 +1541,14 @@ begin
         attributes:=xmlAttributePtr(fXmlNode);
         // if it's a 'normal' attribute with a default value,
         // then create a dummy attribute
-        if (attributes.def <> XML_ATTRIBUTE_FIXED) then begin
+        if (attributes^.def <> XML_ATTRIBUTE_FIXED) then begin
           // 1) clone the attribute and replace the default attribute with the clone
           // because an attribute declaration carries only the prefix with it,
           // we have to make a namespace lookup on the owner element
           owner:=(self as IXmlDomAttrOwnerRef).GetXmlAttrOwnerPtr;
           // make sure, that the owner exists
           if owner<>nil then begin
-            ns:=xmlSearchNs(fXmlNode.doc,owner,xmlAttributePtr(fXmlNode).prefix);
+            ns:=xmlSearchNs(fXmlNode^.doc,owner,xmlAttributePtr(fXmlNode)^.prefix);
           end else begin
             ns:=nil;
           end;
@@ -1570,8 +1570,8 @@ end;
 
 function TDomNode.get_nodeType: DOMNodeType;
 begin
-  if fXmlNode.type_<> XML_ATTRIBUTE_DECL then begin
-    Result := domNodeType(fXmlNode.type_);
+  if fXmlNode^.type_<> XML_ATTRIBUTE_DECL then begin
+    Result := domNodeType(fXmlNode^.type_);
   end else begin
     result := ATTRIBUTE_NODE;
   end;
@@ -1579,9 +1579,9 @@ end;
 
 function TDomNode.get_parentNode: IDomNode;
 begin
-  if (fXmlNode.parent=xmlNodePtr(fXmlNode.doc)) and (fXmlNode.parent<>nil)
+  if (fXmlNode^.parent=xmlNodePtr(fXmlNode^.doc)) and (fXmlNode^.parent<>nil)
     then result:=fOwnerDocument as IDomNode
-    else result := MakeNode(fXmlNode.parent, fOwnerDocument);
+    else result := MakeNode(fXmlNode^.parent, fOwnerDocument);
 end;
 
 function TDomNode.get_childNodes: IDomNodeList;
@@ -1591,27 +1591,27 @@ end;
 
 function TDomNode.get_firstChild: IDomNode;
 begin
-  Result := MakeNode(fXmlNode.children, fOwnerDocument);
+  Result := MakeNode(fXmlNode^.children, fOwnerDocument);
 end;
 
 function TDomNode.get_lastChild: IDomNode;
 begin
-  Result := MakeNode(fXmlNode.last, fOwnerDocument);
+  Result := MakeNode(fXmlNode^.last, fOwnerDocument);
 end;
 
 function TDomNode.get_previousSibling: IDomNode;
 begin
-  Result := MakeNode(fXmlNode.prev, fOwnerDocument);
+  Result := MakeNode(fXmlNode^.prev, fOwnerDocument);
 end;
 
 function TDomNode.get_nextSibling: IDomNode;
 begin
-  Result := MakeNode(fXmlNode.Next, fOwnerDocument);
+  Result := MakeNode(fXmlNode^.Next, fOwnerDocument);
 end;
 
 function TDomNode.get_attributes: IDomNamedNodeMap;
 begin
-  if fXmlNode.type_ = ELEMENT_NODE then Result :=
+  if fXmlNode^.type_ = ELEMENT_NODE then Result :=
       TDomNamedNodeMap.Create(fXmlNode, fOwnerDocument) as IDomNamedNodeMap
   else Result := nil;
 end;
@@ -1627,12 +1627,12 @@ var
   ns: xmlNsPtr;
 begin
   Result := '';
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     XML_ELEMENT_NODE,
     XML_ATTRIBUTE_NODE:
       begin
-        if fXmlNode.ns = nil then exit;
-        Result := UTF8Decode(fXmlNode.ns.href);
+        if fXmlNode^.ns = nil then exit;
+        Result := UTF8Decode(fXmlNode^.ns^.href);
       end;
     XML_ATTRIBUTE_DECL:
       begin
@@ -1641,9 +1641,9 @@ begin
         owner:=(self as IXmlDomAttrOwnerRef).GetXmlAttrOwnerPtr;
         // make sure, the owner exists
         if owner = nil then exit;
-        ns:=xmlSearchNs(fXmlNode.doc,owner,xmlAttributePtr(fXmlNode).prefix);
+        ns:=xmlSearchNs(fXmlNode^.doc,owner,xmlAttributePtr(fXmlNode)^.prefix);
         if ns=nil then exit;
-        Result := UTF8Decode(ns.href);
+        Result := UTF8Decode(ns^.href);
       end;
   end;
 end;
@@ -1651,48 +1651,48 @@ end;
 function TDomNode.get_prefix: DOMString;
 begin
   Result := '';
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     XML_ELEMENT_NODE,
     XML_ATTRIBUTE_NODE:
       begin
-        if fXmlNode.ns = nil then begin
-          if pos('xmlns:',fXmlNode.name)=0 then exit;
+        if fXmlNode^.ns = nil then begin
+          if pos('xmlns:',fXmlNode^.name)=0 then exit;
           result:='xmlns';
           exit;
         end;
-        Result := UTF8Decode(fXmlNode.ns.prefix);
+        Result := UTF8Decode(fXmlNode^.ns^.prefix);
       end;
     XML_ATTRIBUTE_DECL:
       begin
-        result:= UTF8Decode(xmlAttributePtr(fXmlNode).prefix);
+        result:= UTF8Decode(xmlAttributePtr(fXmlNode)^.prefix);
       end;
   end;
 end;
 
 function TDomNode.get_localName: DOMString;
 begin
-  case fXmlNode.type_ of
+  case fXmlNode^.type_ of
     XML_HTML_DOCUMENT_NODE,
     //XML_DOCB_DOCUMENT_NODE,
     XML_DOCUMENT_NODE: Result := '#document';
     XML_CDATA_SECTION_NODE: Result := '#cdata-section';
     XML_TEXT_NODE,
     XML_COMMENT_NODE,
-    XML_DOCUMENT_FRAG_NODE: Result := '#' + UTF8Decode(fXmlNode.Name);
+    XML_DOCUMENT_FRAG_NODE: Result := '#' + UTF8Decode(fXmlNode^.name);
     XML_ATTRIBUTE_DECL:
       begin
-        result:=UTF8Decode(xmlAttributePtr(fXmlNode).name);
+        result:=UTF8Decode(xmlAttributePtr(fXmlNode)^.name);
       end;
     else begin
-        Result := UTF8Decode(fXmlNode.name);
+        Result := UTF8Decode(fXmlNode^.name);
         // this is neccessary, because according to the dom2
         // specification localName has to be nil for nodes,
         // that don't have a namespace
-        if fXmlNode.ns = nil then begin
-          if pos('xmlns:',fXmlNode.name)=0 then begin
+        if fXmlNode^.ns = nil then begin
+          if pos('xmlns:',fXmlNode^.name)=0 then begin
             Result := '';
           end else begin
-            result:=split_localName(UTF8Decode(fXmlNode.name));
+            result:=split_localName(UTF8Decode(fXmlNode^.name));
           end;
         end;
       end;
@@ -1718,20 +1718,20 @@ begin
     CheckError(HIERARCHY_REQUEST_ERR);
   if (GetXmlNode(refChild) = GetXmlNode(refChild.OwnerDocument.documentElement)) then
     if (newChild.nodeType = Element_Node) then CheckError(HIERARCHY_REQUEST_ERR);
-  if node.doc <> fXmlNode.doc then CheckError(WRONG_DOCUMENT_ERR);
-  if (GetXmlNode(refChild)).parent<>fXmlNode then CheckError(NOT_FOUND_ERR);
-  if node.parent <> nil
+  if node^.doc <> fXmlNode^.doc then CheckError(WRONG_DOCUMENT_ERR);
+  if (GetXmlNode(refChild))^.parent<>fXmlNode then CheckError(NOT_FOUND_ERR);
+  if node^.parent <> nil
     then xmlUnlinkNode(node)
       //if it wasn't already in the tree, then remove it from the list of
       //nodes, that have to be freed
-  else if node.type_ <> XML_DOCUMENT_FRAG_NODE then begin // don't remove documentFragment nodes!!!
+  else if node^.type_ <> XML_DOCUMENT_FRAG_NODE then begin // don't remove documentFragment nodes!!!
     if fOwnerDocument<>nil
       // if we append to a normal node, we use this access to the internal list
       then (fOwnerDocument as IDomInternal).removeNode(node)
       // if we append to a document node, we must use this access to the internal list
       else (self as IDomInternal).removeNode(node);
   end;
-  if node.type_ = XML_DOCUMENT_FRAG_NODE then begin
+  if node^.type_ = XML_DOCUMENT_FRAG_NODE then begin
     //todo: implement a faster loop
     while NewChild.HasChildNodes do begin
       insertBefore(newChild.ChildNodes[0],refChild)
@@ -1741,8 +1741,8 @@ begin
     // the text is appended to the first node and the second node is freed.
     // We have to check this case and remove the second node from the internal
     // list than.
-    if node.type_ = XML_TEXT_NODE then
-      if (GetXmlNode(refChild).type_ = XML_TEXT_NODE) then
+    if node^.type_ = XML_TEXT_NODE then
+      if (GetXmlNode(refChild)^.type_ = XML_TEXT_NODE) then
           begin
            (fOwnerDocument as IDomInternal).removeNode(GetXmlNode(newChild));
           end;
@@ -1767,10 +1767,10 @@ var
 begin
   if childNode <> nil then begin
     node := GetXmlNode(childNode);
-    if node.parent <> fXmlNode then checkError(NOT_FOUND_ERR);
+    if node^.parent <> fXmlNode then checkError(NOT_FOUND_ERR);
     xmlUnlinkNode(node);
     if node = nil then checkError(NOT_FOUND_ERR);
-    node.parent := nil;
+    node^.parent := nil;
     (fOwnerDocument as IDomInternal).appendNode(node);
   end;
   Result := childNode;
@@ -1808,18 +1808,18 @@ begin
   if self.IsReadOnly then CheckError(NO_MODIFICATION_ALLOWED_ERR);
   if not (newChild.NodeType in FAllowedChildTypes) then
     CheckError(HIERARCHY_REQUEST_ERR);
-  if fXmlNode.type_ = Document_Node then if (newChild.nodeType = Element_Node)
+  if fXmlNode^.type_ = Document_Node then if (newChild.nodeType = Element_Node)
       and (xmlDocGetRootElement(xmlDocPtr(fXmlNode)) <> nil) then
       CheckError(HIERARCHY_REQUEST_ERR);
-  if node.doc <> fXmlNode.doc then CheckError(WRONG_DOCUMENT_ERR);
+  if node^.doc <> fXmlNode^.doc then CheckError(WRONG_DOCUMENT_ERR);
   if self.isAncestorOrSelf(node) then CheckError(HIERARCHY_REQUEST_ERR);
-  if IsReadOnlyNode(node.parent) then CheckError(NO_MODIFICATION_ALLOWED_ERR);
+  if IsReadOnlyNode(node^.parent) then CheckError(NO_MODIFICATION_ALLOWED_ERR);
   // if the new child is already in the tree, it is first removed
-  if node.parent <> nil
+  if node^.parent <> nil
     then xmlUnlinkNode(node)
       //if it wasn't already in the tree, then remove it from the list of
       //nodes, that have to be freed
-  else if node.type_ <> XML_DOCUMENT_FRAG_NODE then begin // don't remove documentFragment nodes!!!
+  else if node^.type_ <> XML_DOCUMENT_FRAG_NODE then begin // don't remove documentFragment nodes!!!
     if fOwnerDocument<>nil
       // if we append to a normal node, we use this access to the internal list
       then (fOwnerDocument as IDomInternal).removeNode(node)
@@ -1828,7 +1828,7 @@ begin
   end;
   // if the new child is a document_fragment, then the entire contents of the document fragment are
   // moved into the child list of this node
-  if node.type_ = XML_DOCUMENT_FRAG_NODE then begin
+  if node^.type_ = XML_DOCUMENT_FRAG_NODE then begin
     //todo: implement a faster loop
     while NewChild.HasChildNodes do begin
       appendChild(newChild.ChildNodes[0])
@@ -1838,10 +1838,10 @@ begin
     // the text is appended to the first node and the second node is freed.
     // We have to check this case and remove the second node from the internal
     // list than.
-    if fXmlNode.children <> nil then
-      if fXmlNode.children.last <> nil then
-        if fXmlNode.children.last.type_ = XML_TEXT_NODE then
-          if (node.type_ = XML_TEXT_NODE) then
+    if fXmlNode^.children <> nil then
+      if fXmlNode^.children^.last <> nil then
+        if fXmlNode^.children^.last^.type_ = XML_TEXT_NODE then
+          if (node^.type_ = XML_TEXT_NODE) then
               begin
                (fOwnerDocument as IDomInternal).removeNode((node));
               end;
@@ -1857,12 +1857,12 @@ end;
 
 function TDomNode.hasChildNodes: boolean;
 begin
-  result := Assigned(fXmlNode.children);
+  result := Assigned(fXmlNode^.children);
 end;
 
 function TDomNode.hasAttributes: boolean;
 begin
-  Result := (fXmlNode.type_ = ELEMENT_NODE) and (get_Attributes.length > 0);
+  Result := (fXmlNode^.type_ = ELEMENT_NODE) and (get_Attributes.length > 0);
 end;
 
 function TDomNode.cloneNode(deep: boolean): IDomNode;
@@ -1876,7 +1876,7 @@ begin
   result:=nil;
   node := nil;
   // different node types have to be handeled differently
-  case integer(fXmlNode.type_) of
+  case integer(fXmlNode^.type_) of
     XML_ENTITY_NODE, XML_ENTITY_DECL, XML_NOTATION_NODE, XML_DOCUMENT_TYPE_NODE,
     XML_DTD_NODE: CheckError(NOT_SUPPORTED_ERR);
     XML_DOCUMENT_NODE:
@@ -1886,8 +1886,8 @@ begin
           else recursive := 0;
         node := xmlNodePtr(xmlCopyDoc(xmlDocPtr(fXmlNode), recursive));
         if node <> nil then begin
-          node.doc := nil;
-          // node.ns := xmlCopyNamespace(fXmlNode.ns);
+          node^.doc := nil;
+          // node^.ns := xmlCopyNamespace(fXmlNode^.ns);
           // build the interface object
           Result := MakeDocument(xmlDocPtr(node), (self as IDomDocument).domImplementation) as IDomNode;
           exit;
@@ -1900,7 +1900,7 @@ begin
         owner:=(self as IXmlDomAttrOwnerRef).GetXmlAttrOwnerPtr;
         // make sure, that the owner exists
         if owner<>nil then begin
-          ns:=xmlSearchNs(fXmlNode.doc,owner,xmlAttributePtr(fXmlNode).prefix);
+          ns:=xmlSearchNs(fXmlNode^.doc,owner,xmlAttributePtr(fXmlNode)^.prefix);
         end else begin
           ns:=nil;
         end;
@@ -1909,7 +1909,7 @@ begin
       end;
   else
     node:=xmlCloneNode(fXmlNode,fOwnerDocument,deep);
-    if node.type_=XML_ATTRIBUTE_NODE
+    if node^.type_=XML_ATTRIBUTE_NODE
       then (fOwnerDocument as IDomInternal).appendAttr(xmlAttrPtr(node))
       else (fOwnerDocument as IDomInternal).appendNode(node);
   end;
@@ -1935,7 +1935,7 @@ begin
   fXmlNode := ANode;
   // the owner Document of a Document is nil! (w3c.org)
   // todo: implement this check in the procedure makeNode!
-  if ANode.type_=XML_DOCUMENT_NODE
+  if ANode^.type_=XML_DOCUMENT_NODE
     then fOwnerDocument:=nil
     else fOwnerDocument := ADocument;
 end;
@@ -1992,15 +1992,15 @@ begin
   node := nil;
   begin
     if FParent <> nil then begin
-      node := FParent.children;
-      while (i > 0) and (node.Next <> nil) do begin
+      node := FParent^.children;
+      while (i > 0) and (node^.next <> nil) do begin
         dec(i);
-        node := node.Next
+        node := node^.next
       end;
       if i > 0 then checkError(INDEX_SIZE_ERR);
     end else begin
       if FXPathObject <> nil then node :=
-          xmlXPathNodeSetItem(FXPathObject.nodesetval, i)
+          xmlXPathNodeSetItem(FXPathObject^.nodesetval, i)
       else checkError(101);
 { TODO : what is error 101 ? }      
     end;
@@ -2015,16 +2015,16 @@ var
 begin
   if FParent <> nil then begin
     i := 1;
-    node := FParent.children;
-    if node <> nil then while (node.Next <> nil) do begin
+    node := FParent^.children;
+    if node <> nil then while (node^.next <> nil) do begin
         inc(i);
-        node := node.Next
+        node := node^.next
       end else i := 0;
     Result := i
   end else begin
     begin
-      if FXPathObject.nodesetval<>nil
-        then Result := FXPathObject.nodesetval.nodeNr
+      if FXPathObject^.nodesetval<>nil
+        then Result := FXPathObject^.nodesetval^.nodeNr
         else result := 0;
     end
   end;
@@ -2070,8 +2070,8 @@ begin
 
     // get the entities or notations of the internal dtd
     if fXmlInternalDtd<>nil then begin
-      if (fXmlInternalDtd.entities <> nil) and (fnnmType=nnmEntities) then begin
-        entity:=xmlGetHashEntry(xmlHashTablePtr(fXmlInternalDtd.entities), index);
+      if (fXmlInternalDtd^.entities <> nil) and (fnnmType=nnmEntities) then begin
+        entity:=xmlGetHashEntry(xmlHashTablePtr(fXmlInternalDtd^.entities), index);
         if entity <> nil then begin
           // create the result as IDomNode
           result:=(TDomEntity.Create(entity,fOwnerDocument)) as IDomNode;
@@ -2080,10 +2080,10 @@ begin
         end;
         // if there are entries int the internal and external dtd, than search
         // again with the correct index
-        index:=index-xmlHashSize(fXmlInternalDtd.entities);
+        index:=index-xmlHashSize(fXmlInternalDtd^.entities);
       end;
-      if (fXmlInternalDtd.notations <> nil) and (fnnmType=nnmNotations) then begin
-        notation:=xmlGetHashEntry(xmlHashTablePtr(fXmlInternalDtd.notations), index);
+      if (fXmlInternalDtd^.notations <> nil) and (fnnmType=nnmNotations) then begin
+        notation:=xmlGetHashEntry(xmlHashTablePtr(fXmlInternalDtd^.notations), index);
         if notation <> nil then begin
           // create the result as IDomNode
           result:=(TDomNotation.Create(notation,fOwnerDocument)) as IDomNode;
@@ -2092,22 +2092,22 @@ begin
         end;
         // if there are entries int the internal and external dtd, than search
         // again with the correct index
-        index:=index-xmlHashSize(fXmlInternalDtd.notations);
+        index:=index-xmlHashSize(fXmlInternalDtd^.notations);
       end;
     end;
 
     // get the entities or notations of the external dtd
     if fXmlExternalDtd<>nil then begin
-      if (fXmlExternalDtd.entities <> nil) and (fnnmType=nnmEntities) then begin
-        entity:=xmlGetHashEntry(xmlHashTablePtr(fXmlExternalDtd.entities), index);
+      if (fXmlExternalDtd^.entities <> nil) and (fnnmType=nnmEntities) then begin
+        entity:=xmlGetHashEntry(xmlHashTablePtr(fXmlExternalDtd^.entities), index);
         if entity=nil then exit;
         // create the result as IDomNode
         result:=(TDomEntity.Create(entity,fOwnerDocument)) as IDomNode;
         // all done
         exit;
       end;
-      if (fXmlExternalDtd.notations <> nil) and (fnnmType=nnmNotations) then begin
-        notation:=xmlGetHashEntry(xmlHashTablePtr(fXmlExternalDtd.notations), index);
+      if (fXmlExternalDtd^.notations <> nil) and (fnnmType=nnmNotations) then begin
+        notation:=xmlGetHashEntry(xmlHashTablePtr(fXmlExternalDtd^.notations), index);
         if notation=nil then exit;
         // create the result as IDomNode
         result:=(TDomNotation.Create(notation,fOwnerDocument)) as IDomNode;
@@ -2133,7 +2133,7 @@ begin
     while (i > 0) and (node <> nil) do begin
       dec(i);
       if i=0 then break;
-      node := node.Next
+      node := node^.next
     end;
   end;
 
@@ -2148,7 +2148,7 @@ begin
     dec(i);
     // check for default attributes
     if fElement <> nil then begin
-      attributes:=fElement.attributes;
+      attributes:=fElement^.attributes;
       if attributes<>nil then begin
 
         // the loop is so designed, that i=0 means, the right
@@ -2158,16 +2158,16 @@ begin
 
         //loop through all attributes, defined on this element
         while (i>0) and (attributes <> nil) do begin
-          if attributes.def <> XML_ATTRIBUTE_IMPLIED then begin
+          if attributes^.def <> XML_ATTRIBUTE_IMPLIED then begin
             // decrement only, if an attribute with this name
             // doesn't exist as normal attribute
-            attr:=xmlHasProp(fOwnerElement,attributes.name);
-            if assigned(attr) and (attr.type_=XML_ATTRIBUTE_DECL)
+            attr:=xmlHasProp(fOwnerElement,attributes^.name);
+            if assigned(attr) and (attr^.type_=XML_ATTRIBUTE_DECL)
               then dec(i);
             // leave the loop, if the right attribute was found
             if i=0 then break;
           end;
-          attributes:=attributes.nexth;
+          attributes:=attributes^.nexth;
         end;
 
         // if a default attribute was found
@@ -2197,21 +2197,21 @@ begin
 
     // count the entities and notations of the internal dtd
     if fXmlInternalDtd<>nil then begin
-      if (fXmlInternalDtd.entities <> nil) and (fnnmType=nnmEntities) then begin
-        result := xmlHashSize(fXmlInternalDtd.entities);
+      if (fXmlInternalDtd^.entities <> nil) and (fnnmType=nnmEntities) then begin
+        result := xmlHashSize(fXmlInternalDtd^.entities);
       end;
-      if (fXmlInternalDtd.notations <> nil) and (fnnmType=nnmNotations) then begin
-        result := xmlHashSize(fXmlInternalDtd.notations);
+      if (fXmlInternalDtd^.notations <> nil) and (fnnmType=nnmNotations) then begin
+        result := xmlHashSize(fXmlInternalDtd^.notations);
       end;
     end;
 
     // count the entities and notations of the external dtd
     if fXmlExternalDtd<>nil then begin
-      if (fXmlExternalDtd.entities <> nil) and (fnnmType=nnmEntities) then begin
-        result := result + xmlHashSize(fXmlExternalDtd.entities);
+      if (fXmlExternalDtd^.entities <> nil) and (fnnmType=nnmEntities) then begin
+        result := result + xmlHashSize(fXmlExternalDtd^.entities);
       end;
-      if (fXmlExternalDtd.entities <> nil) and (fnnmType=nnmNotations) then begin
-        result := result + xmlHashSize(fXmlExternalDtd.notations);
+      if (fXmlExternalDtd^.entities <> nil) and (fnnmType=nnmNotations) then begin
+        result := result + xmlHashSize(fXmlExternalDtd^.notations);
       end;
     end;
   end else begin
@@ -2219,24 +2219,24 @@ begin
     // count normal attributes
     if node<>nil then begin
       inc(result);
-      while (node.next<>nil) do begin
+      while (node^.next<>nil) do begin
         inc(result);
-        node := node.Next
+        node := node^.next
       end;
     end;
 
     // count the default attributes
     if fElement<>nil then begin
-      attributes:=fElement.attributes;
+      attributes:=fElement^.attributes;
       while attributes <> nil do begin
-        if attributes.def<>XML_ATTRIBUTE_IMPLIED then begin
+        if attributes^.def<>XML_ATTRIBUTE_IMPLIED then begin
           // increment only, if an attribute with this name
           // doesn't exist as normal attribute
-          attr:=xmlHasProp(fOwnerElement,attributes.name);
-          if not(assigned(attr) and (attr.type_<>XML_ATTRIBUTE_DECL))
+          attr:=xmlHasProp(fOwnerElement,attributes^.name);
+          if not(assigned(attr) and (attr^.type_<>XML_ATTRIBUTE_DECL))
             then inc(result);
         end;
-        attributes:=attributes.nexth;
+        attributes:=attributes^.nexth;
       end;
     end;
   end;
@@ -2315,11 +2315,11 @@ begin
   xmlNewPropNode := GetXmlNode(newItem);
 
   // additional checks
-  if (xmlNewPropNode.type_ <> XML_ATTRIBUTE_NODE) then checkError(HIERARCHY_REQUEST_ERR);
+  if (xmlNewPropNode^.type_ <> XML_ATTRIBUTE_NODE) then checkError(HIERARCHY_REQUEST_ERR);
 
   // check if it is a default attribute
-  xmlOldPropNode:=xmlHasProp(fOwnerElement, xmlNewPropNode.Name);
-  if assigned(xmlOldPropNode) and (xmlOldPropNode.type_ = XML_ATTRIBUTE_DECL) then begin
+  xmlOldPropNode:=xmlHasProp(fOwnerElement, xmlNewPropNode^.name);
+  if assigned(xmlOldPropNode) and (xmlOldPropNode^.type_ = XML_ATTRIBUTE_DECL) then begin
     // raise an error if its a fixed attribute
     check_fixedAttr(xmlOldPropNode);
     // if it's a default attribute, don't remove it
@@ -2356,7 +2356,7 @@ begin
   // check if it is a fixed attribute
   check_fixedAttr(attr);
   // if it is assigned and not an default attr, than remove it
-  if assigned(attr) and (attr.type_ <> XML_ATTRIBUTE_DECL) then begin
+  if assigned(attr) and (attr^.type_ <> XML_ATTRIBUTE_DECL) then begin
     // remove it from list, but still hold the information
     xmlUnlinkPropNode(fOwnerElement, attr);
     // add to the list of orphan attributes
@@ -2364,7 +2364,7 @@ begin
     // result me the interface
     Result := MakeNode(xmlNodePtr(attr), fOwnerDocument);
   // if it is assigned, but an default attr, than return it
-  end else if assigned(attr) and (attr.type_ = XML_ATTRIBUTE_DECL) then begin
+  end else if assigned(attr) and (attr^.type_ = XML_ATTRIBUTE_DECL) then begin
     // result me the interface
     Result := MakeNode(xmlNodePtr(attr), fOwnerDocument);
   // if it is not assigned, return nil;
@@ -2422,18 +2422,18 @@ begin
   xmlNewPropNode := GetXmlNode(newItem);
 
   // additional checks
-  if (xmlNewPropNode.type_ <> ATTRIBUTE_NODE) then checkError(HIERARCHY_REQUEST_ERR);
+  if (xmlNewPropNode^.type_ <> ATTRIBUTE_NODE) then checkError(HIERARCHY_REQUEST_ERR);
 
   // check the namespaceURI
-  if Assigned(xmlNewPropNode.ns)
-     then namespaceURI := xmlNewPropNode.ns.href
+  if Assigned(xmlNewPropNode^.ns)
+     then namespaceURI := xmlNewPropNode^.ns^.href
      else namespaceURI := nil;
 
   // check if it is a default attribute
-  xmlOldPropNode:=xmlHasNsProp(fOwnerElement, xmlNewPropNode.Name, namespaceURI);
-  if assigned(xmlOldPropNode) and (xmlOldPropNode.type_ = XML_ATTRIBUTE_DECL) then begin
+  xmlOldPropNode:=xmlHasNsProp(fOwnerElement, xmlNewPropNode^.name, namespaceURI);
+  if assigned(xmlOldPropNode) and (xmlOldPropNode^.type_ = XML_ATTRIBUTE_DECL) then begin
     // raise an error if its a fixed attribute
-    if xmlAttributePtr(xmlOldPropNode).def = XML_ATTRIBUTE_FIXED then begin
+    if xmlAttributePtr(xmlOldPropNode)^.def = XML_ATTRIBUTE_FIXED then begin
       checkError(NO_MODIFICATION_ALLOWED_ERR);
     end;
     // if it's a default attribute, don't remove it
@@ -2449,7 +2449,7 @@ begin
 
   // add the namespace of the attribute to the list of namespaces, declared
   // on this element
-  appendNamespace(fOwnerElement,xmlNewPropNode.ns);
+  appendNamespace(fOwnerElement,xmlNewPropNode^.ns);
 
   // remove the new one from internal list
   (fOwnerDocument as IDomInternal).removeAttr(xmlAttrPtr(xmlNewPropNode));
@@ -2481,14 +2481,14 @@ begin
   if (not Assigned(attr)) then checkError(NOT_FOUND_ERR);
   // check, if it was a fixed attribute, that must not be removed
   check_fixedAttr(attr);
-  if assigned(attr) and (attr.type_ <> XML_ATTRIBUTE_DECL) then begin
+  if assigned(attr) and (attr^.type_ <> XML_ATTRIBUTE_DECL) then begin
     // remove it from list, but still hold the information
     xmlUnlinkPropNode(fOwnerElement, attr);
     // link this to internal document
     (fOwnerDocument as IDomInternal).appendAttr(attr);
     // result me the interface
     Result := MakeNode(xmlNodePtr(attr), fOwnerDocument);
-  end else if assigned(attr) and (attr.type_ = XML_ATTRIBUTE_DECL) then begin
+  end else if assigned(attr) and (attr^.type_ = XML_ATTRIBUTE_DECL) then begin
     // result me the interface
     Result := MakeNode(xmlNodePtr(attr), fOwnerDocument);
   end else begin
@@ -2505,12 +2505,12 @@ begin
     fXmlExternalDtd := nil;
     fOwnerElement := ANamedNodeMap;
     // check, wether the node has an ownerDocument
-    if assigned(fOwnerElement.doc) then begin
+    if assigned(fOwnerElement^.doc) then begin
       //get the element description from the dtd
-      if fOwnerElement.doc.intSubset<>nil then begin
-        fElement:=xmlGetDtdElementDesc(fOwnerElement.doc.intSubset,fOwnerElement.name);
+      if fOwnerElement^.doc^.intSubset<>nil then begin
+        fElement:=xmlGetDtdElementDesc(fOwnerElement^.doc^.intSubset,fOwnerElement^.name);
       end else begin
-        fElement:=xmlGetDtdElementDesc(fOwnerElement.doc.extSubset,fOwnerElement.name);
+        fElement:=xmlGetDtdElementDesc(fOwnerElement^.doc^.extSubset,fOwnerElement^.name);
       end;
     end;
   end else begin
@@ -2534,7 +2534,7 @@ end;
 function TDomNamedNodeMap.get_xmlAttributes: xmlNodePtr;
 begin
   if FOwnerElement <> nil
-    then Result := xmlNodePtr(FOwnerElement.properties)
+    then Result := xmlNodePtr(FOwnerElement^.properties)
     else Result := nil;
 end;
 
@@ -2562,7 +2562,7 @@ end;
 
 function TDomAttr.get_specified: boolean;
 begin
-  if fXmlNode.type_= XML_ATTRIBUTE_DECL
+  if fXmlNode^.type_= XML_ATTRIBUTE_DECL
     then result := false
     else result := True;
 end;
@@ -2614,13 +2614,13 @@ var
   attr:  xmlAttrPtr;
 begin
   attr := xmlHasProp(xmlElement, PAnsiChar(UTF8Encode(Name)));
-  if assigned(attr) and (attr.type_ = XML_ATTRIBUTE_DECL) then begin
-    result:=UTF8Decode(xmlAttributePtr(attr).defaultValue);
+  if assigned(attr) and (attr^.type_ = XML_ATTRIBUTE_DECL) then begin
+    result:=UTF8Decode(xmlAttributePtr(attr)^.defaultValue);
     exit;
   end;
-  if Assigned(attr) and Assigned(attr.children)
-{ TODO : use libxml2-function instead of children.content }
-     then Result := UTF8Decode(attr.children.content)
+  if Assigned(attr) and Assigned(attr^.children)
+{ TODO : use libxml2-function instead of children^.content }
+     then Result := UTF8Decode(attr^.children^.content)
      else Result := '';
 end;
 
@@ -2638,8 +2638,8 @@ begin
   node := xmlElement;
   // set the new property
   attr := xmlSetProp(node, PAnsiChar(UTF8Encode(Name)), PAnsiChar(UTF8Encode(Value)));
-  attr.parent := node;
-  attr.doc := node.doc;
+  attr^.parent := node;
+  attr^.doc := node^.doc;
 end;
 
 procedure TDomElement.removeAttribute(const Name: DOMString);
@@ -2675,7 +2675,7 @@ begin
   xmlNewPropNode := xmlAttrPtr(GetXmlNode(newAttr));
 
   // check, if an attribute with the name of newAttr already exists
-  xmlOldPropNode := xmlHasProp(xmlElement, xmlNewPropNode.Name);
+  xmlOldPropNode := xmlHasProp(xmlElement, xmlNewPropNode^.name);
 
   // check, if it is a fixed default attribute and clear it, if it's a default
   // attribute
@@ -2709,7 +2709,7 @@ begin
   namespaceURI:=UTF8Encode(oldAttr.namespaceURI);
   if namespaceURI<>''
     then name:=UTF8Encode(oldAttr.localName)
-    else name:=UTF8Encode(oldAttr.Name);
+    else name:=UTF8Encode(oldAttr.name);
   // if the attribute to remove has no namespace, do the same as
   // removeAttributeNode
   if namespaceURI<>''
@@ -2718,7 +2718,7 @@ begin
   // check, if it is a fixed attribute
   check_fixedAttr(xmlAttr2);
   if (not Assigned(xmlAttr2)) then checkError(NOT_FOUND_ERR);
-  if (xmlAttr2.type_ <> XML_ATTRIBUTE_DECL) then begin
+  if (xmlAttr2^.type_ <> XML_ATTRIBUTE_DECL) then begin
     // unlink it
     xmlUnlinkPropNode(xmlElement, xmlAttr);
     // store it to internal list
@@ -2757,15 +2757,15 @@ begin
   attr := xmlHasNSProp(xmlElement, PAnsiChar(UTF8Encode(localName)), PAnsiChar(UTF8Encode(namespaceURI)));
 
   // check if it is an default attribute
-  if assigned(attr) and (attr.type_ = XML_ATTRIBUTE_DECL) then begin
+  if assigned(attr) and (attr^.type_ = XML_ATTRIBUTE_DECL) then begin
     // get the default value from the dtd
-    result:=UTF8Decode(xmlAttributePtr(attr).defaultValue);
+    result:=UTF8Decode(xmlAttributePtr(attr)^.defaultValue);
     // all done
     exit;
   end;
-  if Assigned(attr) and Assigned(attr.children)
-{ TODO : use libxml2-function instead of children.content }
-     then Result := UTF8Decode(attr.children.content)
+  if Assigned(attr) and Assigned(attr^.children)
+{ TODO : use libxml2-function instead of children^.content }
+     then Result := UTF8Decode(attr^.children^.content)
      else Result := '';
 end;
 
@@ -2810,7 +2810,7 @@ begin
   // check if it is a default attribute
   attr := xmlHasNsProp(xmlElement, PAnsiChar(UTF8Encode(localName)), PAnsiChar(UTF8Encode(namespaceURI)));
   check_fixedAttr(attr);
-  if (attr <> nil) and (attr.type_<> XML_ATTRIBUTE_DECL) then begin
+  if (attr <> nil) and (attr^.type_<> XML_ATTRIBUTE_DECL) then begin
     xmlRemoveProp(attr);
   end;
 end;
@@ -2845,17 +2845,17 @@ begin
   xmlNewPropNode := GetXmlNode(newAttr);
 
   // check the namespaceURI
-  if Assigned(xmlNewPropNode.ns)
-     then namespaceURI := xmlNewPropNode.ns.href
+  if Assigned(xmlNewPropNode^.ns)
+     then namespaceURI := xmlNewPropNode^.ns^.href
      else namespaceURI := nil;
 
   if namespaceUri=nil then begin
     // check, if an attribute with the name of newAttr already exists
-    xmlOldPropNode := xmlHasProp(xmlElement, xmlNewPropNode.Name);
+    xmlOldPropNode := xmlHasProp(xmlElement, xmlNewPropNode^.name);
     // and clear it, if its an default attribute
     check_fixedAttr(xmlOldPropNode,true);
   end else begin
-    xmlOldPropNode := xmlHasNsProp(xmlElement, xmlNewPropNode.Name,PAnsiChar(namespaceURI));
+    xmlOldPropNode := xmlHasNsProp(xmlElement, xmlNewPropNode^.name,PAnsiChar(namespaceURI));
     check_fixedAttr(xmlOldPropNode,true);
   end;
 
@@ -2867,7 +2867,7 @@ begin
 
   // add the namespace of the attribute to the list of namespaces, declared
   // on this element
-  appendNamespace(xmlElement,xmlNewPropNode.ns);
+  appendNamespace(xmlElement,xmlNewPropNode^.ns);
 
   // remove the new one from internal list
   (fOwnerDocument as IDomInternal).removeAttr(xmlAttrPtr(xmlNewPropNode));
@@ -2911,8 +2911,8 @@ begin
   // Returns true when an attribute with a given name is specified on this element
   //  or has a default value, false otherwise
   attr:=xmlHasProp(xmlElement, PAnsiChar(UTF8Encode(name)));
-  if assigned(attr) and (attr.type_=XML_ATTRIBUTE_DECL) then begin
-    if assigned(xmlAttributePtr(attr).defaultValue)
+  if assigned(attr) and (attr^.type_=XML_ATTRIBUTE_DECL) then begin
+    if assigned(xmlAttributePtr(attr)^.defaultValue)
       then result:=true
       else result:=false;
     // all done
@@ -2937,8 +2937,8 @@ begin
   // Returns true when an attribute with a given local name and namespace URI
   //  is specified on this element or has a default value, false otherwise
   attr:=xmlHasNsProp(xmlElement, PAnsiChar(UTF8Encode(localName)),PAnsiChar(UTF8Encode(namespaceURI)));
-  if assigned(attr) and (attr.type_=XML_ATTRIBUTE_DECL) then begin
-    if assigned(xmlAttributePtr(attr).defaultValue)
+  if assigned(attr) and (attr^.type_=XML_ATTRIBUTE_DECL) then begin
+    if assigned(xmlAttributePtr(attr)^.defaultValue)
       then result:=true
       else result:=false;
     // all done
@@ -3008,9 +3008,9 @@ begin
 
   wLocalName := split_localname(qualifiedName);
   if (wLocalName <> '')
-     then xmlDoc.children := xmlNewDocNode(xmlDoc, ns, PAnsiChar(UTF8Encode(wLocalName)), nil);
-  if xmlDoc.children<>nil
-    then appendNamespace(xmlDoc.children,ns);
+     then xmlDoc^.children := xmlNewDocNode(xmlDoc, ns, PAnsiChar(UTF8Encode(wLocalName)), nil);
+  if xmlDoc^.children<>nil
+    then appendNamespace(xmlDoc^.children,ns);
   //Get root-node
   root := xmlNodePtr(xmlDoc);
 
@@ -3103,7 +3103,7 @@ begin
            // Answer:
            // If there is no error in the code, than it isn't, but better be
            // shure not to free anything twice!
-           if Assigned(ANode) and (not Assigned(ANode.parent)) then begin
+           if Assigned(ANode) and (not Assigned(ANode^.parent)) then begin
 
              // at least remove this node
              xmlFreeNode(ANode);
@@ -3122,7 +3122,7 @@ begin
            AAttr := FAttrList[i];
            // make sure that this is not a DOM linked one
            // todo: is it possible to have nodes with setted parent node in this list
-           if Assigned(AAttr) and (not Assigned(AAttr.parent))
+           if Assigned(AAttr) and (not Assigned(AAttr^.parent))
               then begin
                  xmlFreeProp(AAttr);
               end;
@@ -3173,8 +3173,8 @@ function TDomDocument.get_doctype: IDomDocumentType;
 var
   dtd1, dtd2: xmlDtdPtr;
 begin
-  dtd1 := getXmlDocument.intSubset;
-  dtd2 := getXmlDocument.extSubset;
+  dtd1 := getXmlDocument^.intSubset;
+  dtd2 := getXmlDocument^.extSubset;
   if (dtd1 <> nil) or (dtd2 <> nil) then Result :=
       TDomDocumentType.Create(dtd1, dtd2, self)
   else Result := nil;
@@ -3210,7 +3210,7 @@ begin
   if not IsXMLName(tagName) then checkError(INVALID_CHARACTER_ERR);
   AElement := xmlNewDocNode(getXmlDocument, nil, PAnsiChar(UTF8Encode(tagName)), nil);
   if AElement <> nil then begin
-    AElement.parent := nil;
+    AElement^.parent := nil;
     fNodeList.Add(AElement);
     Result := TDomElement.Create(AElement, self)
   end;
@@ -3274,8 +3274,8 @@ begin
   if not IsXMLChars(target) then CheckError(INVALID_CHARACTER_ERR);
   AProcessingInstruction := xmlNewPI(PAnsiChar(UTF8Encode(target)), PAnsiChar(UTF8Encode(Data)));
   if AProcessingInstruction <> nil then begin
-    AProcessingInstruction.parent := nil;
-    AProcessingInstruction.doc := getXmlDocument;
+    AProcessingInstruction^.parent := nil;
+    AProcessingInstruction^.doc := getXmlDocument;
     FNodeList.Add(AProcessingInstruction);
     Result := TDomProcessingInstruction.Create(AProcessingInstruction, self)
   end;
@@ -3288,7 +3288,7 @@ begin
   result:=nil;
   if not IsXMLName(Name) then checkError(INVALID_CHARACTER_ERR);
   AAttr := xmlNewDocProp(getXmlDocument, PAnsiChar(UTF8Encode(Name)), nil);
-  AAttr.parent := nil;
+  AAttr^.parent := nil;
   if AAttr <> nil then begin
     FAttrList.Add(AAttr);
     Result := TDomAttr.Create(AAttr, self)
@@ -3327,7 +3327,7 @@ begin
   temp:= importedNode.namespaceURI;
   inNode:=(importedNode as IXmlDomNodeRef).GetXmlNodePtr;
   // different node types have to be handeled differently
-  case integer(inNode.type_) of
+  case integer(inNode^.type_) of
     XML_ENTITY_NODE, XML_ENTITY_DECL, XML_NOTATION_NODE, XML_DOCUMENT_TYPE_NODE,
       XML_DTD_NODE, XML_DOCUMENT_NODE: CheckError(NOT_SUPPORTED_ERR);
 
@@ -3335,17 +3335,17 @@ begin
       begin
         owner:=(importedNode as IXmlDomAttrOwnerRef).GetXmlAttrOwnerPtr;
         inDoc:=xmlDocPtr((importedNode.ownerDocument as IXmlDomNodeRef).GetXmlNodePtr);
-        ns:=xmlSearchNs(indoc,owner,xmlAttributePtr(inNode).prefix);
+        ns:=xmlSearchNs(indoc,owner,xmlAttributePtr(inNode)^.prefix);
         node:=xmlNodePtr(xmlCloneAttrDecl(xmlAttributePtr(inNode),self,false,ns));
       end;
   else
     node:=xmlCloneNode(inNode,self,deep);
   end;
   if Assigned(node) then begin
-     if node.type_=XML_ATTRIBUTE_NODE
+     if node^.type_=XML_ATTRIBUTE_NODE
        then (self as IDomInternal).appendAttr(xmlAttrPtr(node))
        else (self as IDomInternal).appendNode(node);
-     node.doc:=getXmlDocument;
+     node^.doc:=getXmlDocument;
      xmlSetTreeDoc(node,getXmlDocument);
     // build the interface object
     Result := MakeNode(node, self);
@@ -3376,8 +3376,8 @@ begin
      then begin
        // add the namespace of the element to the list of namespaces,
        // declared for this element
-       if AElement.ns<>nil
-         then appendNamespace(AElement,AElement.ns);
+       if AElement^.ns<>nil
+         then appendNamespace(AElement,AElement^.ns);
        FNodeList.Add(AElement);
        Result := TDomElement.Create(AElement, self);
      end;
@@ -3403,7 +3403,7 @@ begin
 
   if Assigned(Attr)
      then begin
-       Attr.doc := getXmlDocument;
+       Attr^.doc := getXmlDocument;
        FAttrList.Add(Attr);
        Result := TDomAttr.Create(Attr, self);
      end;
@@ -3441,7 +3441,7 @@ var
 begin
   AAttr := xmlGetID(getXmlDocument, PAnsiChar(UTF8Encode(elementID)));
   if AAttr <> nil
-    then AElement := AAttr.parent
+    then AElement := AAttr^.parent
     else AElement := nil;
   if AElement <> nil
     then Result := TDomElement.Create(AElement, self)
@@ -3473,10 +3473,10 @@ procedure TDomDocument.setDocOnCurrentLevel(next: xmlNodePtr; doc: xmlDocPtr);
 begin
   while next <> nil do
   begin
-    next.doc := doc;
-    setDocOnNextLevel(next.children, doc);
-    setDocOnNextLevel(xmlNodePtr(next.properties), doc);
-    next := next.next;
+    next^.doc := doc;
+    setDocOnNextLevel(next^.children, doc);
+    setDocOnNextLevel(xmlNodePtr(next^.properties), doc);
+    next := next^.next;
   end;
 end;
 
@@ -3484,9 +3484,9 @@ procedure TDomDocument.setDocOnNextLevel(next: xmlNodePtr; doc: xmlDocPtr);
 begin
   while next <> nil do
   begin
-    next.doc := doc;
-    setDocOnCurrentLevel(next.next, doc);
-    next := next.children;
+    next^.doc := doc;
+    setDocOnCurrentLevel(next^.next, doc);
+    next := next^.children;
   end;
 end;
 
@@ -3528,12 +3528,12 @@ begin
 
   // check encoding
   if fEncoding = ''
-     then encoding := getXmlDocument.encoding
+     then encoding := getXmlDocument^.encoding
      else encoding := PAnsiChar(AnsiString(lowercase(fEncoding)));
 
   // if the xml document doesn't have an encoding or a documentElement,
   // return an empty string (it works like this in msdom)
-  if (Assigned(getXmlDocument.children) or (encoding <> ''))
+  if (Assigned(getXmlDocument^.children) or (encoding <> ''))
     then begin
       // handle format
       if fPrettyPrint
@@ -3582,7 +3582,7 @@ begin
     if Assigned(ctxt)
     then begin
       // parser validates always
-      ctxt.validate := -1;
+      ctxt^.validate := -1;
       // todo: async (separate thread)
 
       // libxml2 keeps the setting of resolveExternals, even if the
@@ -3594,11 +3594,11 @@ begin
       // this option in different threads
       set_resolveExternals(fResolveExternals);
       if (xmlParseDocument(ctxt) <> 0{error}) or
-         (ctxt.wellFormed = 0{false}) or
-         (Fvalidate and (ctxt.valid = 0{false}))
+         (ctxt^.wellFormed = 0{false}) or
+         (Fvalidate and (ctxt^.valid = 0{false}))
          then begin
-           xmlFreeDoc(ctxt.myDoc);
-           ctxt.myDoc := nil;
+           xmlFreeDoc(ctxt^.myDoc);
+           ctxt^.myDoc := nil;
          end
          else begin
            // rebuild document
@@ -3613,7 +3613,7 @@ begin
            inherited Destroy;
            Result := True;
            // create an DomDocument with this
-           inherited Create(xmlNodePtr(ctxt.myDoc), nil);
+           inherited Create(xmlNodePtr(ctxt^.myDoc), nil);
 
            (*
            // unprepare not intern handled namespaces
@@ -3635,7 +3635,7 @@ begin
   xmlInitParser();
 
   fEncoding:=extractEncoding(Value);
-  if (Pos(fencoding, WideString('"utf8"utf-8"utf16"utf-16"')) = 0)
+  if (Pos(fencoding, DOMString('"utf8"utf-8"utf16"utf-16"')) = 0)
   then begin
     // we NEED this copy to create an complete memory area
     pxml := Value;
@@ -3676,7 +3676,7 @@ var
 begin
   // check encoding
   if fEncoding = ''
-     then encoding := getXmlDocument.encoding
+     then encoding := getXmlDocument^.encoding
      else encoding := lowercase(fEncoding);
 
   // check output format
@@ -3827,17 +3827,17 @@ end;
 
 function TDomEntity.get_notationName: DOMString;
 begin
-  result:=UTF8Decode(fXmlEntity.content);
+  result:=UTF8Decode(fXmlEntity^.content);
 end;
 
 function TDomEntity.get_publicId: DOMString;
 begin
-  result:=UTF8Decode(fXmlEntity.ExternalID);
+  result:=UTF8Decode(fXmlEntity^.ExternalID);
 end;
 
 function TDomEntity.get_systemId: DOMString;
 begin
-  result:=UTF8Decode(fXmlEntity.SystemID);
+  result:=UTF8Decode(fXmlEntity^.SystemID);
 end;
 
 
@@ -3874,7 +3874,7 @@ var
 begin
   buff := xmlBufferCreate();
   xmlNodeDump(buff, nil, xmlNodePtr(fInternalDtd), 0,0);
-  Result := UTF8Decode(buff.content);
+  Result := UTF8Decode(buff^.content);
   xmlBufferFree(buff);
 end;
 
@@ -3893,12 +3893,12 @@ end;
 
 function TDomDocumentType.get_publicId: DOMString;
 begin
-  Result := UTF8Decode(fInternalDtd.ExternalID);
+  Result := UTF8Decode(fInternalDtd^.ExternalID);
 end;
 
 function TDomDocumentType.get_systemId: DOMString;
 begin
-  Result := UTF8Decode(fInternalDtd.SystemID);
+  Result := UTF8Decode(fInternalDtd^.SystemID);
 end;
 
 
@@ -3929,21 +3929,21 @@ end;
 
 function TDomNotation.get_publicId: DOMString;
 begin
-  result:=UTF8Decode(fXmlNotation.PublicID);
+  result:=UTF8Decode(fXmlNotation^.PublicID);
 end;
 
 function TDomNotation.get_systemId: DOMString;
 begin
-    result:=UTF8Decode(fXmlNotation.SystemID);
+    result:=UTF8Decode(fXmlNotation^.SystemID);
 end;
 
 
-function TDomNode.selectNode(const nodePath: WideString): IDomNode;
+function TDomNode.selectNode(const nodePath: DOMString): IDomNode;
 begin
   Result := selectNodes(nodePath)[0];
 end;
 
-function TDomNode.selectNodes(const nodePath: WideString): IDomNodeList;
+function TDomNode.selectNodes(const nodePath: DOMString): IDomNodeList;
 // raises SYNTAX_ERR,
 // if invalid xpath expression or
 // if the result type is string or number
@@ -3958,10 +3958,10 @@ var
   FPrefixList,FUriList:TStringList;
 begin
   temp := UTF8Encode(nodePath);
-  doc := fXmlNode.doc;
+  doc := fXmlNode^.doc;
   if doc = nil then CheckError(100);  // todo: what is Error 100 ???
   ctxt := xmlXPathNewContext(doc);
-  ctxt.node := fXmlNode;
+  ctxt^.node := fXmlNode;
   FPrefixList:=(fOwnerDocument as IDomInternal).getPrefixList;
   FUriList:=(fOwnerDocument as IDomInternal).getUriList;
   for i:=0 to FPrefixList.Count-1 do begin
@@ -3973,7 +3973,7 @@ begin
   end;
   res := xmlXPathEvalExpression(PAnsiChar(temp), ctxt);
   if res <> nil then begin
-    nodetype := res.type_;
+    nodetype := res^.type_;
     case nodetype of
       XPATH_NODESET:
         begin
@@ -4054,7 +4054,7 @@ begin
   Result := True;
   while node <> nil do begin
     if node = newNode then exit;
-    node := node.parent;
+    node := node^.parent;
   end;
   Result := False;
 end;
@@ -4068,8 +4068,8 @@ end;
 procedure TDomDocument.appendAttr(attr: xmlAttrPtr);
 begin
   if attr <> nil then FAttrList.add(attr);
-  if attr.children <> nil then
-    attr.children.doc := attr.doc;
+  if attr^.children <> nil then
+    attr^.children^.doc := attr^.doc;
 end;
 
 procedure TDomDocument.appendNode(node: xmlNodePtr);
@@ -4077,13 +4077,13 @@ var
   next: xmlNodePtr;
 begin
   if node <> nil then FNodeList.add(node);
-  setDocOnCurrentLevel(node, node.doc);
+  setDocOnCurrentLevel(node, node^.doc);
 end;
 
 //********************************************************************//
 // | The following routines for testing XML rules were taken from the //
 // | Extended Document Object Model (XDOM) package,                   //
-// | copyright (c) 1999-2002 by Dieter Köhler.                        //
+// | copyright (c) 1999-2002 by Dieter KÃ¶hler.                        //
 //********************************************************************//
 
 function IsXmlIdeographic(const S: widechar): boolean;
@@ -4260,7 +4260,7 @@ end;
 //********************************************************************//
 // | The preceding routines for testing XML rules were taken from the //
 // | Extended Document Object Model (XDOM) package,                   //
-// | copyright (c) 1999-2002 by Dieter Köhler.                        //
+// | copyright (c) 1999-2002 by Dieter KÃ¶hler.                        //
 //********************************************************************//
 
 procedure TDomDocument.removeNode(node: xmlNodePtr);
@@ -4298,9 +4298,9 @@ var
   doctype:   integer;
   element:   xmlNodePtr;
 begin
-  doc := fXmlNode.doc;
+  doc := fXmlNode^.doc;
   styleNode := GetXmlNode(stylesheet);
-  styleDoc := styleNode.doc;
+  styleDoc := styleNode^.doc;
   if (styleDoc = nil) or (doc = nil) then exit;
   tempXSL := xsltParseStyleSheetDoc(styleDoc);
   if tempXSL = nil then exit;
@@ -4310,10 +4310,10 @@ begin
   (stylesheet.ownerDocument as IDomInternal).set_FtempXSL(tempXSL);
   outputDoc := xsltApplyStylesheet(tempXSL, doc, nil);
   if outputDoc = nil then exit;
-  doctype := outputDoc.type_;
+  doctype := outputDoc^.type_;
   element := xmlDocGetRootElement(outputDoc);
-  encoding := outputDoc.encoding;
-  xmlDocDumpMemoryEnc(outputDoc, CString, @length1, outputDoc.encoding);
+  encoding := outputDoc^.encoding;
+  xmlDocDumpMemoryEnc(outputDoc, CString, @length1, outputDoc^.encoding);
   output := CString;
   // free the document as a string is returned, and not the document
   xmlFreeDoc(outputDoc);
@@ -4328,7 +4328,7 @@ begin
     //insert the meta tag for html output after the head tag
     meta := '<META http-equiv="Content-Type" content="text/html; charset=' +
       encoding + '">';
-    len := pos(WideString('<head>'), output) + 6 - 1;
+    len := pos(DOMString('<head>'), output) + 6 - 1;
     output := leftstr(output, len) + meta + rightstr(output, length(output) - len);
   end;
   xmlFree(CString);
@@ -4345,14 +4345,14 @@ var
   impl:      IDomImplementation;
 begin
   output := nil;
-  doc := fXmlNode.doc;
+  doc := fXmlNode^.doc;
   // if the node is the documentnode, it's ownerdocument is nil,
   // so you have to use self to get the domImplementation
   if self.fOwnerDocument<>nil
     then impl:= self.fOwnerDocument.domImplementation
     else impl:= (self as IDomDocument).domImplementation;
   styleNode := GetXmlNode(stylesheet);
-  styleDoc := styleNode.doc;
+  styleDoc := styleNode^.doc;
   if (styleDoc = nil) or (doc = nil) then exit;
   tempXSL := xsltParseStyleSheetDoc(styleDoc);
   if tempXSL = nil then exit;
@@ -4398,7 +4398,7 @@ begin
   // check encoding
   fEncoding:=(self.fOwnerDocument as IDomOutputOptions).encoding;
   if fEncoding = ''
-     then encoding := fXmlNode.doc.encoding
+     then encoding := fXmlNode^.doc^.encoding
      else encoding := lowercase(fEncoding);
   // get the right encoder
   if (encoding <> 'utf8')
@@ -4409,15 +4409,15 @@ begin
   buffer := xmlAllocOutputBuffer(encoder);
 
   // dump the content of the node to the buffer
-  xmlNodeDumpOutput(buffer, fXmlNode.doc, fXmlNode, 0, 0, PAnsiChar(encoding));
+  xmlNodeDumpOutput(buffer, fXmlNode^.doc, fXmlNode, 0, 0, PAnsiChar(encoding));
 
   // flush the buffer
   xmlOutputBufferFlush(buffer);
 
   // get the decoded content, if available, otherwise the utf8 content
-  if assigned(buffer.conv)
-    then CString := xmlBufferContent(buffer.conv)
-    else CString := xmlBufferContent(buffer.buffer);
+  if assigned(buffer^.conv)
+    then CString := xmlBufferContent(buffer^.conv)
+    else CString := xmlBufferContent(buffer^.buffer);
 
   if (encoding <> 'utf8')
      then Result := CString
@@ -4459,7 +4459,7 @@ end;
 
 function TDomDocument.get_parsedEncoding: DomString;
 begin
-  Result := getXmlDocument.encoding;
+  Result := getXmlDocument^.encoding;
 end;
 
 procedure TDomDocument.registerNS(prefix, uri: AnsiString);
@@ -4502,10 +4502,10 @@ begin
   fXmlNotation:= notation;
   // create a root node that reflects the behaviour, required by the
   // dom2 specification
-  root:=xmlNewNode(nil,notation.name);
+  root:=xmlNewNode(nil,notation^.name);
   // A Notation node does not have any parent. (w3c.org)
-  root.parent:=nil;
-  root.type_:=XML_NOTATION_NODE;
+  root^.parent:=nil;
+  root^.type_:=XML_NOTATION_NODE;
   inherited Create(root, ADocument);
 end;
 
@@ -4524,9 +4524,9 @@ begin
   fXmlEntity:= entity;
   // create a root node that reflects the behaviour, required by the
   // dom2 specification
-  root:=xmlNewNode(nil,entity.name);
+  root:=xmlNewNode(nil,entity^.name);
   // An entity node does not have any parent. (w3c.org)
-  root.parent:=nil;
+  root^.parent:=nil;
   // XML does not mandate that a non-validating XML processor read and process
   // entity declarations made in the external subset or declared in external
   // parameter entities. This means that parsed entities declared in the external
@@ -4535,8 +4535,8 @@ begin
   // value is available, the corresponding Entity node's child list represents
   // the structure of that replacement text. Otherwise, the child list is empty.
   // (w3c.org)
-  root.children:=nil;
-  root.type_:=XML_ENTITY_NODE;
+  root^.children:=nil;
+  root^.type_:=XML_ENTITY_NODE;
   inherited Create(root, ADocument);
 end;
 
@@ -4557,7 +4557,7 @@ begin
   // use the normal one
   if (not Assigned(ns))
      then result := findOrCreateNewNamespace(node, nil, nil)
-     else result := findOrCreateNewNamespace(node, ns.href, ns.prefix);
+     else result := findOrCreateNewNamespace(node, ns^.href, ns^.prefix);
 end;
 
 function TDomDocument.findOrCreateNewNamespace(const node: xmlNodePtr; const namespaceURI, prefix: PAnsiChar): xmlNsPtr;
@@ -4572,12 +4572,12 @@ begin
   // try to locate this namespace in already stored list
   for i := 0 to pred(FNsList.Count) do
       // compare this to internal entries
-      if (Assigned(xmlNsPtr(FNsList[i]).prefix) = Assigned(prefix))
+      if (Assigned(xmlNsPtr(FNsList[i])^.prefix) = Assigned(prefix))
          and
-         ((not Assigned(prefix)) or (StrComp(xmlNsPtr(FNsList[i]).prefix, prefix) = 0))
+         ((not Assigned(prefix)) or (StrComp(xmlNsPtr(FNsList[i])^.prefix, prefix) = 0))
 
       then if
-         (StrComp(xmlNsPtr(FNsList[i]).href,   namespaceURI ) = 0)
+         (StrComp(xmlNsPtr(FNsList[i])^.href,   namespaceURI ) = 0)
          then begin
            result := xmlNsPtr(FNsList[i]);
            break;

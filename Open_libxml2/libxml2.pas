@@ -23,6 +23,9 @@ const
 {$IFDEF MSWINDOWS}
   LIBXML2_SO = 'libxml2.dll';
 {$ENDIF}
+{$IFDEF WIN64}
+  LIBXML2_SO = 'libxml2.dll';
+{$ENDIF}
 {$IFDEF LINUX}
   LIBXML2_SO = 'libxml2.so';
 {$ENDIF}
@@ -143,7 +146,7 @@ end;
 
 function xmlXPathNodeSetIsEmpty(ns: xmlNodeSetPtr): Boolean;
 begin
-  Result := ((ns = nil) or (ns.nodeNr = 0) or (ns.nodeTab = nil));
+  Result := ((ns = nil) or (ns^.nodeNr = 0) or (ns^.nodeTab = nil));
 end;
 
 // macros from parserInternals
@@ -205,7 +208,7 @@ end;
 
 initialization
   // setup Delphi memory handler
-  xmlMemSetup(@DelphiFreeFunc, @DelphiMallocFunc, @DelphiReallocFunc, @DelphiStrdupFunc);
+  xmlMemSetup(PxmlFreeFunc(@DelphiFreeFunc), PxmlMallocFunc(@DelphiMallocFunc), PxmlReallocFunc(@DelphiReallocFunc), PxmlStrdupFunc(@DelphiStrdupFunc));
 
 end.
 

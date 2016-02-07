@@ -29,7 +29,7 @@
 {$define XSLT_TODO}
 (* error
     xsltGenericError(xsltGenericErrorContext,
-(* error
+( * error
 	    "Unimplemented block at %s:%d\n",
  in declarator_list *)
 
@@ -44,7 +44,7 @@
 {$define XSLT_STRANGE}
 (* error
     xsltGenericError(xsltGenericErrorContext,
-(* error
+ * error
 	    "Internal error at %s:%d\n",
  in declarator_list *)
 

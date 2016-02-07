@@ -171,7 +171,7 @@ in declaration at line 131 *)
        Deallocates an #xsltElemPreComp structure
       }
 (* error 
-typedef void (*xsltElemPreCompDeallocator) (xsltElemPreCompPtr comp);
+typedef void ( *xsltElemPreCompDeallocator) (xsltElemPreCompPtr comp);
 in declaration at line 164 *)
     { 
        xsltElemPreComp:

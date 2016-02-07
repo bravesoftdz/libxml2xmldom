@@ -144,6 +144,7 @@ type
 
 procedure registerNS(doc: IDOMDocument; prefix, namespaceuri: DOMString);
 procedure setXSDSchema(doc, xsd: IDOMDocument);
+procedure enableScriptExtensions(doc: IDOMDocument);
 
 var
   GlobalURIResolver: IURIResolver;
@@ -240,6 +241,19 @@ begin
     Exit;
   end;
   raise DOMException.Create('XSD Schema validation not implemented');
+end;
+
+procedure enableScriptExtensions(doc: IDOMDocument);
+var
+  msxmlnodewrapper: IXMLDOMNodeRef;
+  msxmldoc: IXMLDOMDocument2;
+begin
+  doc.QueryInterface(IXMLDOMNodeRef, msxmlnodewrapper);
+  if Assigned(msxmlnodewrapper) then
+  begin
+    msxmldoc := msxmlnodewrapper.GetXMLDOMNode as IXMLDomDocument2;
+    msxmldoc.setProperty('AllowXsltScript', true);
+  end;
 end;
 
 end.

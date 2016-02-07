@@ -157,7 +157,7 @@ type
 implementation
 
 uses
-  ComObj;
+  {$IFDEF VER300} System.Win.ComObj; {$ELSE} ComObj; {$ENDIF}
 
 function getCodeStr(code: integer): string;
 begin

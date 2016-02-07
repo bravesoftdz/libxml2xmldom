@@ -68,7 +68,7 @@ procedure xmlInitializeGlobalState(gs: xmlGlobalStatePtr); cdecl; external LIBXM
 #define xmlMalloc \
 in define line 105 *)
 (* error
-(*(__xmlMalloc()))
+( *(__xmlMalloc()))
 {$else}
 in declaration at line 108 *)
 {$ENDIF}
@@ -79,7 +79,7 @@ in declaration at line 108 *)
 #define xmlRealloc \
 in define line 113 *)
 (* error
-(*(__xmlRealloc()))
+( *(__xmlRealloc()))
 {$else}
 in declaration at line 116 *)
 {$ENDIF}
@@ -90,7 +90,7 @@ in declaration at line 116 *)
 #define xmlFree \
 in define line 121 *)
 (* error
-(*(__xmlFree()))
+( *(__xmlFree()))
 {$else}
 in declaration at line 124 *)
 {$ENDIF}
@@ -101,7 +101,7 @@ in declaration at line 124 *)
 #define xmlMemStrdup \
 in define line 129 *)
 (* error
-(*(__xmlMemStrdup()))
+( *(__xmlMemStrdup()))
 {$else}
 in declaration at line 132 *)
 {$ENDIF}
@@ -130,7 +130,7 @@ in declaration at line 138 *)
 #define docbDefaultSAXHandler \
 in define line 150 *)
 (* error
-(*(__docbDefaultSAXHandler()))
+( *(__docbDefaultSAXHandler()))
 {$else}
 in declaration at line 153 *)
 {$ENDIF}
@@ -141,7 +141,7 @@ in declaration at line 153 *)
 #define htmlDefaultSAXHandler \
 in define line 158 *)
 (* error
-(*(__htmlDefaultSAXHandler()))
+( *(__htmlDefaultSAXHandler()))
 {$else}
 in declaration at line 161 *)
 {$ENDIF}
@@ -158,7 +158,7 @@ in declaration at line 161 *)
 #define oldXMLWDcompatibility \
 in define line 166 *)
 (* error
-(*(__oldXMLWDcompatibility()))
+( *(__oldXMLWDcompatibility()))
 {$else}
 in declaration at line 169 *)
 {$ENDIF}
@@ -169,7 +169,7 @@ in declaration at line 169 *)
 #define xmlBufferAllocScheme \
 in define line 174 *)
 (* error
-(*(__xmlBufferAllocScheme()))
+( *(__xmlBufferAllocScheme()))
 {$else}
 in declaration at line 177 *)
 {$ENDIF}
@@ -180,7 +180,7 @@ in declaration at line 177 *)
 #define xmlDefaultBufferSize \
 in define line 182 *)
 (* error
-(*(__xmlDefaultBufferSize()))
+( *(__xmlDefaultBufferSize()))
 {$else}
 in declaration at line 185 *)
 {$ENDIF}
@@ -191,7 +191,7 @@ in declaration at line 185 *)
 #define xmlDefaultSAXHandler \
 in define line 190 *)
 (* error
-(*(__xmlDefaultSAXHandler()))
+( *(__xmlDefaultSAXHandler()))
 {$else}
 in declaration at line 193 *)
 {$ENDIF}
@@ -202,7 +202,7 @@ in declaration at line 193 *)
 #define xmlDefaultSAXLocator \
 in define line 198 *)
 (* error
-(*(__xmlDefaultSAXLocator()))
+( *(__xmlDefaultSAXLocator()))
 {$else}
 in declaration at line 201 *)
 {$ENDIF}
@@ -213,7 +213,7 @@ in declaration at line 201 *)
 #define xmlDoValidityCheckingDefaultValue \
 in define line 206 *)
 (* error
-(*(__xmlDoValidityCheckingDefaultValue()))
+( *(__xmlDoValidityCheckingDefaultValue()))
 {$else}
 in declaration at line 209 *)
 {$ENDIF}
@@ -224,7 +224,7 @@ in declaration at line 209 *)
 #define xmlGenericError \
 in define line 214 *)
 (* error
-(*(__xmlGenericError()))
+( *(__xmlGenericError()))
 {$else}
 in declaration at line 217 *)
 {$ENDIF}
@@ -235,7 +235,7 @@ in declaration at line 217 *)
 #define xmlGenericErrorContext \
 in define line 222 *)
 (* error
-(*(__xmlGenericErrorContext()))
+( *(__xmlGenericErrorContext()))
 {$else}
 in declaration at line 225 *)
 {$ENDIF}
@@ -246,7 +246,7 @@ in declaration at line 225 *)
 #define xmlGetWarningsDefaultValue \
 in define line 230 *)
 (* error
-(*(__xmlGetWarningsDefaultValue()))
+( *(__xmlGetWarningsDefaultValue()))
 {$else}
 in declaration at line 233 *)
 {$ENDIF}
@@ -257,7 +257,7 @@ in declaration at line 233 *)
 #define xmlIndentTreeOutput \
 in define line 238 *)
 (* error
-(*(__xmlIndentTreeOutput()))
+( *(__xmlIndentTreeOutput()))
 {$else}
 in declaration at line 241 *)
 {$ENDIF}
@@ -268,7 +268,7 @@ in declaration at line 241 *)
 #define xmlKeepBlanksDefaultValue \
 in define line 246 *)
 (* error
-(*(__xmlKeepBlanksDefaultValue()))
+( *(__xmlKeepBlanksDefaultValue()))
 {$else}
 in declaration at line 249 *)
 {$ENDIF}
@@ -279,7 +279,7 @@ in declaration at line 249 *)
 #define xmlLineNumbersDefaultValue \
 in define line 254 *)
 (* error
-(*(__xmlLineNumbersDefaultValue()))
+( *(__xmlLineNumbersDefaultValue()))
 {$else}
 in declaration at line 257 *)
 {$ENDIF}
@@ -290,7 +290,7 @@ in declaration at line 257 *)
 #define xmlLoadExtDtdDefaultValue \
 in define line 262 *)
 (* error
-(*(__xmlLoadExtDtdDefaultValue()))
+( *(__xmlLoadExtDtdDefaultValue()))
 {$else}
 in declaration at line 265 *)
 {$ENDIF}
@@ -301,7 +301,7 @@ in declaration at line 265 *)
 #define xmlParserDebugEntities \
 in define line 270 *)
 (* error
-(*(__xmlParserDebugEntities()))
+( *(__xmlParserDebugEntities()))
 {$else}
 in declaration at line 273 *)
 {$ENDIF}
@@ -313,7 +313,7 @@ in declaration at line 273 *)
 #define xmlParserVersion \
 in define line 278 *)
 (* error
-(*(__xmlParserVersion()))
+( *(__xmlParserVersion()))
 {$else}
 in declaration at line 281 *)
 {$ENDIF}
@@ -324,7 +324,7 @@ in declaration at line 281 *)
 #define xmlPedanticParserDefaultValue \
 in define line 286 *)
 (* error
-(*(__xmlPedanticParserDefaultValue()))
+( *(__xmlPedanticParserDefaultValue()))
 {$else}
 in declaration at line 289 *)
 {$ENDIF}
@@ -335,7 +335,7 @@ in declaration at line 289 *)
 #define xmlSaveNoEmptyTags \
 in define line 294 *)
 (* error
-(*(__xmlSaveNoEmptyTags()))
+( *(__xmlSaveNoEmptyTags()))
 {$else}
 in declaration at line 297 *)
 {$ENDIF}
@@ -346,7 +346,7 @@ in declaration at line 297 *)
 #define xmlSubstituteEntitiesDefaultValue \
 in define line 302 *)
 (* error
-(*(__xmlSubstituteEntitiesDefaultValue()))
+( *(__xmlSubstituteEntitiesDefaultValue()))
 {$else}
 in declaration at line 305 *)
 {$ENDIF}

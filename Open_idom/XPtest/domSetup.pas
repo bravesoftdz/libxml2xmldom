@@ -4,6 +4,9 @@ interface
 
 uses
   fpcunit,
+  {$IFDEF FPC}
+  TestFrameworkIfaces,
+  {$ENDIF}
   idom2;
 
 const
@@ -86,6 +89,7 @@ end;
 constructor TDomSetup.Create(const vendorID: string; test: TTest);
 begin
   inherited Create(test);
+  {$ENDIF}
   fVendorID := vendorID;
   fRefCounter:= TInterfacedObjectMixIn.Create;
 end;

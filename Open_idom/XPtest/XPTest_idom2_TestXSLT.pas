@@ -124,7 +124,7 @@ end;
 
 procedure TTestXSLT.transformNode2Html4_WideString;
 var
-  Text: widestring;
+  Text: DOMString;
   ok:   boolean;
 begin
   // apply a stylesheet that produces html-output
@@ -158,7 +158,7 @@ end;
 
 procedure TTestXSLT.transformNodeVersion10;
 var
-  Text: widestring;
+  Text: DOMString;
 begin
   // any XSLT 1.0 processor must be able to process the following stylesheet
   // without error, although the stylesheet includes elements from the XSLT
@@ -197,7 +197,7 @@ end;
 
 procedure TTestXSLT.transformNode2PlainText_WideString;
 var
-  Text: widestring;
+  Text: DOMString;
 begin
   // apply a stylesheet that produces text-output
 
@@ -222,7 +222,7 @@ end;
 
 procedure TTestXSLT.transformNodeSimplifiedSyntax;
 var
-  Text, result1, result2: widestring;
+  Text, result1, result2: DOMString;
 begin
   // A simplified syntax is allowed for stylesheets that consist of only a
   // single template for the root node. The stylesheet may consist of just a
@@ -329,7 +329,7 @@ end;
 
 procedure TTestXSLT.transformNode2XHTML_WideString;
 var
-  Text: widestring;
+  Text: DOMString;
   ok:   boolean;
 begin
   ok := (xsl as IDomPersist).loadxml(xslstr2);

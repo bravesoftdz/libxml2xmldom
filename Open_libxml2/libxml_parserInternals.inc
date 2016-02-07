@@ -325,8 +325,8 @@ function  xmlCheckLanguageID(lang: PxmlChar): Longint; cdecl; external LIBXML2_S
  * Really core function shared with HTML parser
  *)
 function  xmlCurrentChar(ctxt: xmlParserCtxtPtr; len: PLongint): Longint; cdecl; external LIBXML2_SO;
-function  xmlCopyCharMultiByte(out PxmlChar; val: Longint): Longint; cdecl; external LIBXML2_SO;
-function  xmlCopyChar(len: Longint; out PxmlChar; val: Longint): Longint; cdecl; external LIBXML2_SO;
+function  xmlCopyCharMultiByte(pxc: PxmlChar; val: Longint): Longint; cdecl; external LIBXML2_SO;
+function  xmlCopyChar(len: Longint; pxc: PxmlChar; val: Longint): Longint; cdecl; external LIBXML2_SO;
 procedure xmlNextChar(ctxt: xmlParserCtxtPtr); cdecl; external LIBXML2_SO;
 procedure xmlParserInputShrink(inp: xmlParserInputPtr); cdecl; external LIBXML2_SO;
 

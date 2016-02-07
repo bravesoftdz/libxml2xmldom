@@ -52,7 +52,7 @@ uses
   {$endif}
   windows,
   Variants,
-  ComObj,
+  {$IFDEF VER300} System.Win.ComObj, {$ELSE} ComObj, {$ENDIF}
   idom2,
   idom2_ext;
 
@@ -229,10 +229,10 @@ type
       function  isSupported(
               const feature : DomString;
               const version : DomString) : Boolean;
-    function selectNode(const nodePath: WideString): IDomNode;
-    function selectNodes(const nodePath: WideString): IDomNodeList;
+    function selectNode(const nodePath: DOMString): IDomNode;
+    function selectNodes(const nodePath: DOMString): IDomNodeList;
     procedure registerNS(const prefix : DomString; const uri : DomString);
-    procedure transformNode(const stylesheet: IDomNode; var output: WideString); overload;
+    procedure transformNode(const stylesheet: IDomNode; var output: DOMString); overload;
     procedure transformNode(const stylesheet: IDomNode; var output: IDomDocument); overload;
     function get_text: DomString;
     procedure set_text(const Value: DomString);
@@ -2323,7 +2323,7 @@ begin
 end;
 
 
-function TMSXMLNode.selectNode(const nodePath : WideString): IDomNode;
+function TMSXMLNode.selectNode(const nodePath : DOMString): IDomNode;
 var
   node : IXMLDOMNode;
 begin
@@ -2334,7 +2334,7 @@ begin
     result := nil;
 end;
 
-function TMSXMLNode.selectNodes(const nodePath : WideString): IDomNodeList;
+function TMSXMLNode.selectNodes(const nodePath : DOMString): IDomNodeList;
 var
   msNodeList : IXMLDOMNodeList;
 begin
@@ -2358,7 +2358,7 @@ begin
 end;
 
 procedure TMSXMLNode.transformNode(const stylesheet: IDomNode;
-  var output: WideString);
+  var output: DOMString);
 var
   msStylesheet: ixmldomnode;
 begin

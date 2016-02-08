@@ -23,9 +23,6 @@ const
 {$IFDEF MSWINDOWS}
   LIBXML2_SO = 'libxml2.dll';
 {$ENDIF}
-{$IFDEF WIN64}
-  LIBXML2_SO = 'libxml2.dll';
-{$ENDIF}
 {$IFDEF LINUX}
   LIBXML2_SO = 'libxml2.so';
 {$ENDIF}

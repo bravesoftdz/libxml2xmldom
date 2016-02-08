@@ -3,7 +3,6 @@ unit domSetup;
 interface
 
 uses
-  fpcunit,
   {$IFDEF FPC}
   TestFrameworkIfaces,
   {$ENDIF}
@@ -22,7 +21,11 @@ type
     function getDocumentBuilder: IDomDocumentBuilder;
   end;
 
-function createDomSetupTest(const vendorID: string; test: TTest): TTest;
+  {$IFDEF FPC}
+  ITest = ITestCase;
+  {$ENDIF}
+
+function createDomSetupTest(const vendorID: string; test: ITestCase): ITestCase;
 
   (*
    * provides a reference to the current IDomSetup. Use it within the Dom test
@@ -33,7 +36,7 @@ function getCurrentDomSetup: IDomSetup;
 implementation
 
 uses
-  testdecorator, testregistry, Classes;
+  TestFramework, TestExtensions, Classes;
 
 type
 
@@ -52,11 +55,11 @@ type
     function _AddRef : longint;{$IFNDEF WINDOWS}cdecl{$ELSE}stdcall{$ENDIF};
     function _Release : longint;{$IFNDEF WINDOWS}cdecl{$ELSE}stdcall{$ENDIF};
   public
-    constructor Create(const vendorID: string; test: TTest);
+    constructor Create(const vendorID: string; ATest: ITestCase);
     destructor Destroy; override;
 
-    procedure OneTimeSetup; override;
-    procedure OneTimeTearDown; override;
+    procedure SetupOnce; override;
+    procedure TearDownOnce; override;
 
     (* IDomSetup methods *)
     function getVendorID: string;
@@ -86,10 +89,10 @@ begin
     self.destroy;
 end;
 
-constructor TDomSetup.Create(const vendorID: string; test: TTest);
+constructor TDomSetup.Create(const vendorID: string; ATest: ITestCase);
 begin
-  inherited Create(test);
-  {$ENDIF}
+  inherited Create(ATest.GetName);
+  AddTest(ATest);
   fVendorID := vendorID;
   fRefCounter:= TInterfacedObjectMixIn.Create;
 end;
@@ -99,7 +102,7 @@ begin
   fDocumentBuilder := nil;
 end;
 
-procedure TDomSetup.OneTimeSetup;
+procedure TDomSetup.SetupOnce;
 begin
   {get DocumentBuilder on demand in setup so exceptions will be caught by DUnit}
   if fDocumentBuilder = nil then begin
@@ -110,7 +113,7 @@ begin
   gCurrentDomSetup := self;
 end;
 
-procedure TDomSetup.OneTimeTearDown;
+procedure TDomSetup.TearDownOnce;
 begin
   gCurrentDomSetup := nil;
 end;
@@ -126,7 +129,7 @@ begin
 end;
 
 (* creator for DomSetup *)
-function createDomSetupTest(const vendorID: string; test: TTest): TTest;
+function createDomSetupTest(const vendorID: string; test: ITestCase): ITestCase;
 begin
   Result := TDomSetup.Create(vendorID, test);
   gDomSetups.Add(Result as IDomSetup);

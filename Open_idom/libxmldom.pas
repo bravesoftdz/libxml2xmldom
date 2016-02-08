@@ -829,7 +829,9 @@ end;
 
 function extractEncoding(const Source: DOMString): DOMString;
 //extracts the encoding from the xml header
-var p, e, pEnd: PWideChar;
+var
+  p, e, pEnd: PWideChar;
+  a, b, c: PtrUInt;
 begin
   // init result
   result := '';
@@ -891,8 +893,14 @@ begin
             // not valid xml
             result := ''
           else
+          begin
+            a := PtrUInt(@result[1]) div 2;
+            b := PtrUInt(p) div 2;
+            c := PtrUInt(e) div 2;
             // ok, mask it out
-            result := lowerCase(Copy(result, p - @result[1] + 2, e - p - 1));
+            result := Copy(result, b - a + 2, c - b - 1);
+            result := lowerCase(result);
+          end;
      end;
 end;
 

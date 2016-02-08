@@ -1,4 +1,4 @@
-unit XPTest_idom2_TestPersist;
+﻿unit XPTest_idom2_TestPersist;
 
 interface
 
@@ -11,8 +11,9 @@ uses
   Classes,
   domSetup,
 {$ifdef MSWINDOWS}
-  ActiveX;
+  ActiveX
 {$endif}
+  ;
 
 type
   TTestPersist = class(TMyTestCase)
@@ -331,7 +332,7 @@ procedure TTestPersist.parsedEncoding;
 var
   sl: TStrings;
   ok: boolean;
-  tmp,tmp1: widestring;
+  tmp,tmp1: DOMString;
 begin
   if domvendor='LIBXML_4CT' then begin
     sl := TStringList.Create;
@@ -365,7 +366,7 @@ procedure TTestPersist.parsedEncoding1;
 var
   sl: TStrings;
   ok,ok1: boolean;
-  tmp: widestring; // ,tmp1
+  tmp: DOMString; // ,tmp1
 begin
   ok1 := False;
   sl := TStringList.Create;
@@ -390,7 +391,7 @@ procedure TTestPersist.stringEncoding;
 var
   sl: TStrings;
   ok: boolean;
-  tmp,tmp1: widestring;
+  tmp,tmp1: DOMString;
 begin
   if domvendor='LIBXML_4CT' then begin
     sl := TStringList.Create;

@@ -1,7 +1,5 @@
 unit Main;
 
-{$MODE Delphi}
-
 interface
 
 uses
@@ -11,8 +9,10 @@ implementation
 
 uses
   SysUtils,
-  fpcunit,
-  testregistry,
+  TestFramework,
+  {$IFDEF FPC}
+  TestFrameworkIfaces,
+  {$ENDIF}
   domSetup,
   libxmldom,
   {$ifdef MSWINDOWS}
@@ -37,7 +37,7 @@ uses
  *
  * @param name the name of the All Test suite
 *)
-function getAllTests(const VendorID: string; const Name: string): TTest;
+function getAllTests(const Name: string): ITestSuite;
 var
   allTestSuite: TTestSuite;
 begin
@@ -45,14 +45,14 @@ begin
 
   (* add all test suits to the allTestSuite *)
 
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestDOM2Methods.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestDomExceptions.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestMemoryLeaks.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestXPath.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestXSLT.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TTestPersist.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TDomImplementationFundamentalTests.Suite));
-  allTestSuite.AddTest(DomSetup.createDomSetupTest(VendorID, TDomDocumentFundamentalTests.Suite));
+  allTestSuite.addSuite(TTestDOM2Methods.Suite);
+  allTestSuite.addSuite(TTestDomExceptions.Suite);
+  allTestSuite.addSuite(TTestMemoryLeaks.Suite);
+  allTestSuite.addSuite(TTestXPath.Suite);
+  allTestSuite.addSuite(TTestXSLT.Suite);
+  allTestSuite.addSuite(TTestPersist.Suite);
+  allTestSuite.addSuite(TDomImplementationFundamentalTests.Suite);
+  allTestSuite.addSuite(TDomDocumentFundamentalTests.Suite);
 
   Result := allTestSuite;
 end;
@@ -66,12 +66,12 @@ initialization
   {$ifdef MSWINDOWS}
   //if not FindCmdLineSwitch('no_msxml', true)
   //   then
-       GetTestRegistry.AddTest(getAllTests(MSXML2Rental, 'Ms-DOM Rental'));
+       TestFramework.RegisterTest(DomSetup.createDomSetupTest(MSXML2Rental, getAllTests('Ms-DOM Rental')));
   {$endif}
 
   {remove comments to add testing of the Appartment Free Ms version }
   //  TestFramework.RegisterTest(
   //      DomSetup.createDomSetupTest(MSXML2Free, getAllTests('Ms-DOM Free')));
 
-  GetTestRegistry.AddTest(getAllTests(SLIBXML, 'Lib XML 2'));
+  TestFramework.RegisterTest(DomSetup.createDomSetupTest(SLIBXML, getAllTests('Lib XML 2')));
 end.

@@ -285,12 +285,12 @@ end;
 
 procedure TTestDomExceptions.hierarchy_AppendAttribute;
 var
-  attr: IDomAttr;
+  _attr: IDomAttr;
 begin
-  attr := doc.createAttribute('test');
+  _attr := doc.createAttribute('test');
   try
     // HIERARCHY_REQUEST_ERR
-    doc.documentElement.appendChild(attr);
+    doc.documentElement.appendChild(_attr);
     fail('There should have been an EDomException');
   except
     on E: Exception do Check(E is EDomException, getErrStr(E));
@@ -309,12 +309,12 @@ end;
 
 procedure TTestDomExceptions.unknown_InsertNilNode;
 var
-  node: IDomNode;
+  _node: IDomNode;
 begin
-  node := doc.createElement('sub1');
-  doc.documentElement.appendChild(node);
+  _node := doc.createElement('sub1');
+  doc.documentElement.appendChild(_node);
   try
-    doc.documentElement.insertBefore(nil, node);
+    doc.documentElement.insertBefore(nil, _node);
     fail('There should have been an EDomError');
   except
     on E: Exception do Check(E is EDomException, getErrStr(E));

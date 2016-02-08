@@ -2,120 +2,170 @@
 <CONFIG>
   <ProjectOptions>
     <Version Value="9"/>
-    <PathDelim Value="\"/>
     <General>
       <Flags>
-        <MainUnitHasUsesSectionForAllUnits Value="False"/>
-        <MainUnitHasCreateFormStatements Value="False"/>
-        <MainUnitHasTitleStatement Value="False"/>
+        <SaveOnlyProjectUnits Value="True"/>
       </Flags>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="XPTestSuite_idom2"/>
+      <Title Value="FPTest LCL GUI"/>
       <UseAppBundle Value="False"/>
       <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <XPManifest>
+        <DpiAware Value="True"/>
+      </XPManifest>
+      <Icon Value="0"/>
     </General>
-    <i18n>
-      <EnableI18N LFM="False"/>
-    </i18n>
     <VersionInfo>
       <StringTable ProductVersion=""/>
     </VersionInfo>
+    <MacroValues Count="1">
+      <Macro1 Name="DUnit" Value="1"/>
+    </MacroValues>
     <BuildModes Count="1">
-      <Item1 Name="Default" Default="True"/>
+      <Item1 Name="default" Default="True"/>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="979597695996" Modes="default" Type="IDEMacro" MacroName="DUnit" Value="1"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
     </PublishOptions>
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="2">
+    <RequiredPackages Count="3">
       <Item1>
-        <PackageName Value="FPCUnitTestRunner"/>
+        <PackageName Value="fptest_lcl"/>
       </Item1>
       <Item2>
-        <PackageName Value="LCL"/>
+        <PackageName Value="fptest"/>
       </Item2>
+      <Item3>
+        <PackageName Value="FCL"/>
+      </Item3>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="22">
       <Unit0>
         <Filename Value="XPTestSuite_idom2.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="Main.pas"/>
+        <Filename Value="domSetup.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Main"/>
       </Unit1>
       <Unit2>
-        <Filename Value="XPTest_idom2_Shared.pas"/>
+        <Filename Value="Main.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
+        <Filename Value="XPTest_idom2_Shared.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestDOM2Methods"/>
       </Unit3>
       <Unit4>
-        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
+        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestDomExceptions"/>
       </Unit4>
       <Unit5>
-        <Filename Value="XPTest_idom2_TestMemoryLeaks.pas"/>
+        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit5>
       <Unit6>
-        <Filename Value="XPTest_idom2_TestPersist.pas"/>
+        <Filename Value="XPTest_idom2_TestMemoryLeaks.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="XPTest_idom2_TestXPath.pas"/>
+        <Filename Value="XPTest_idom2_TestPersist.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
+        <Filename Value="XPTest_idom2_TestXPath.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestXSLT"/>
       </Unit8>
       <Unit9>
-        <Filename Value="domSetup.pas"/>
+        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="domSetup"/>
       </Unit9>
       <Unit10>
-        <Filename Value="contrib\DomDocumentTests.pas"/>
+        <Filename Value="../idom2.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="contrib\DomImplementationTests.pas"/>
+        <Filename Value="../idom2_ext.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="..\..\Open_libxml2\libxml2.pas"/>
+        <Filename Value="../idom2_utils.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="../libxmldom.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="../msxml_impl.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="../MSXML2_TLB.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="../../Open_libxml2/libxml2.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="../../Open_libxslt/libxslt.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="../../Open_helper/FastTime.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="../../Open_helper/MicroTime.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="contrib/DomDocumentTests.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="contrib/DomImplementationTests.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit21>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
     <Version Value="11"/>
-    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="$(TargetCPU)-$(TargetOS)/FPTestGUIDemo"/>
+    </Target>
     <SearchPaths>
-      <IncludeFiles Value="contrib;..;..\..\Open_libxml2;..\..\Open_libxslt;..\..\Open_helper;$(ProjOutDir)"/>
-      <OtherUnitFiles Value="contrib;..;..\..\Open_libxslt;..\..\Open_helper;..\..\Open_libxml2"/>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="..;../../Open_libxml2;../../Open_libxslt;../../Open_helper;contrib"/>
+      <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
-        <SyntaxMode Value="Delphi"/>
+        <IncludeAssertionCode Value="True"/>
+        <UseAnsiStrings Value="False"/>
       </SyntaxOptions>
     </Parsing>
     <CodeGeneration>
-      <Optimizations>
-        <OptimizationLevel Value="0"/>
-      </Optimizations>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
     </CodeGeneration>
     <Linking>
       <Debugging>
@@ -127,30 +177,39 @@
         </Win32>
       </Options>
     </Linking>
+    <Other>
+      <CustomOptions Value="-Sh"/>
+    </Other>
   </CompilerOptions>
   <Debugging>
-    <Exceptions Count="7">
+    <Exceptions Count="9">
       <Item1>
-        <Name Value="EAbort"/>
+        <Name Value="ETestFailure"/>
       </Item1>
       <Item2>
-        <Name Value="ECodetoolError"/>
+        <Name Value="EDomException"/>
       </Item2>
       <Item3>
-        <Name Value="EFOpenError"/>
+        <Name Value="EOleException"/>
       </Item3>
       <Item4>
-        <Name Value="EDomException"/>
+        <Name Value="EVariantTypeCastError"/>
       </Item4>
       <Item5>
-        <Name Value="EAssertionFailedError"/>
+        <Name Value="EObjectCheck"/>
       </Item5>
       <Item6>
-        <Name Value="EOleException"/>
+        <Name Value="EInvalidCast"/>
       </Item6>
       <Item7>
-        <Name Value="EVariantTypeCastError"/>
+        <Name Value="RunError(201)"/>
       </Item7>
+      <Item8>
+        <Name Value="ERangeError"/>
+      </Item8>
+      <Item9>
+        <Name Value="RunError(219)"/>
+      </Item9>
     </Exceptions>
   </Debugging>
 </CONFIG>

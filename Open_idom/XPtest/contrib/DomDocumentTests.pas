@@ -10,7 +10,10 @@ unit DomDocumentTests;
 interface
 
 uses
-  fpcunit,
+  TestFramework,
+  {$IFDEF FPC}
+  TestFrameworkIfaces,
+  {$ENDIF}
   idom2,
   DomSetup;
 

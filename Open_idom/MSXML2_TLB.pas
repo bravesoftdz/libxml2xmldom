@@ -49,25 +49,25 @@ unit MSXML2_TLB;
 //   Hinweis: Symbol 'MXXMLWriter30' umbenannt zu 'msMXXMLWriter30'
 //   Hinweis: Symbol 'SAXAttributes' umbenannt zu 'msSAXAttributes'
 //   Hinweis: Symbol 'SAXAttributes30' umbenannt zu 'msSAXAttributes30'
-//   Hinweis: Parameter 'type' im IXMLDOMNode.nodeType geändert zu 'type_'
-//   Hinweis: Element 'implementation' von 'IXMLDOMDocument' geändert zu 'implementation_'
-//   Hinweis: Parameter 'type' im IXMLDOMDocument.createNode geändert zu 'type_'
-//   Hinweis: Parameter 'var' im IXMLDOMSchemaCollection.add geändert zu 'var_'
+//   Hinweis: Parameter 'type' im IXMLDOMNode.nodeType geÃ¤ndert zu 'type_'
+//   Hinweis: Element 'implementation' von 'IXMLDOMDocument' geÃ¤ndert zu 'implementation_'
+//   Hinweis: Parameter 'type' im IXMLDOMDocument.createNode geÃ¤ndert zu 'type_'
+//   Hinweis: Parameter 'var' im IXMLDOMSchemaCollection.add geÃ¤ndert zu 'var_'
 //   Hinweis: Symbol 'type' umbenannt zu 'type_'
-//   Hinweis: Parameter 'type' im ISchemaElement.type geändert zu 'type_'
+//   Hinweis: Parameter 'type' im ISchemaElement.type geÃ¤ndert zu 'type_'
 //   Hinweis: Symbol 'type' umbenannt zu 'type_'
-//   Hinweis: Parameter 'type' im ISchemaAttribute.type geändert zu 'type_'
+//   Hinweis: Parameter 'type' im ISchemaAttribute.type geÃ¤ndert zu 'type_'
 //   Hinweis: Symbol 'type' umbenannt zu 'type_'
 //   Hinweis: Symbol 'type' umbenannt zu 'type_'
 // ************************************************************************ //
 // *************************************************************************//
 // HINWEIS:                                                                      
-//Von $IFDEF_LIVE_SERVER_AT_DESIGN_TIME überwachte Einträge, werden von  
-// Eigenschaften verwendet, die Objekte zurückgeben, die explizit mit einen Funktionsaufruf  
-// vor dem Zugriff über die Eigenschaft erzeugt werden müssen. Diese Einträge wurden deaktiviert,  
-// um deren unbeabsichtigte Benutzung im Objektinspektor zu verhindern. Sie können sie  
+//Von $IFDEF_LIVE_SERVER_AT_DESIGN_TIME Ã¼berwachte EintrÃ¤ge, werden von  
+// Eigenschaften verwendet, die Objekte zurÃ¼ckgeben, die explizit mit einen Funktionsaufruf  
+// vor dem Zugriff Ã¼ber die Eigenschaft erzeugt werden mÃ¼ssen. Diese EintrÃ¤ge wurden deaktiviert,  
+// um deren unbeabsichtigte Benutzung im Objektinspektor zu verhindern. Sie kÃ¶nnen sie  
 // aktivieren, indem Sie LIVE_SERVER_AT_DESIGN_TIME definieren oder sie selektiv  
-// aus den $IFDEF-Blöcken entfernen. Solche Einträge müssen jedoch programmseitig 
+// aus den $IFDEF-BlÃ¶cken entfernen. Solche EintrÃ¤ge mÃ¼ssen jedoch programmseitig 
 // mit einer Methode der geeigneten CoClass vor der Verwendung  
 // erzeugt werden.                                                         
 {$TYPEDADDRESS OFF} // Unit muss ohne Typueberpruefung fuer Zeiger compiliert werden. 
@@ -231,9 +231,9 @@ const
   CLASS_XMLDocument: TGUID = '{CFC399AF-D876-11D0-9C10-00C04FC99C8E}';
 
 // *********************************************************************//
-// Deklaration von in der Typbibliothek definierten  Aufzählungen                    
+// Deklaration von in der Typbibliothek definierten  AufzÃ¤hlungen                    
 // *********************************************************************//
-// Konstanten für enum tagDOMNodeType
+// Konstanten fÃ¼r enum tagDOMNodeType
 type
   tagDOMNodeType = TOleEnum;
 const
@@ -251,7 +251,7 @@ const
   NODE_DOCUMENT_FRAGMENT = $0000000B;
   NODE_NOTATION = $0000000C;
 
-// Konstanten für enum _SOMITEMTYPE
+// Konstanten fÃ¼r enum _SOMITEMTYPE
 type
   _SOMITEMTYPE = TOleEnum;
 const
@@ -329,7 +329,7 @@ const
   SOMITEM_NULL_ANYATTRIBUTE = $00004802;
   SOMITEM_NULL_ELEMENT = $00004803;
 
-// Konstanten für enum _SCHEMADERIVATIONMETHOD
+// Konstanten fÃ¼r enum _SCHEMADERIVATIONMETHOD
 type
   _SCHEMADERIVATIONMETHOD = TOleEnum;
 const
@@ -342,7 +342,7 @@ const
   SCHEMADERIVATIONMETHOD_ALL = $000000FF;
   SCHEMADERIVATIONMETHOD_NONE = $00000100;
 
-// Konstanten für enum _SCHEMATYPEVARIETY
+// Konstanten fÃ¼r enum _SCHEMATYPEVARIETY
 type
   _SCHEMATYPEVARIETY = TOleEnum;
 const
@@ -351,7 +351,7 @@ const
   SCHEMATYPEVARIETY_LIST = $00000001;
   SCHEMATYPEVARIETY_UNION = $00000002;
 
-// Konstanten für enum _SCHEMAWHITESPACE
+// Konstanten fÃ¼r enum _SCHEMAWHITESPACE
 type
   _SCHEMAWHITESPACE = TOleEnum;
 const
@@ -360,7 +360,7 @@ const
   SCHEMAWHITESPACE_REPLACE = $00000001;
   SCHEMAWHITESPACE_COLLAPSE = $00000002;
 
-// Konstanten für enum _SCHEMAPROCESSCONTENTS
+// Konstanten fÃ¼r enum _SCHEMAPROCESSCONTENTS
 type
   _SCHEMAPROCESSCONTENTS = TOleEnum;
 const
@@ -369,7 +369,7 @@ const
   SCHEMAPROCESSCONTENTS_LAX = $00000002;
   SCHEMAPROCESSCONTENTS_STRICT = $00000003;
 
-// Konstanten für enum _SCHEMACONTENTTYPE
+// Konstanten fÃ¼r enum _SCHEMACONTENTTYPE
 type
   _SCHEMACONTENTTYPE = TOleEnum;
 const
@@ -378,7 +378,7 @@ const
   SCHEMACONTENTTYPE_ELEMENTONLY = $00000002;
   SCHEMACONTENTTYPE_MIXED = $00000003;
 
-// Konstanten für enum _SCHEMAUSE
+// Konstanten fÃ¼r enum _SCHEMAUSE
 type
   _SCHEMAUSE = TOleEnum;
 const
@@ -386,7 +386,7 @@ const
   SCHEMAUSE_PROHIBITED = $00000001;
   SCHEMAUSE_REQUIRED = $00000002;
 
-// Konstanten für enum tagXMLEMEM_TYPE
+// Konstanten fÃ¼r enum tagXMLEMEM_TYPE
 type
   tagXMLEMEM_TYPE = TOleEnum;
 const
@@ -398,7 +398,7 @@ const
   XMLELEMTYPE_PI = $00000005;
   XMLELEMTYPE_OTHER = $00000006;
 
-// Konstanten für enum _SERVERXMLHTTP_OPTION
+// Konstanten fÃ¼r enum _SERVERXMLHTTP_OPTION
 type
   _SERVERXMLHTTP_OPTION = TOleEnum;
 const
@@ -408,7 +408,7 @@ const
   SXH_OPTION_IGNORE_SERVER_SSL_CERT_ERROR_FLAGS = $00000002;
   SXH_OPTION_SELECT_CLIENT_SSL_CERT = $00000003;
 
-// Konstanten für enum _SXH_SERVER_CERT_OPTION
+// Konstanten fÃ¼r enum _SXH_SERVER_CERT_OPTION
 type
   _SXH_SERVER_CERT_OPTION = TOleEnum;
 const
@@ -418,7 +418,7 @@ const
   SXH_SERVER_CERT_IGNORE_CERT_DATE_INVALID = $00002000;
   SXH_SERVER_CERT_IGNORE_ALL_SERVER_ERRORS = $00003300;
 
-// Konstanten für enum _SXH_PROXY_SETTING
+// Konstanten fÃ¼r enum _SXH_PROXY_SETTING
 type
   _SXH_PROXY_SETTING = TOleEnum;
 const
@@ -892,7 +892,7 @@ type
     function createAttribute(const name: WideString): IXMLDOMAttribute; safecall;
     function createEntityReference(const name: WideString): IXMLDOMEntityReference; safecall;
     function getElementsByTagName(const tagName: WideString): IXMLDOMNodeList; safecall;
-    function createNode(type_: OleVariant; const name: WideString; const namespaceURI: WideString): IXMLDOMNode; safecall;
+    function createNode(type_: OleVariant; const name: WideString; const _namespaceURI: WideString): IXMLDOMNode; safecall;
     function nodeFromID(const idString: WideString): IXMLDOMNode; safecall;
     function load(xmlSource: OleVariant): WordBool; safecall;
     function Get_readyState: Integer; safecall;
@@ -1088,7 +1088,7 @@ type
     function getAttributeNode(const name: WideString): IXMLDOMAttribute; dispid 102;
     function setAttributeNode(const DOMAttribute: IXMLDOMAttribute): IXMLDOMAttribute; dispid 103;
     function removeAttributeNode(const DOMAttribute: IXMLDOMAttribute): IXMLDOMAttribute; dispid 104;
-    function getElementsByTagName(const tagName: WideString): IXMLDOMNodeList; dispid 105;
+    function getElementsByTagName(const _tagName: WideString): IXMLDOMNodeList; dispid 105;
     procedure normalize; dispid 106;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
@@ -1260,10 +1260,10 @@ type
     property data: WideString dispid 109;
     property length: Integer readonly dispid 110;
     function substringData(offset: Integer; count: Integer): WideString; dispid 111;
-    procedure appendData(const data: WideString); dispid 112;
-    procedure insertData(offset: Integer; const data: WideString); dispid 113;
+    procedure appendData(const _data: WideString); dispid 112;
+    procedure insertData(offset: Integer; const _data: WideString); dispid 113;
     procedure deleteData(offset: Integer; count: Integer); dispid 114;
-    procedure replaceData(offset: Integer; count: Integer; const data: WideString); dispid 115;
+    procedure replaceData(offset: Integer; count: Integer; const _data: WideString); dispid 115;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
     property nodeType: DOMNodeType readonly dispid 4;
@@ -1319,10 +1319,10 @@ type
     property data: WideString dispid 109;
     property length: Integer readonly dispid 110;
     function substringData(offset: Integer; count: Integer): WideString; dispid 111;
-    procedure appendData(const data: WideString); dispid 112;
-    procedure insertData(offset: Integer; const data: WideString); dispid 113;
+    procedure appendData(const _data: WideString); dispid 112;
+    procedure insertData(offset: Integer; const __data: WideString); dispid 113;
     procedure deleteData(offset: Integer; count: Integer); dispid 114;
-    procedure replaceData(offset: Integer; count: Integer; const data: WideString); dispid 115;
+    procedure replaceData(offset: Integer; count: Integer; const _data: WideString); dispid 115;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
     property nodeType: DOMNodeType readonly dispid 4;
@@ -1376,10 +1376,10 @@ type
     property data: WideString dispid 109;
     property length: Integer readonly dispid 110;
     function substringData(offset: Integer; count: Integer): WideString; dispid 111;
-    procedure appendData(const data: WideString); dispid 112;
-    procedure insertData(offset: Integer; const data: WideString); dispid 113;
+    procedure appendData(const _data: WideString); dispid 112;
+    procedure insertData(offset: Integer; const _data: WideString); dispid 113;
     procedure deleteData(offset: Integer; count: Integer); dispid 114;
-    procedure replaceData(offset: Integer; count: Integer; const data: WideString); dispid 115;
+    procedure replaceData(offset: Integer; count: Integer; const _data: WideString); dispid 115;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
     property nodeType: DOMNodeType readonly dispid 4;
@@ -1434,10 +1434,10 @@ type
     property data: WideString dispid 109;
     property length: Integer readonly dispid 110;
     function substringData(offset: Integer; count: Integer): WideString; dispid 111;
-    procedure appendData(const data: WideString); dispid 112;
-    procedure insertData(offset: Integer; const data: WideString); dispid 113;
+    procedure appendData(const _data: WideString); dispid 112;
+    procedure insertData(offset: Integer; const _data: WideString); dispid 113;
     procedure deleteData(offset: Integer; count: Integer); dispid 114;
-    procedure replaceData(offset: Integer; count: Integer; const data: WideString); dispid 115;
+    procedure replaceData(offset: Integer; count: Integer; const _data: WideString); dispid 115;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
     property nodeType: DOMNodeType readonly dispid 4;
@@ -1494,7 +1494,7 @@ type
   IXMLDOMProcessingInstructionDisp = dispinterface
     ['{2933BF89-7B36-11D2-B20E-00C04F983E60}']
     property target: WideString readonly dispid 127;
-    property data: WideString dispid 128;
+    property _data: WideString dispid 128;
     property nodeName: WideString readonly dispid 2;
     property nodeValue: OleVariant dispid 3;
     property nodeType: DOMNodeType readonly dispid 4;
@@ -1652,10 +1652,10 @@ type
     property documentElement: IXMLDOMElement dispid 40;
     function createElement(const tagName: WideString): IXMLDOMElement; dispid 41;
     function createDocumentFragment: IXMLDOMDocumentFragment; dispid 42;
-    function createTextNode(const data: WideString): IXMLDOMText; dispid 43;
-    function createComment(const data: WideString): IXMLDOMComment; dispid 44;
-    function createCDATASection(const data: WideString): IXMLDOMCDATASection; dispid 45;
-    function createProcessingInstruction(const target: WideString; const data: WideString): IXMLDOMProcessingInstruction; dispid 46;
+    function createTextNode(const _data: WideString): IXMLDOMText; dispid 43;
+    function createComment(const _data: WideString): IXMLDOMComment; dispid 44;
+    function createCDATASection(const _data: WideString): IXMLDOMCDATASection; dispid 45;
+    function createProcessingInstruction(const target: WideString; const _data: WideString): IXMLDOMProcessingInstruction; dispid 46;
     function createAttribute(const name: WideString): IXMLDOMAttribute; dispid 47;
     function createEntityReference(const name: WideString): IXMLDOMEntityReference; dispid 49;
     function getElementsByTagName(const tagName: WideString): IXMLDOMNodeList; dispid 50;
@@ -1774,10 +1774,10 @@ type
     property documentElement: IXMLDOMElement dispid 40;
     function createElement(const tagName: WideString): IXMLDOMElement; dispid 41;
     function createDocumentFragment: IXMLDOMDocumentFragment; dispid 42;
-    function createTextNode(const data: WideString): IXMLDOMText; dispid 43;
-    function createComment(const data: WideString): IXMLDOMComment; dispid 44;
-    function createCDATASection(const data: WideString): IXMLDOMCDATASection; dispid 45;
-    function createProcessingInstruction(const target: WideString; const data: WideString): IXMLDOMProcessingInstruction; dispid 46;
+    function createTextNode(const _data: WideString): IXMLDOMText; dispid 43;
+    function createComment(const _data: WideString): IXMLDOMComment; dispid 44;
+    function createCDATASection(const _data: WideString): IXMLDOMCDATASection; dispid 45;
+    function createProcessingInstruction(const target: WideString; const _data: WideString): IXMLDOMProcessingInstruction; dispid 46;
     function createAttribute(const name: WideString): IXMLDOMAttribute; dispid 47;
     function createEntityReference(const name: WideString): IXMLDOMEntityReference; dispid 49;
     function getElementsByTagName(const tagName: WideString): IXMLDOMNodeList; dispid 50;
@@ -2430,7 +2430,7 @@ type
                          var strQName: WideString); safecall;
     procedure characters(var strChars: WideString); safecall;
     procedure ignorableWhitespace(var strChars: WideString); safecall;
-    procedure processingInstruction(var strTarget: WideString; var strData: WideString); safecall;
+    procedure processingInstruction(var strTarget: WideString; var str_data: WideString); safecall;
     procedure skippedEntity(var strName: WideString); safecall;
   end;
 
@@ -2451,7 +2451,7 @@ type
                          var strQName: WideString); dispid 1328;
     procedure characters(var strChars: WideString); dispid 1329;
     procedure ignorableWhitespace(var strChars: WideString); dispid 1330;
-    procedure processingInstruction(var strTarget: WideString; var strData: WideString); dispid 1331;
+    procedure processingInstruction(var strTarget: WideString; var str_data: WideString); dispid 1331;
     procedure skippedEntity(var strName: WideString); dispid 1332;
   end;
 
@@ -3066,7 +3066,7 @@ type
     function Get_final: SCHEMADERIVATIONMETHOD; safecall;
     function Get_variety: SCHEMATYPEVARIETY; safecall;
     function Get_derivedBy: SCHEMADERIVATIONMETHOD; safecall;
-    function isValid(const data: WideString): WordBool; safecall;
+    function isValid(const _data: WideString): WordBool; safecall;
     function Get_minExclusive: WideString; safecall;
     function Get_minInclusive: WideString; safecall;
     function Get_maxExclusive: WideString; safecall;
@@ -3108,7 +3108,7 @@ type
     property final: SCHEMADERIVATIONMETHOD readonly dispid 1437;
     property variety: SCHEMATYPEVARIETY readonly dispid 1480;
     property derivedBy: SCHEMADERIVATIONMETHOD readonly dispid 1432;
-    function isValid(const data: WideString): WordBool; dispid 1445;
+    function isValid(const _data: WideString): WordBool; dispid 1445;
     property minExclusive: WideString readonly dispid 1452;
     property minInclusive: WideString readonly dispid 1453;
     property maxExclusive: WideString readonly dispid 1448;
@@ -3168,7 +3168,7 @@ type
     property final: SCHEMADERIVATIONMETHOD readonly dispid 1437;
     property variety: SCHEMATYPEVARIETY readonly dispid 1480;
     property derivedBy: SCHEMADERIVATIONMETHOD readonly dispid 1432;
-    function isValid(const data: WideString): WordBool; dispid 1445;
+    function isValid(const _data: WideString): WordBool; dispid 1445;
     property minExclusive: WideString readonly dispid 1452;
     property minInclusive: WideString readonly dispid 1453;
     property maxExclusive: WideString readonly dispid 1448;
@@ -3305,7 +3305,7 @@ type
     procedure validate; safecall;
     procedure Set_validateOnLoad(validateOnLoad: WordBool); safecall;
     function Get_validateOnLoad: WordBool; safecall;
-    function getSchema(const namespaceURI: WideString): ISchema; safecall;
+    function getSchema(const _namespaceURI: WideString): ISchema; safecall;
     function getDeclaration(const node: IXMLDOMNode): ISchemaItem; safecall;
     property validateOnLoad: WordBool read Get_validateOnLoad write Set_validateOnLoad;
   end;
@@ -4028,7 +4028,7 @@ type
 // *********************************************************************//
   ComsDOMDocument = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4067,8 +4067,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4112,7 +4112,7 @@ type
 // *********************************************************************//
   ComsDOMDocument26 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4151,8 +4151,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4196,7 +4196,7 @@ type
 // *********************************************************************//
   ComsDOMDocument30 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4235,8 +4235,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4280,7 +4280,7 @@ type
 // *********************************************************************//
   CoDOMDocument40 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4319,8 +4319,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4364,7 +4364,7 @@ type
 // *********************************************************************//
   CoDOMDocument60 = class
     class function Create: IXMLDOMDocument3;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument3;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument3;
   end;
 
 
@@ -4439,7 +4439,7 @@ type
 // *********************************************************************//
   ComsFreeThreadedDOMDocument = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4478,8 +4478,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4523,7 +4523,7 @@ type
 // *********************************************************************//
   ComsFreeThreadedDOMDocument26 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4562,8 +4562,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4607,7 +4607,7 @@ type
 // *********************************************************************//
   ComsFreeThreadedDOMDocument30 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4646,8 +4646,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4691,7 +4691,7 @@ type
 // *********************************************************************//
   CoFreeThreadedDOMDocument40 = class
     class function Create: IXMLDOMDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
   end;
 
 
@@ -4730,8 +4730,8 @@ type
     procedure ConnectTo(svrIntf: IXMLDOMDocument2);
     procedure Disconnect; override;
     function validate: IXMLDOMParseError;
-    procedure setProperty(const name: WideString; value: OleVariant);
-    function getProperty(const name: WideString): OleVariant;
+    procedure setProperty(const _name: WideString; value: OleVariant);
+    function getProperty(const _name: WideString): OleVariant;
     property DefaultInterface: IXMLDOMDocument2 read GetDefaultInterface;
     property namespaces: IXMLDOMSchemaCollection read Get_namespaces;
     property schemas: OleVariant read Get_schemas write _Set_schemas;
@@ -4775,7 +4775,7 @@ type
 // *********************************************************************//
   CoFreeThreadedDOMDocument60 = class
     class function Create: IXMLDOMDocument3;
-    class function CreateRemote(const MachineName: string): IXMLDOMDocument3;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument3;
   end;
 
 
@@ -4850,7 +4850,7 @@ type
 // *********************************************************************//
   ComsXMLSchemaCache = class
     class function Create: IXMLDOMSchemaCollection;
-    class function CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
   end;
 
 
@@ -4928,7 +4928,7 @@ type
 // *********************************************************************//
   ComsXMLSchemaCache26 = class
     class function Create: IXMLDOMSchemaCollection;
-    class function CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
   end;
 
 
@@ -5006,7 +5006,7 @@ type
 // *********************************************************************//
   ComsXMLSchemaCache30 = class
     class function Create: IXMLDOMSchemaCollection;
-    class function CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
   end;
 
 
@@ -5084,7 +5084,7 @@ type
 // *********************************************************************//
   CoXMLSchemaCache40 = class
     class function Create: IXMLDOMSchemaCollection2;
-    class function CreateRemote(const MachineName: string): IXMLDOMSchemaCollection2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection2;
   end;
 
 
@@ -5161,7 +5161,7 @@ type
 // *********************************************************************//
   CoXMLSchemaCache60 = class
     class function Create: IXMLDOMSchemaCollection2;
-    class function CreateRemote(const MachineName: string): IXMLDOMSchemaCollection2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection2;
   end;
 
 
@@ -5238,7 +5238,7 @@ type
 // *********************************************************************//
   ComsXSLTemplate = class
     class function Create: IXSLTemplate;
-    class function CreateRemote(const MachineName: string): IXSLTemplate;
+    class function CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
   end;
 
 
@@ -5312,7 +5312,7 @@ type
 // *********************************************************************//
   ComsXSLTemplate26 = class
     class function Create: IXSLTemplate;
-    class function CreateRemote(const MachineName: string): IXSLTemplate;
+    class function CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
   end;
 
 
@@ -5386,7 +5386,7 @@ type
 // *********************************************************************//
   ComsXSLTemplate30 = class
     class function Create: IXSLTemplate;
-    class function CreateRemote(const MachineName: string): IXSLTemplate;
+    class function CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
   end;
 
 
@@ -5460,7 +5460,7 @@ type
 // *********************************************************************//
   CoXSLTemplate40 = class
     class function Create: IXSLTemplate;
-    class function CreateRemote(const MachineName: string): IXSLTemplate;
+    class function CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
   end;
 
 
@@ -5534,7 +5534,7 @@ type
 // *********************************************************************//
   CoXSLTemplate60 = class
     class function Create: IXSLTemplate;
-    class function CreateRemote(const MachineName: string): IXSLTemplate;
+    class function CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
   end;
 
 
@@ -5608,7 +5608,7 @@ type
 // *********************************************************************//
   ComsDSOControl = class
     class function Create: IDSOControl;
-    class function CreateRemote(const MachineName: string): IDSOControl;
+    class function CreateRemote(const MachineName: UnicodeString): IDSOControl;
   end;
 
 
@@ -5691,7 +5691,7 @@ type
 // *********************************************************************//
   ComsDSOControl26 = class
     class function Create: IDSOControl;
-    class function CreateRemote(const MachineName: string): IDSOControl;
+    class function CreateRemote(const MachineName: UnicodeString): IDSOControl;
   end;
 
 
@@ -5774,7 +5774,7 @@ type
 // *********************************************************************//
   ComsDSOControl30 = class
     class function Create: IDSOControl;
-    class function CreateRemote(const MachineName: string): IDSOControl;
+    class function CreateRemote(const MachineName: UnicodeString): IDSOControl;
   end;
 
 
@@ -5857,7 +5857,7 @@ type
 // *********************************************************************//
   CoDSOControl40 = class
     class function Create: IDSOControl;
-    class function CreateRemote(const MachineName: string): IDSOControl;
+    class function CreateRemote(const MachineName: UnicodeString): IDSOControl;
   end;
 
 
@@ -5940,7 +5940,7 @@ type
 // *********************************************************************//
   ComsXMLHTTP = class
     class function Create: IXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
   end;
 
 
@@ -6044,7 +6044,7 @@ type
 // *********************************************************************//
   ComsXMLHTTP26 = class
     class function Create: IXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
   end;
 
 
@@ -6148,7 +6148,7 @@ type
 // *********************************************************************//
   ComsXMLHTTP30 = class
     class function Create: IXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
   end;
 
 
@@ -6252,7 +6252,7 @@ type
 // *********************************************************************//
   CoXMLHTTP40 = class
     class function Create: IXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
   end;
 
 
@@ -6356,7 +6356,7 @@ type
 // *********************************************************************//
   CoXMLHTTP60 = class
     class function Create: IXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
   end;
 
 
@@ -6460,7 +6460,7 @@ type
 // *********************************************************************//
   ComsServerXMLHTTP = class
     class function Create: IServerXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IServerXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest;
   end;
 
 
@@ -6570,7 +6570,7 @@ type
 // *********************************************************************//
   ComsServerXMLHTTP30 = class
     class function Create: IServerXMLHTTPRequest;
-    class function CreateRemote(const MachineName: string): IServerXMLHTTPRequest;
+    class function CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest;
   end;
 
 
@@ -6680,7 +6680,7 @@ type
 // *********************************************************************//
   CoServerXMLHTTP40 = class
     class function Create: IServerXMLHTTPRequest2;
-    class function CreateRemote(const MachineName: string): IServerXMLHTTPRequest2;
+    class function CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest2;
   end;
 
 
@@ -6795,7 +6795,7 @@ type
 // *********************************************************************//
   CoServerXMLHTTP60 = class
     class function Create: IServerXMLHTTPRequest2;
-    class function CreateRemote(const MachineName: string): IServerXMLHTTPRequest2;
+    class function CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest2;
   end;
 
 
@@ -6910,7 +6910,7 @@ type
 // *********************************************************************//
   ComsSAXXMLReader = class
     class function Create: IVBSAXXMLReader;
-    class function CreateRemote(const MachineName: string): IVBSAXXMLReader;
+    class function CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
   end;
 
 
@@ -7017,7 +7017,7 @@ type
 // *********************************************************************//
   ComsSAXXMLReader30 = class
     class function Create: IVBSAXXMLReader;
-    class function CreateRemote(const MachineName: string): IVBSAXXMLReader;
+    class function CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
   end;
 
 
@@ -7124,7 +7124,7 @@ type
 // *********************************************************************//
   CoSAXXMLReader40 = class
     class function Create: IVBSAXXMLReader;
-    class function CreateRemote(const MachineName: string): IVBSAXXMLReader;
+    class function CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
   end;
 
 
@@ -7231,7 +7231,7 @@ type
 // *********************************************************************//
   CoSAXXMLReader60 = class
     class function Create: IVBSAXXMLReader;
-    class function CreateRemote(const MachineName: string): IVBSAXXMLReader;
+    class function CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
   end;
 
 
@@ -7338,7 +7338,7 @@ type
 // *********************************************************************//
   ComsMXXMLWriter = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -7454,7 +7454,7 @@ type
 // *********************************************************************//
   ComsMXXMLWriter30 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -7570,7 +7570,7 @@ type
 // *********************************************************************//
   CoMXXMLWriter40 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -7686,7 +7686,7 @@ type
 // *********************************************************************//
   CoMXXMLWriter60 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -7802,7 +7802,7 @@ type
 // *********************************************************************//
   CoMXHTMLWriter = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -7918,7 +7918,7 @@ type
 // *********************************************************************//
   CoMXHTMLWriter30 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -8034,7 +8034,7 @@ type
 // *********************************************************************//
   CoMXHTMLWriter40 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -8150,7 +8150,7 @@ type
 // *********************************************************************//
   CoMXHTMLWriter60 = class
     class function Create: IMXWriter;
-    class function CreateRemote(const MachineName: string): IMXWriter;
+    class function CreateRemote(const MachineName: UnicodeString): IMXWriter;
   end;
 
 
@@ -8266,7 +8266,7 @@ type
 // *********************************************************************//
   ComsSAXAttributes = class
     class function Create: IMXAttributes;
-    class function CreateRemote(const MachineName: string): IMXAttributes;
+    class function CreateRemote(const MachineName: UnicodeString): IMXAttributes;
   end;
 
 
@@ -8349,7 +8349,7 @@ type
 // *********************************************************************//
   ComsSAXAttributes30 = class
     class function Create: IMXAttributes;
-    class function CreateRemote(const MachineName: string): IMXAttributes;
+    class function CreateRemote(const MachineName: UnicodeString): IMXAttributes;
   end;
 
 
@@ -8432,7 +8432,7 @@ type
 // *********************************************************************//
   CoSAXAttributes40 = class
     class function Create: IMXAttributes;
-    class function CreateRemote(const MachineName: string): IMXAttributes;
+    class function CreateRemote(const MachineName: UnicodeString): IMXAttributes;
   end;
 
 
@@ -8515,7 +8515,7 @@ type
 // *********************************************************************//
   CoSAXAttributes60 = class
     class function Create: IMXAttributes;
-    class function CreateRemote(const MachineName: string): IMXAttributes;
+    class function CreateRemote(const MachineName: UnicodeString): IMXAttributes;
   end;
 
 
@@ -8598,7 +8598,7 @@ type
 // *********************************************************************//
   CoMXNamespaceManager = class
     class function Create: IVBMXNamespaceManager;
-    class function CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+    class function CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
   end;
 
 
@@ -8681,7 +8681,7 @@ type
 // *********************************************************************//
   CoMXNamespaceManager40 = class
     class function Create: IVBMXNamespaceManager;
-    class function CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+    class function CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
   end;
 
 
@@ -8764,7 +8764,7 @@ type
 // *********************************************************************//
   CoMXNamespaceManager60 = class
     class function Create: IVBMXNamespaceManager;
-    class function CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+    class function CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
   end;
 
 
@@ -8847,7 +8847,7 @@ type
 // *********************************************************************//
   CoXMLDocument = class
     class function Create: IXMLDocument2;
-    class function CreateRemote(const MachineName: string): IXMLDocument2;
+    class function CreateRemote(const MachineName: UnicodeString): IXMLDocument2;
   end;
 
 procedure Register;
@@ -8866,7 +8866,7 @@ begin
   Result := CreateComObject(CLASS_msDOMDocument) as IXMLDOMDocument2;
 end;
 
-class function ComsDOMDocument.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsDOMDocument.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDOMDocument) as IXMLDOMDocument2;
 end;
@@ -8915,7 +8915,7 @@ function TmsDOMDocument.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -8982,12 +8982,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsDOMDocument.setProperty(const name: WideString; value: OleVariant);
+procedure TmsDOMDocument.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsDOMDocument.getProperty(const name: WideString): OleVariant;
+function TmsDOMDocument.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9035,7 +9035,7 @@ begin
   Result := CreateComObject(CLASS_msDOMDocument26) as IXMLDOMDocument2;
 end;
 
-class function ComsDOMDocument26.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsDOMDocument26.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDOMDocument26) as IXMLDOMDocument2;
 end;
@@ -9084,7 +9084,7 @@ function TmsDOMDocument26.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9151,12 +9151,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsDOMDocument26.setProperty(const name: WideString; value: OleVariant);
+procedure TmsDOMDocument26.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsDOMDocument26.getProperty(const name: WideString): OleVariant;
+function TmsDOMDocument26.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9204,7 +9204,7 @@ begin
   Result := CreateComObject(CLASS_msDOMDocument30) as IXMLDOMDocument2;
 end;
 
-class function ComsDOMDocument30.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsDOMDocument30.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDOMDocument30) as IXMLDOMDocument2;
 end;
@@ -9253,7 +9253,7 @@ function TmsDOMDocument30.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9320,12 +9320,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsDOMDocument30.setProperty(const name: WideString; value: OleVariant);
+procedure TmsDOMDocument30.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsDOMDocument30.getProperty(const name: WideString): OleVariant;
+function TmsDOMDocument30.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9373,7 +9373,7 @@ begin
   Result := CreateComObject(CLASS_DOMDocument40) as IXMLDOMDocument2;
 end;
 
-class function CoDOMDocument40.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function CoDOMDocument40.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_DOMDocument40) as IXMLDOMDocument2;
 end;
@@ -9422,7 +9422,7 @@ function TDOMDocument40.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9489,12 +9489,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TDOMDocument40.setProperty(const name: WideString; value: OleVariant);
+procedure TDOMDocument40.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TDOMDocument40.getProperty(const name: WideString): OleVariant;
+function TDOMDocument40.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9542,7 +9542,7 @@ begin
   Result := CreateComObject(CLASS_DOMDocument60) as IXMLDOMDocument3;
 end;
 
-class function CoDOMDocument60.CreateRemote(const MachineName: string): IXMLDOMDocument3;
+class function CoDOMDocument60.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument3;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_DOMDocument60) as IXMLDOMDocument3;
 end;
@@ -9591,7 +9591,7 @@ function TDOMDocument60.GetDefaultInterface: IXMLDOMDocument3;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9658,7 +9658,7 @@ begin
   Result := CreateComObject(CLASS_msFreeThreadedDOMDocument) as IXMLDOMDocument2;
 end;
 
-class function ComsFreeThreadedDOMDocument.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsFreeThreadedDOMDocument.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msFreeThreadedDOMDocument) as IXMLDOMDocument2;
 end;
@@ -9707,7 +9707,7 @@ function TmsFreeThreadedDOMDocument.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9774,12 +9774,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsFreeThreadedDOMDocument.setProperty(const name: WideString; value: OleVariant);
+procedure TmsFreeThreadedDOMDocument.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsFreeThreadedDOMDocument.getProperty(const name: WideString): OleVariant;
+function TmsFreeThreadedDOMDocument.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9827,7 +9827,7 @@ begin
   Result := CreateComObject(CLASS_msFreeThreadedDOMDocument26) as IXMLDOMDocument2;
 end;
 
-class function ComsFreeThreadedDOMDocument26.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsFreeThreadedDOMDocument26.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msFreeThreadedDOMDocument26) as IXMLDOMDocument2;
 end;
@@ -9876,7 +9876,7 @@ function TmsFreeThreadedDOMDocument26.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -9943,12 +9943,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsFreeThreadedDOMDocument26.setProperty(const name: WideString; value: OleVariant);
+procedure TmsFreeThreadedDOMDocument26.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsFreeThreadedDOMDocument26.getProperty(const name: WideString): OleVariant;
+function TmsFreeThreadedDOMDocument26.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -9996,7 +9996,7 @@ begin
   Result := CreateComObject(CLASS_msFreeThreadedDOMDocument30) as IXMLDOMDocument2;
 end;
 
-class function ComsFreeThreadedDOMDocument30.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function ComsFreeThreadedDOMDocument30.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msFreeThreadedDOMDocument30) as IXMLDOMDocument2;
 end;
@@ -10045,7 +10045,7 @@ function TmsFreeThreadedDOMDocument30.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10112,12 +10112,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TmsFreeThreadedDOMDocument30.setProperty(const name: WideString; value: OleVariant);
+procedure TmsFreeThreadedDOMDocument30.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TmsFreeThreadedDOMDocument30.getProperty(const name: WideString): OleVariant;
+function TmsFreeThreadedDOMDocument30.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -10165,7 +10165,7 @@ begin
   Result := CreateComObject(CLASS_FreeThreadedDOMDocument40) as IXMLDOMDocument2;
 end;
 
-class function CoFreeThreadedDOMDocument40.CreateRemote(const MachineName: string): IXMLDOMDocument2;
+class function CoFreeThreadedDOMDocument40.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_FreeThreadedDOMDocument40) as IXMLDOMDocument2;
 end;
@@ -10214,7 +10214,7 @@ function TFreeThreadedDOMDocument40.GetDefaultInterface: IXMLDOMDocument2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10281,12 +10281,12 @@ begin
   Result := DefaultInterface.validate;
 end;
 
-procedure TFreeThreadedDOMDocument40.setProperty(const name: WideString; value: OleVariant);
+procedure TFreeThreadedDOMDocument40.setProperty(const _name: WideString; value: OleVariant);
 begin
   DefaultInterface.setProperty(name, value);
 end;
 
-function TFreeThreadedDOMDocument40.getProperty(const name: WideString): OleVariant;
+function TFreeThreadedDOMDocument40.getProperty(const _name: WideString): OleVariant;
 begin
   Result := DefaultInterface.getProperty(name);
 end;
@@ -10334,7 +10334,7 @@ begin
   Result := CreateComObject(CLASS_FreeThreadedDOMDocument60) as IXMLDOMDocument3;
 end;
 
-class function CoFreeThreadedDOMDocument60.CreateRemote(const MachineName: string): IXMLDOMDocument3;
+class function CoFreeThreadedDOMDocument60.CreateRemote(const MachineName: UnicodeString): IXMLDOMDocument3;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_FreeThreadedDOMDocument60) as IXMLDOMDocument3;
 end;
@@ -10383,7 +10383,7 @@ function TFreeThreadedDOMDocument60.GetDefaultInterface: IXMLDOMDocument3;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10450,7 +10450,7 @@ begin
   Result := CreateComObject(CLASS_msXMLSchemaCache) as IXMLDOMSchemaCollection;
 end;
 
-class function ComsXMLSchemaCache.CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+class function ComsXMLSchemaCache.CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLSchemaCache) as IXMLDOMSchemaCollection;
 end;
@@ -10496,7 +10496,7 @@ function TmsXMLSchemaCache.GetDefaultInterface: IXMLDOMSchemaCollection;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10582,7 +10582,7 @@ begin
   Result := CreateComObject(CLASS_msXMLSchemaCache26) as IXMLDOMSchemaCollection;
 end;
 
-class function ComsXMLSchemaCache26.CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+class function ComsXMLSchemaCache26.CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLSchemaCache26) as IXMLDOMSchemaCollection;
 end;
@@ -10628,7 +10628,7 @@ function TmsXMLSchemaCache26.GetDefaultInterface: IXMLDOMSchemaCollection;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10714,7 +10714,7 @@ begin
   Result := CreateComObject(CLASS_msXMLSchemaCache30) as IXMLDOMSchemaCollection;
 end;
 
-class function ComsXMLSchemaCache30.CreateRemote(const MachineName: string): IXMLDOMSchemaCollection;
+class function ComsXMLSchemaCache30.CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLSchemaCache30) as IXMLDOMSchemaCollection;
 end;
@@ -10760,7 +10760,7 @@ function TmsXMLSchemaCache30.GetDefaultInterface: IXMLDOMSchemaCollection;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10846,7 +10846,7 @@ begin
   Result := CreateComObject(CLASS_XMLSchemaCache40) as IXMLDOMSchemaCollection2;
 end;
 
-class function CoXMLSchemaCache40.CreateRemote(const MachineName: string): IXMLDOMSchemaCollection2;
+class function CoXMLSchemaCache40.CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XMLSchemaCache40) as IXMLDOMSchemaCollection2;
 end;
@@ -10892,7 +10892,7 @@ function TXMLSchemaCache40.GetDefaultInterface: IXMLDOMSchemaCollection2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -10973,7 +10973,7 @@ begin
   Result := CreateComObject(CLASS_XMLSchemaCache60) as IXMLDOMSchemaCollection2;
 end;
 
-class function CoXMLSchemaCache60.CreateRemote(const MachineName: string): IXMLDOMSchemaCollection2;
+class function CoXMLSchemaCache60.CreateRemote(const MachineName: UnicodeString): IXMLDOMSchemaCollection2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XMLSchemaCache60) as IXMLDOMSchemaCollection2;
 end;
@@ -11019,7 +11019,7 @@ function TXMLSchemaCache60.GetDefaultInterface: IXMLDOMSchemaCollection2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11100,7 +11100,7 @@ begin
   Result := CreateComObject(CLASS_msXSLTemplate) as IXSLTemplate;
 end;
 
-class function ComsXSLTemplate.CreateRemote(const MachineName: string): IXSLTemplate;
+class function ComsXSLTemplate.CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXSLTemplate) as IXSLTemplate;
 end;
@@ -11146,7 +11146,7 @@ function TmsXSLTemplate.GetDefaultInterface: IXSLTemplate;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11229,7 +11229,7 @@ begin
   Result := CreateComObject(CLASS_msXSLTemplate26) as IXSLTemplate;
 end;
 
-class function ComsXSLTemplate26.CreateRemote(const MachineName: string): IXSLTemplate;
+class function ComsXSLTemplate26.CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXSLTemplate26) as IXSLTemplate;
 end;
@@ -11275,7 +11275,7 @@ function TmsXSLTemplate26.GetDefaultInterface: IXSLTemplate;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11358,7 +11358,7 @@ begin
   Result := CreateComObject(CLASS_msXSLTemplate30) as IXSLTemplate;
 end;
 
-class function ComsXSLTemplate30.CreateRemote(const MachineName: string): IXSLTemplate;
+class function ComsXSLTemplate30.CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXSLTemplate30) as IXSLTemplate;
 end;
@@ -11404,7 +11404,7 @@ function TmsXSLTemplate30.GetDefaultInterface: IXSLTemplate;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11487,7 +11487,7 @@ begin
   Result := CreateComObject(CLASS_XSLTemplate40) as IXSLTemplate;
 end;
 
-class function CoXSLTemplate40.CreateRemote(const MachineName: string): IXSLTemplate;
+class function CoXSLTemplate40.CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XSLTemplate40) as IXSLTemplate;
 end;
@@ -11533,7 +11533,7 @@ function TXSLTemplate40.GetDefaultInterface: IXSLTemplate;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11616,7 +11616,7 @@ begin
   Result := CreateComObject(CLASS_XSLTemplate60) as IXSLTemplate;
 end;
 
-class function CoXSLTemplate60.CreateRemote(const MachineName: string): IXSLTemplate;
+class function CoXSLTemplate60.CreateRemote(const MachineName: UnicodeString): IXSLTemplate;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XSLTemplate60) as IXSLTemplate;
 end;
@@ -11662,7 +11662,7 @@ function TXSLTemplate60.GetDefaultInterface: IXSLTemplate;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11745,7 +11745,7 @@ begin
   Result := CreateComObject(CLASS_msDSOControl) as IDSOControl;
 end;
 
-class function ComsDSOControl.CreateRemote(const MachineName: string): IDSOControl;
+class function ComsDSOControl.CreateRemote(const MachineName: UnicodeString): IDSOControl;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDSOControl) as IDSOControl;
 end;
@@ -11791,7 +11791,7 @@ function TmsDSOControl.GetDefaultInterface: IDSOControl;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -11887,7 +11887,7 @@ begin
   Result := CreateComObject(CLASS_msDSOControl26) as IDSOControl;
 end;
 
-class function ComsDSOControl26.CreateRemote(const MachineName: string): IDSOControl;
+class function ComsDSOControl26.CreateRemote(const MachineName: UnicodeString): IDSOControl;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDSOControl26) as IDSOControl;
 end;
@@ -11933,7 +11933,7 @@ function TmsDSOControl26.GetDefaultInterface: IDSOControl;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -12029,7 +12029,7 @@ begin
   Result := CreateComObject(CLASS_msDSOControl30) as IDSOControl;
 end;
 
-class function ComsDSOControl30.CreateRemote(const MachineName: string): IDSOControl;
+class function ComsDSOControl30.CreateRemote(const MachineName: UnicodeString): IDSOControl;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msDSOControl30) as IDSOControl;
 end;
@@ -12075,7 +12075,7 @@ function TmsDSOControl30.GetDefaultInterface: IDSOControl;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -12171,7 +12171,7 @@ begin
   Result := CreateComObject(CLASS_DSOControl40) as IDSOControl;
 end;
 
-class function CoDSOControl40.CreateRemote(const MachineName: string): IDSOControl;
+class function CoDSOControl40.CreateRemote(const MachineName: UnicodeString): IDSOControl;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_DSOControl40) as IDSOControl;
 end;
@@ -12217,7 +12217,7 @@ function TDSOControl40.GetDefaultInterface: IDSOControl;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -12313,7 +12313,7 @@ begin
   Result := CreateComObject(CLASS_msXMLHTTP) as IXMLHTTPRequest;
 end;
 
-class function ComsXMLHTTP.CreateRemote(const MachineName: string): IXMLHTTPRequest;
+class function ComsXMLHTTP.CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLHTTP) as IXMLHTTPRequest;
 end;
@@ -12359,7 +12359,7 @@ function TmsXMLHTTP.GetDefaultInterface: IXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -12550,7 +12550,7 @@ begin
   Result := CreateComObject(CLASS_msXMLHTTP26) as IXMLHTTPRequest;
 end;
 
-class function ComsXMLHTTP26.CreateRemote(const MachineName: string): IXMLHTTPRequest;
+class function ComsXMLHTTP26.CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLHTTP26) as IXMLHTTPRequest;
 end;
@@ -12596,7 +12596,7 @@ function TmsXMLHTTP26.GetDefaultInterface: IXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -12787,7 +12787,7 @@ begin
   Result := CreateComObject(CLASS_msXMLHTTP30) as IXMLHTTPRequest;
 end;
 
-class function ComsXMLHTTP30.CreateRemote(const MachineName: string): IXMLHTTPRequest;
+class function ComsXMLHTTP30.CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msXMLHTTP30) as IXMLHTTPRequest;
 end;
@@ -12833,7 +12833,7 @@ function TmsXMLHTTP30.GetDefaultInterface: IXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -13024,7 +13024,7 @@ begin
   Result := CreateComObject(CLASS_XMLHTTP40) as IXMLHTTPRequest;
 end;
 
-class function CoXMLHTTP40.CreateRemote(const MachineName: string): IXMLHTTPRequest;
+class function CoXMLHTTP40.CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XMLHTTP40) as IXMLHTTPRequest;
 end;
@@ -13070,7 +13070,7 @@ function TXMLHTTP40.GetDefaultInterface: IXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -13261,7 +13261,7 @@ begin
   Result := CreateComObject(CLASS_XMLHTTP60) as IXMLHTTPRequest;
 end;
 
-class function CoXMLHTTP60.CreateRemote(const MachineName: string): IXMLHTTPRequest;
+class function CoXMLHTTP60.CreateRemote(const MachineName: UnicodeString): IXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XMLHTTP60) as IXMLHTTPRequest;
 end;
@@ -13307,7 +13307,7 @@ function TXMLHTTP60.GetDefaultInterface: IXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -13498,7 +13498,7 @@ begin
   Result := CreateComObject(CLASS_msServerXMLHTTP) as IServerXMLHTTPRequest;
 end;
 
-class function ComsServerXMLHTTP.CreateRemote(const MachineName: string): IServerXMLHTTPRequest;
+class function ComsServerXMLHTTP.CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msServerXMLHTTP) as IServerXMLHTTPRequest;
 end;
@@ -13544,7 +13544,7 @@ function TmsServerXMLHTTP.GetDefaultInterface: IServerXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -13762,7 +13762,7 @@ begin
   Result := CreateComObject(CLASS_msServerXMLHTTP30) as IServerXMLHTTPRequest;
 end;
 
-class function ComsServerXMLHTTP30.CreateRemote(const MachineName: string): IServerXMLHTTPRequest;
+class function ComsServerXMLHTTP30.CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msServerXMLHTTP30) as IServerXMLHTTPRequest;
 end;
@@ -13808,7 +13808,7 @@ function TmsServerXMLHTTP30.GetDefaultInterface: IServerXMLHTTPRequest;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -14027,7 +14027,7 @@ begin
   Result := CreateComObject(CLASS_ServerXMLHTTP40) as IServerXMLHTTPRequest2;
 end;
 
-class function CoServerXMLHTTP40.CreateRemote(const MachineName: string): IServerXMLHTTPRequest2;
+class function CoServerXMLHTTP40.CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_ServerXMLHTTP40) as IServerXMLHTTPRequest2;
 end;
@@ -14073,7 +14073,7 @@ function TServerXMLHTTP40.GetDefaultInterface: IServerXMLHTTPRequest2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -14313,7 +14313,7 @@ begin
   Result := CreateComObject(CLASS_ServerXMLHTTP60) as IServerXMLHTTPRequest2;
 end;
 
-class function CoServerXMLHTTP60.CreateRemote(const MachineName: string): IServerXMLHTTPRequest2;
+class function CoServerXMLHTTP60.CreateRemote(const MachineName: UnicodeString): IServerXMLHTTPRequest2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_ServerXMLHTTP60) as IServerXMLHTTPRequest2;
 end;
@@ -14359,7 +14359,7 @@ function TServerXMLHTTP60.GetDefaultInterface: IServerXMLHTTPRequest2;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -14599,7 +14599,7 @@ begin
   Result := CreateComObject(CLASS_msSAXXMLReader) as IVBSAXXMLReader;
 end;
 
-class function ComsSAXXMLReader.CreateRemote(const MachineName: string): IVBSAXXMLReader;
+class function ComsSAXXMLReader.CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msSAXXMLReader) as IVBSAXXMLReader;
 end;
@@ -14645,7 +14645,7 @@ function TmsSAXXMLReader.GetDefaultInterface: IVBSAXXMLReader;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -14918,7 +14918,7 @@ begin
   Result := CreateComObject(CLASS_msSAXXMLReader30) as IVBSAXXMLReader;
 end;
 
-class function ComsSAXXMLReader30.CreateRemote(const MachineName: string): IVBSAXXMLReader;
+class function ComsSAXXMLReader30.CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msSAXXMLReader30) as IVBSAXXMLReader;
 end;
@@ -14964,7 +14964,7 @@ function TmsSAXXMLReader30.GetDefaultInterface: IVBSAXXMLReader;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -15237,7 +15237,7 @@ begin
   Result := CreateComObject(CLASS_SAXXMLReader40) as IVBSAXXMLReader;
 end;
 
-class function CoSAXXMLReader40.CreateRemote(const MachineName: string): IVBSAXXMLReader;
+class function CoSAXXMLReader40.CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SAXXMLReader40) as IVBSAXXMLReader;
 end;
@@ -15283,7 +15283,7 @@ function TSAXXMLReader40.GetDefaultInterface: IVBSAXXMLReader;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -15556,7 +15556,7 @@ begin
   Result := CreateComObject(CLASS_SAXXMLReader60) as IVBSAXXMLReader;
 end;
 
-class function CoSAXXMLReader60.CreateRemote(const MachineName: string): IVBSAXXMLReader;
+class function CoSAXXMLReader60.CreateRemote(const MachineName: UnicodeString): IVBSAXXMLReader;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SAXXMLReader60) as IVBSAXXMLReader;
 end;
@@ -15602,7 +15602,7 @@ function TSAXXMLReader60.GetDefaultInterface: IVBSAXXMLReader;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -15875,7 +15875,7 @@ begin
   Result := CreateComObject(CLASS_msMXXMLWriter) as IMXWriter;
 end;
 
-class function ComsMXXMLWriter.CreateRemote(const MachineName: string): IMXWriter;
+class function ComsMXXMLWriter.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msMXXMLWriter) as IMXWriter;
 end;
@@ -15921,7 +15921,7 @@ function TmsMXXMLWriter.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -16162,7 +16162,7 @@ begin
   Result := CreateComObject(CLASS_msMXXMLWriter30) as IMXWriter;
 end;
 
-class function ComsMXXMLWriter30.CreateRemote(const MachineName: string): IMXWriter;
+class function ComsMXXMLWriter30.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msMXXMLWriter30) as IMXWriter;
 end;
@@ -16208,7 +16208,7 @@ function TmsMXXMLWriter30.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -16449,7 +16449,7 @@ begin
   Result := CreateComObject(CLASS_MXXMLWriter40) as IMXWriter;
 end;
 
-class function CoMXXMLWriter40.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXXMLWriter40.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXXMLWriter40) as IMXWriter;
 end;
@@ -16495,7 +16495,7 @@ function TMXXMLWriter40.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -16736,7 +16736,7 @@ begin
   Result := CreateComObject(CLASS_MXXMLWriter60) as IMXWriter;
 end;
 
-class function CoMXXMLWriter60.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXXMLWriter60.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXXMLWriter60) as IMXWriter;
 end;
@@ -16782,7 +16782,7 @@ function TMXXMLWriter60.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -17023,7 +17023,7 @@ begin
   Result := CreateComObject(CLASS_MXHTMLWriter) as IMXWriter;
 end;
 
-class function CoMXHTMLWriter.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXHTMLWriter.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXHTMLWriter) as IMXWriter;
 end;
@@ -17069,7 +17069,7 @@ function TMXHTMLWriter.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -17310,7 +17310,7 @@ begin
   Result := CreateComObject(CLASS_MXHTMLWriter30) as IMXWriter;
 end;
 
-class function CoMXHTMLWriter30.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXHTMLWriter30.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXHTMLWriter30) as IMXWriter;
 end;
@@ -17356,7 +17356,7 @@ function TMXHTMLWriter30.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -17597,7 +17597,7 @@ begin
   Result := CreateComObject(CLASS_MXHTMLWriter40) as IMXWriter;
 end;
 
-class function CoMXHTMLWriter40.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXHTMLWriter40.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXHTMLWriter40) as IMXWriter;
 end;
@@ -17643,7 +17643,7 @@ function TMXHTMLWriter40.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -17884,7 +17884,7 @@ begin
   Result := CreateComObject(CLASS_MXHTMLWriter60) as IMXWriter;
 end;
 
-class function CoMXHTMLWriter60.CreateRemote(const MachineName: string): IMXWriter;
+class function CoMXHTMLWriter60.CreateRemote(const MachineName: UnicodeString): IMXWriter;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXHTMLWriter60) as IMXWriter;
 end;
@@ -17930,7 +17930,7 @@ function TMXHTMLWriter60.GetDefaultInterface: IMXWriter;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18171,7 +18171,7 @@ begin
   Result := CreateComObject(CLASS_msSAXAttributes) as IMXAttributes;
 end;
 
-class function ComsSAXAttributes.CreateRemote(const MachineName: string): IMXAttributes;
+class function ComsSAXAttributes.CreateRemote(const MachineName: UnicodeString): IMXAttributes;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msSAXAttributes) as IMXAttributes;
 end;
@@ -18217,7 +18217,7 @@ function TmsSAXAttributes.GetDefaultInterface: IMXAttributes;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18322,7 +18322,7 @@ begin
   Result := CreateComObject(CLASS_msSAXAttributes30) as IMXAttributes;
 end;
 
-class function ComsSAXAttributes30.CreateRemote(const MachineName: string): IMXAttributes;
+class function ComsSAXAttributes30.CreateRemote(const MachineName: UnicodeString): IMXAttributes;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_msSAXAttributes30) as IMXAttributes;
 end;
@@ -18368,7 +18368,7 @@ function TmsSAXAttributes30.GetDefaultInterface: IMXAttributes;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18474,7 +18474,7 @@ begin
   Result := CreateComObject(CLASS_SAXAttributes40) as IMXAttributes;
 end;
 
-class function CoSAXAttributes40.CreateRemote(const MachineName: string): IMXAttributes;
+class function CoSAXAttributes40.CreateRemote(const MachineName: UnicodeString): IMXAttributes;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SAXAttributes40) as IMXAttributes;
 end;
@@ -18520,7 +18520,7 @@ function TSAXAttributes40.GetDefaultInterface: IMXAttributes;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18625,7 +18625,7 @@ begin
   Result := CreateComObject(CLASS_SAXAttributes60) as IMXAttributes;
 end;
 
-class function CoSAXAttributes60.CreateRemote(const MachineName: string): IMXAttributes;
+class function CoSAXAttributes60.CreateRemote(const MachineName: UnicodeString): IMXAttributes;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_SAXAttributes60) as IMXAttributes;
 end;
@@ -18671,7 +18671,7 @@ function TSAXAttributes60.GetDefaultInterface: IMXAttributes;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18776,7 +18776,7 @@ begin
   Result := CreateComObject(CLASS_MXNamespaceManager) as IVBMXNamespaceManager;
 end;
 
-class function CoMXNamespaceManager.CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+class function CoMXNamespaceManager.CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXNamespaceManager) as IVBMXNamespaceManager;
 end;
@@ -18822,7 +18822,7 @@ function TMXNamespaceManager.GetDefaultInterface: IVBMXNamespaceManager;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -18934,7 +18934,7 @@ begin
   Result := CreateComObject(CLASS_MXNamespaceManager40) as IVBMXNamespaceManager;
 end;
 
-class function CoMXNamespaceManager40.CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+class function CoMXNamespaceManager40.CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXNamespaceManager40) as IVBMXNamespaceManager;
 end;
@@ -18980,7 +18980,7 @@ function TMXNamespaceManager40.GetDefaultInterface: IVBMXNamespaceManager;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -19093,7 +19093,7 @@ begin
   Result := CreateComObject(CLASS_MXNamespaceManager60) as IVBMXNamespaceManager;
 end;
 
-class function CoMXNamespaceManager60.CreateRemote(const MachineName: string): IVBMXNamespaceManager;
+class function CoMXNamespaceManager60.CreateRemote(const MachineName: UnicodeString): IVBMXNamespaceManager;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_MXNamespaceManager60) as IVBMXNamespaceManager;
 end;
@@ -19139,7 +19139,7 @@ function TMXNamespaceManager60.GetDefaultInterface: IVBMXNamespaceManager;
 begin
   if FIntf = nil then
     Connect;
-  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie müssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
+  Assert(FIntf <> nil, 'DefaultInterface ist NULL. Die Komponente ist nicht mit dem Server verbunden. Sie mÃ¼ssen vor dieser Operation ''Connect'' oder ''ConnectTo'' aufrufen');
   Result := FIntf;
 end;
 
@@ -19252,7 +19252,7 @@ begin
   Result := CreateComObject(CLASS_XMLDocument) as IXMLDocument2;
 end;
 
-class function CoXMLDocument.CreateRemote(const MachineName: string): IXMLDocument2;
+class function CoXMLDocument.CreateRemote(const MachineName: UnicodeString): IXMLDocument2;
 begin
   Result := CreateRemoteComObject(MachineName, CLASS_XMLDocument) as IXMLDocument2;
 end;

@@ -249,13 +249,13 @@ const
       '</xds:config>' +
     '</xds:repository>';
 var
-  doc: IDomDocument;
+  _doc: IDomDocument;
   xds_datalinks: IDomNodeList;
   docelement: IDomNode;
 begin
-  doc:=impl.createDocument('','',nil);
-  check((doc as IDomPersist).loadxml(xml), 'parse error');
-  docElement:=doc.DocumentElement;
+  _doc:=impl.createDocument('','',nil);
+  check((_doc as IDomPersist).loadxml(xml), 'parse error');
+  docElement:=_doc.DocumentElement;
   xds_datalinks := (docElement as IDomNodeSelect).selectNodes('//*[name() = concat("xds:",local-name())]');
   check(xds_datalinks.length = 3, 'wrong length');
 end;

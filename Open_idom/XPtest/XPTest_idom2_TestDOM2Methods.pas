@@ -1,4 +1,4 @@
-unit XPTest_idom2_TestDOM2Methods;
+﻿unit XPTest_idom2_TestDOM2Methods;
 
 {$MODE Delphi}
 
@@ -41,7 +41,7 @@ type
     Name: WideString;
     Data: WideString;
     function getFqname: WideString;
-    function getFragmentA(out docstr: WideString): IDOMElement;
+    function getFragmentA(out docstr: DOMString): IDOMElement;
   public
     procedure ClearUp;
     procedure SetUp; override;
@@ -283,14 +283,14 @@ end;
 
 procedure TTestDom2Methods.ext_appendChild_existing;
 var
-  node: IDomNode;
+  _node: IDomNode;
   temp: string;
 begin
   check(doc0.documentElement.childNodes.length = 0, 'wrong length (A)');
-  node := doc0.createElement('sub1');
-  doc0.documentElement.appendChild(node);
+  _node := doc0.createElement('sub1');
+  doc0.documentElement.appendChild(_node);
   check(doc0.documentElement.childNodes.length = 1, 'wrong length (B)');
-  doc0.documentElement.appendChild(node);
+  doc0.documentElement.appendChild(_node);
   // DOM2: If the child is already in the tree, it is first removed. So there
   // must be only one child sub1 after the two calls of appendChild
   check(doc0.documentElement.childNodes.length = 1, 'wrong length');
@@ -301,19 +301,19 @@ end;
 
 procedure TTestDom2Methods.basic_getElementByID;
 var
-  elem: IDomElement;
+  _elem: IDomElement;
 begin
-  elem := doc0.getElementById('110');
+  _elem := doc0.getElementById('110');
 end;
 
 procedure TTestDom2Methods.unknown_createElementNS_1;
 var
-  node: IDomNode;
+  _node: IDomNode;
   temp: string;
 begin
   check(doc0.documentElement.childNodes.length = 0, 'wrong length');
-  node := doc0.createElementNS('http://ns.4ct.de', 'ct:test');
-  doc0.documentElement.appendChild(node);
+  _node := doc0.createElementNS('http://ns.4ct.de', 'ct:test');
+  doc0.documentElement.appendChild(_node);
   check(doc0.documentElement.childNodes.length = 1, 'wrong length');
   // compare the output
   temp := (doc0 as IDomPersist).xml;
@@ -327,12 +327,12 @@ end;
 
 procedure TTestDom2Methods.unknown_createElementNS;
 var
-  node: IDomNode;
+  _node: IDomNode;
   temp: string;
 begin
   check(doc1.documentElement.childNodes.length = 0, 'wrong length');
-  node := doc1.createElementNS('http://ns.4ct.de', 'ct:test');
-  doc1.documentElement.appendChild(node);
+  _node := doc1.createElementNS('http://ns.4ct.de', 'ct:test');
+  doc1.documentElement.appendChild(_node);
   check(doc1.documentElement.childNodes.length = 1, 'wrong length');
   // compare the output
   temp := (doc1 as IDomPersist).xml;
@@ -351,16 +351,16 @@ end;
 
 procedure TTestDom2Methods.basic_createAttributeNS_createNsDecl;
 var
-  attr: IDomAttr;
+  _attr: IDomAttr;
   temp: string;
 begin
   // this test failes with libxml2 in the moment
   // that is ok, because we (4ct) don't create ns-decl-attributes
   // manually in our current applications
   check(not doc0.documentElement.hasAttributes, 'has attributes');
-  attr := doc0.createAttributeNS('http://ns.4ct.de', 'ct:name1');
-  attr.Value := 'hund';
-  doc0.documentElement.setAttributeNodeNS(attr);
+  _attr := doc0.createAttributeNS('http://ns.4ct.de', 'ct:name1');
+  _attr.Value := 'hund';
+  doc0.documentElement.setAttributeNodeNS(_attr);
   check(doc0.documentElement.attributes.length = 1, 'wrong length');
   // get the xml source
   temp := (doc0 as IDomPersist).xml;
@@ -371,7 +371,7 @@ end;
 procedure TTestDOM2Methods.ext_reconciliate;
 var
   s1,s2: string;
-  attr: IDomAttr;
+  _attr: IDomAttr;
   i:    integer;
 begin
   // setup DOM
@@ -379,9 +379,9 @@ begin
   doc0 := impl.createDocument('','',nil);
   doc0.appendChild(doc0.createElementNS('http://xmlns.demo.site', 'demo:ROOT'));
   for i := 0 to 2 do begin
-    attr := doc0.createAttributeNS('http://test'+IntToStr(i)+'.invalid','test'+IntToStr(i)+':attr');
-    attr.Value := IntToStr(i);
-    doc0.documentElement.setAttributeNodeNS(attr);
+    _attr := doc0.createAttributeNS('http://test'+IntToStr(i)+'.invalid','test'+IntToStr(i)+':attr');
+    _attr.Value := IntToStr(i);
+    doc0.documentElement.setAttributeNodeNS(_attr);
     attr := nil;
   end;
 
@@ -408,16 +408,16 @@ end;
 
 procedure TTestDOM2Methods.ext_append_100_attributes_with_different_namespaces;
 var
-  attr: IDomAttr;
+  _attr: IDomAttr;
   i:    integer;
   attrval, temp: string;
   ok:   boolean;
 begin
   // create attributes
   for i := 0 to 2 do begin
-    attr := doc0.createAttributeNS('http://test'+IntToStr(i)+'.invalid','test'+IntToStr(i)+':attr');
-    attr.Value := IntToStr(i);
-    doc0.documentElement.setAttributeNodeNS(attr);
+    _attr := doc0.createAttributeNS('http://test'+IntToStr(i)+'.invalid','test'+IntToStr(i)+':attr');
+    _attr.Value := IntToStr(i);
+    doc0.documentElement.setAttributeNodeNS(_attr);
     attr := nil;
   end;
   temp := (doc0 as IDomPersist).xml;
@@ -1914,8 +1914,8 @@ var
   //i: integer;
   entities:  IDomNamedNodeMap;
   notations: IDomNamedNodeMap;
-  node:     IDomNode;
-  ent:      IDomEntity;
+  _node:     IDomNode;
+  _ent:      IDomEntity;
   notation: IDomNotation;
 begin
   // there's no DTD !
@@ -1931,11 +1931,11 @@ begin
   entities:=doc.docType.entities;
 
   // get the entity 'picture1'
-  node:=entities.namedItem['picture1'];
-  ent:=node as IDomEntity;
-  check(ent.nodeName='picture1');
-  check(ent.notationName='gif','wrong notationName');
-  check(ent.systemId='picture1.gif','wrong systemId');
+  _node:=entities.namedItem['picture1'];
+  _ent:=_node as IDomEntity;
+  check(_ent.nodeName='picture1');
+  check(_ent.notationName='gif','wrong notationName');
+  check(_ent.systemId='picture1.gif','wrong systemId');
 
   // get the notations
   notations:=doc.docType.notations;
@@ -1943,9 +1943,9 @@ begin
   check(notations.length = 1, 'wrong notations length');
 
   // get the notation 'gif'
-  node:=notations.namedItem['gif'];
-  check(node<>nil,'notation gif not found');
-  notation:=node as IDomNotation;
+  _node:=notations.namedItem['gif'];
+  check(_node<>nil,'notation gif not found');
+  notation:=_node as IDomNotation;
   check(notation.systemId='gifview.exe','wrong systemId of notation');
   check(notation.nodeName='gif','wrong notation.nodeName');
 end;
@@ -2118,27 +2118,27 @@ const
   xml = xmldecl+
         '<test xmlns:eva="http://www.4commerce.de/eva"  eva:attrib="value1" />';
 var
-  doc:  IDomDocument;
+  _doc:  IDomDocument;
   ok:   boolean;
-  attr: IDomAttr;
+  _attr: IDomAttr;
 begin
-  doc := impl.createDocument('','',nil);
-  ok := (doc as IDomPersist).loadxml(xml);
+  _doc := impl.createDocument('','',nil);
+  ok := (_doc as IDomPersist).loadxml(xml);
   check(ok,'parse error');
-  elem := doc.documentElement;
+  elem := _doc.documentElement;
   check(elem.nodeName = 'test');
 { TODO : correct this if libxml behaves right; length = 2, namespace was parsed }
   check(elem.attributes.length = 1,'wrong length');
-  attr:=elem.attributes[0] as IDomAttr;
-  check(attr <> nil,'attribute is nil');
-  check(attr.name = 'eva:attrib');
+  _attr:=elem.attributes[0] as IDomAttr;
+  check(_attr <> nil,'attribute is nil');
+  check(_attr.name = 'eva:attrib');
   check(elem.hasAttributeNS('http://www.4commerce.de/eva','attrib'),'attribute not found');
   // remove a parsed attribute that is the first and last
   elem.removeAttributeNS('http://www.4commerce.de/eva','attrib');
   check(not elem.hasAttributes, 'still has attributes');
   check(elem.attributes.length = 0, 'wrong length II');
-  doc:=nil;
-  attr:=nil;
+  _doc:=nil;
+  _attr:=nil;
 end;
 
 procedure TTestDOM2Methods.ext_docType_entities;
@@ -2152,8 +2152,8 @@ const
           '<root>&ct;</root>';
 var
   entities: IDomNamedNodeMap;
-  node:     IDomNode;
-  ent:      IDomEntity;
+  _node:     IDomNode;
+  _ent:      IDomEntity;
   sl:       TStrings;
   i:        integer;
 begin
@@ -2170,35 +2170,35 @@ begin
   entities := doc.docType.entities;
 
   // get the entity 'picture1'
-  node := entities.namedItem['picture1'];
-  ent := node as IDomEntity;
-    check(ent.nodeName = 'picture1');
-    check(ent.notationName = 'gif','wrong notationName');
-    check(ent.systemId = 'picture1.gif','wrong systemId');
+  _node := entities.namedItem['picture1'];
+  _ent := _node as IDomEntity;
+    check(_ent.nodeName = 'picture1');
+    check(_ent.notationName = 'gif','wrong notationName');
+    check(_ent.systemId = 'picture1.gif','wrong systemId');
 
   // An Entity node does not have any parent. (w3c.org)
-  check(ent.parentNode = nil, 'parentNode is defined as nil but is different');
+  check(_ent.parentNode = nil, 'parentNode is defined as nil but is different');
 
   // get the entities by index
   // independant wich sort order they have
   sl := TStringList.Create;
   for i := 0 to doc.docType.entities.length-1 do begin
-    ent := doc.docType.entities[i] as IDomEntity;
-    sl.Add(ent.nodeName);
+    _ent := doc.docType.entities[i] as IDomEntity;
+    sl.Add(_ent.nodeName);
   end;
   check(sl.IndexOf('ct') <> -1, 'entity "ct" not found');
   check(sl.IndexOf('picture1') <> -1, 'entity "piture1" not found');
 
-  ent := doc.docType.entities[sl.IndexOf('ct')] as IDomEntity;
-    check(ent.nodeName = 'ct', 'wrong nodeName');
+  _ent := doc.docType.entities[sl.IndexOf('ct')] as IDomEntity;
+    check(_ent.nodeName = 'ct', 'wrong nodeName');
     check(doc.documentElement.firstChild.nodeType = ENTITY_REFERENCE_NODE, 'wrong nodeType');
     entref := (doc.documentElement.firstChild as IDOMEntityReference);
     check(entref.nodeName = 'ct', 'wrong nodeName');
 
-  ent := doc.docType.entities[sl.IndexOf('picture1')] as IDomEntity;
-    check(ent.notationName = 'gif', 'wrong notationName');
-    check(ent.systemId = 'picture1.gif', 'wrong systemId');
-    check(ent.nodeName = 'picture1', 'wrong nodeName');
+  _ent := doc.docType.entities[sl.IndexOf('picture1')] as IDomEntity;
+    check(_ent.notationName = 'gif', 'wrong notationName');
+    check(_ent.systemId = 'picture1.gif', 'wrong systemId');
+    check(_ent.nodeName = 'picture1', 'wrong nodeName');
 
   sl.Free;
 end;
@@ -2217,7 +2217,7 @@ const
 var
   i: integer;
   notations: IDomNamedNodeMap;
-  node:     IDomNode;
+  _node:     IDomNode;
   notation: IDomNotation;
 begin
   // there's no DTD !
@@ -2230,9 +2230,9 @@ begin
   check(notations<>nil,'there are notations but the list of notations is nil');
   check(notations.length = 1, 'wrong notations length');
   // get the notation 'gif'
-  node:=notations.namedItem['gif'];
-  check(node<>nil,'notation gif not found');
-  notation:=node as IDomNotation;
+  _node:=notations.namedItem['gif'];
+  check(_node<>nil,'notation gif not found');
+  notation:=_node as IDomNotation;
   check(notation.systemId='gifview.exe','wrong systemId of notation');
   check(notation.nodeName='gif','wrong notation.nodeName');
   notation := doc.docType.notations[0] as IDOMNotation;
@@ -2823,9 +2823,9 @@ begin
   check(attr.value = 'defval', 'wrong value (III)');
 end;
 
-function TTestDOM2Methods.getFragmentA(out docstr: WideString): IDOMElement;
+function TTestDOM2Methods.getFragmentA(out docstr: DOMString): IDOMElement;
 var
-  doc: IDOMDocument;
+  _doc: IDOMDocument;
   elem1,elem2: IDOMElement;
   i,j,n: integer;
   sl: TStrings;
@@ -2837,21 +2837,21 @@ begin
   sl.Add('abc=http://abc.org');
   sl.Add('def=http://def.org');
   sl.Add('ghi=http://ghi.org');
-  doc := impl.createDocument('','',nil);
+  _doc := impl.createDocument('','',nil);
   if impl.QueryInterface(IDOMDebug,domdebug) = S_OK then begin
     domdebug.doccount;
   end;
 
-  if (doc as IDOMPersist).loadxml(xmlstr) then begin
-    elem1 := doc.createElement('test');
-    doc.documentElement.appendChild(elem1);
+  if (_doc as IDOMPersist).loadxml(xmlstr) then begin
+    elem1 := _doc.createElement('test');
+    _doc.documentElement.appendChild(elem1);
     result := elem1;
     // how many childnodes of documentElement
     for j := 0 to 9 do begin
       elem2 := result;
       // how deep
       for i := 0 to 9 do begin
-        elem1 := doc.createElementNS(sl.Values[sl.Names[n]],sl.Names[n]+':elem');
+        elem1 := _doc.createElementNS(sl.Values[sl.Names[n]],sl.Names[n]+':elem');
         Inc(n);
         if n > 2 then n := 0;
         elem1.setAttributeNS(sl.Values[sl.Names[n]],sl.Names[n]+':attr',IntToStr(i));
@@ -2864,7 +2864,7 @@ begin
       end;
     end;
   end;
-  docstr := (doc as IDOMPersist).xml;
+  docstr := (_doc as IDOMPersist).xml;
   sl.Free;
 end;
 
@@ -2893,7 +2893,7 @@ procedure TTestDOM2Methods.ext_importNode_cloneNode;
 {$define docCheck}
 var
   elem1,elem2,elemb: IDOMElement;
-  docstr: WideString;
+  docstr: DOMString;
   domdebug: IDOMDebug;
   i,j: integer;
 begin
@@ -3412,7 +3412,7 @@ end;
 
 procedure TTestDOM2Methods.ext_cloneNode_getFragmentA;
 var
-  docstr: WideString;
+  docstr: DOMString;
   outopt,outopt1: IDOMOutputOptions;
 begin
   docstr := '';

@@ -1,7 +1,5 @@
 unit XPTest_idom2_Shared;
 
-{$MODE Delphi}
-
 interface
 
 uses
@@ -10,7 +8,8 @@ uses
   idom2,
   idom2_ext,
   sysutils,
-  fpcunit,
+  TestFrameworkIfaces,
+  TestFramework,
   Classes,
   Dialogs;
 
@@ -141,10 +140,14 @@ type
   end;
 
 type
+
+  { TMyTestCase }
+
   TMyTestCase = class(TTestCase)
   public
     procedure SetUp; override;
     procedure TearDown; override;
+    constructor CreateWithName(const Name: String);
   end;
 
 function getCurMemory: cardinal;
@@ -161,7 +164,7 @@ function GetDoccount(impl:IDomImplementation):integer;
 procedure debugDom(doc: IDOMDocument;bUnify: boolean=false);
 procedure debugAttributes(attributes: IDOMNamedNodeMap; entities: boolean = False);
 function PrettyPrint(text: WideString): WideString;
-function getEnabledTests(suite: TTestSuite;domVendor,className:string): TStrings;
+function getEnabledTests(suite: ITestSuite;domVendor,className:string): TStrings;
 
 var
   datapath: string = '';
@@ -171,7 +174,7 @@ implementation
 const
   PathDelim  = {$IFNDEF LINUX} '\'; {$ELSE} '/'; {$ENDIF}
 
-function getEnabledTests(suite: TTestSuite;domVendor,className:string): TStrings;
+function getEnabledTests(suite: ITestSuite;domVendor,className:string): TStrings;
 // returns a stringlist with the names of the enabled tests
 // for a given domVendor and className
 // the domvendor is the string, displayed in the testsuite, and not
@@ -180,26 +183,59 @@ function getEnabledTests(suite: TTestSuite;domVendor,className:string): TStrings
 
 var
   i,j,k,l: integer;
-  test,test1,test2,test3: TTestSuite;
+  test,test1,test2,test3: ITestSuite;
+  lastTest, lastTest1, lastTest2, lastTest3: ITest;
 begin
   result := TStringList.Create;
+  {$IFDEF FPC}
+  suite.Reset;
+  lastTest := suite.CurrentTest;
+  test := suite.FindNextEnabledProc as ITestSuite;
+  while test <> lastTest do
+  begin
+    test.Reset;
+    lastTest1 := test.CurrentTest;
+    test1 := test.FindNextEnabledProc as ITestSuite;
+    while test1 <> lastTest1 do
+      if test1.GetName=domVendor then
+      begin
+        test1.Reset;
+        lastTest2 := test.CurrentTest;
+        test2 := test.FindNextEnabledProc as ITestSuite;
+        while test2 <> lastTest2 do
+        if // test2.EnableIgnores and
+          (test2.GetName = className) then
+        begin
+          test2.Reset;
+          lastTest3 := test.CurrentTest;
+          test3 := test.FindNextEnabledProc as ITestSuite;
+          while test3 <> lastTest3 do
+          begin
+            // if test3.EnableIgnores then
+            result.Add(test3.GetName);
+          end;
+        end;
+      end;
+    end;
+  {$ELSE}
   for i := 0 to suite.tests.Count-1 do begin
-    test := TTestSuite(suite.Tests[i]);
+    test := suite.Tests[i] as ITest;
     for j:=0 to test.Tests.Count-1 do begin
-      test1:=test.tests[j];
-      if test1.TestName=domVendor then begin
+      test1:=test.tests[j] as ITest;
+      if test1.Name=domVendor then begin
         for k:=0 to test1.tests.count-1 do begin
-          test2:=test1.tests[k];
-          if test2.EnableIgnores and (test2.TestName = className) then begin
+          test2:=test1.tests[k] as ITest;
+          if test2.Enabled and (test2.Name = className) then begin
             for l:=0 to test2.tests.count-1 do begin
-              test3:=test2.tests[l];
-              if test3.EnableIgnores then result.Add(test3.TestName);
+              test3:=test2.tests[l] as ITest;
+              if test3.Enabled then result.Add(test3.Name);
             end;
           end;
         end;
       end;
     end;
   end;
+  {$ENDIF}
 end;
 
 function DupeString(const AText: string; ACount: Integer): string;
@@ -385,13 +421,13 @@ end;
 function getDataPath: string;
   // this function returns the path to the sample files
 const
-  cDefault = 'data';
+  cDefault = '..' + PathDelim + 'data';
 var
   ini: TIniFile;
 begin
   try
     // ignore, that we connot load, maybe its readonly by cvs checkout
-    ini := TIniFile.Create('./XPTestSuite_idom2.ini');
+    ini := TIniFile.Create('.' + PathDelim + 'XPTestSuite_idom2.ini');
     result := Ini.ReadString('TestDocuments', 'DataPath', cDefault);
     ini.Free;
   except
@@ -514,6 +550,11 @@ end;
 procedure TMyTestCase.TearDown;
 begin
 
+end;
+
+constructor TMyTestCase.CreateWithName(const Name: String);
+begin
+  inherited Create(Name);
 end;
 
 end.

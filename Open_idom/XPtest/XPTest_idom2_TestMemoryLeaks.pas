@@ -10,7 +10,10 @@ uses
   domSetup,
   SysUtils,
   XPTest_idom2_Shared,
-  fpcunit,
+  TestFramework,
+  {$IFDEF FPC}
+  TestFrameworkIfaces,
+  {$ENDIF}
   Classes;
 
 type
@@ -77,7 +80,6 @@ function test(Name: string; testexpr: boolean): boolean;
 implementation
 
 uses
-  testregistry,
   LazLogger,
   MicroTime,
   XPTest_idom2_TestDOM2Methods,
@@ -181,10 +183,10 @@ var
   oneResult: string;
   ok: integer;
   total: integer;
-  mySuite: TTestSuite;
+  mySuite: ITestSuite;
   vendor: string;
 begin
-  mySuite:=GetTestRegistry;
+  mySuite:=RegisteredTests;
   if domvendor='LIBXML_4CT'
     then vendor:='Lib XML 2'
     else vendor:='Ms-DOM Rental';
@@ -1515,17 +1517,17 @@ procedure TTestMemoryLeaks.RemoveAttributeNs5000Times;
 const
   xml=xmldecl+'<test xmlns:eva="http://www.4commerce.de/eva"  eva:attrib="value1" />';
 var
-  doc: IDomDocument;
+  _doc: IDomDocument;
   ok:  boolean;
   attr: IDomAttr;
   i: integer;
   elem: IDomElement;
 begin
   for i:= 1 to 5000 do begin
-    doc:=impl.createDocument('','doc',nil);
-    ok:=(doc as IDomPersist).loadxml(xml);
+    _doc:=impl.createDocument('','doc',nil);
+    ok:=(_doc as IDomPersist).loadxml(xml);
     check(ok,'parse error');
-    elem:=doc.documentElement;
+    elem:=_doc.documentElement;
     check(elem.nodeName='test');
     check(elem.attributes.length=1,'wrong length');
     attr:=elem.attributes[0] as IDomAttr;
@@ -1533,7 +1535,7 @@ begin
     check(attr.name='eva:attrib');
     check(elem.hasAttributeNS('http://www.4commerce.de/eva','attrib'),'attribute not found');
     // create a second attribute
-    attr := doc.createAttributeNs('http://xmlns.4commerce.de/eva','eva:test');
+    attr := _doc.createAttributeNs('http://xmlns.4commerce.de/eva','eva:test');
     // append it
     elem.setAttributeNodeNs(attr);
     check(elem.attributes.length=2, 'wrong length II');
@@ -1547,7 +1549,7 @@ begin
     elem.removeAttributeNS('http://www.4commerce.de/eva','attrib');
     //check(not elem.hasAttributes, 'still has attributes');
     check(elem.attributes.length = 0, 'wrong length IV');
-    doc:=nil;
+    _doc:=nil;
     elem:=nil;
     attr:=nil;
   end;
@@ -1675,22 +1677,22 @@ end;
 procedure TTestMemoryLeaks.LoadXmlUml5000Times;
 var
   teststr: widestring;
-  doc: IDomDocument;
+  _doc: IDomDocument;
   var i: integer;
 begin
   for i:=1 to 5000 do begin
     // test how loadxml behaves with 'umlauts'
     teststr := xmldecl+'<root><text>äöüß</text><text>ÄÖÜ</text></root>';
-    doc := impl.createDocument('', '', nil);
-    (doc as IDOMPersist).loadxml(teststr);
-    check(doc.documentElement.hasChildNodes, 'has no childNodes');
-    check(doc.documentElement.childNodes.length = 2, 'wrong length');
-    check(doc.documentElement.firstChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
-    check(doc.documentElement.lastChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
-    check(doc.documentElement.firstChild.firstChild.nodeValue = 'äöüß', 'wrong nodeValue');
-    check(doc.documentElement.lastChild.firstChild.nodeValue = 'ÄÖÜ', 'wrong nodeValue');
-    check((unify((doc as IDomPersist).xml)=unify(teststr)), 'xml output is different from parsed text');
-    doc:=nil;
+    _doc := impl.createDocument('', '', nil);
+    (_doc as IDOMPersist).loadxml(teststr);
+    check(_doc.documentElement.hasChildNodes, 'has no childNodes');
+    check(_doc.documentElement.childNodes.length = 2, 'wrong length');
+    check(_doc.documentElement.firstChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
+    check(_doc.documentElement.lastChild.firstChild.nodeType = TEXT_NODE, 'wrong nodeType');
+    check(_doc.documentElement.firstChild.firstChild.nodeValue = 'äöüß', 'wrong nodeValue');
+    check(_doc.documentElement.lastChild.firstChild.nodeValue = 'ÄÖÜ', 'wrong nodeValue');
+    check((unify((_doc as IDomPersist).xml)=unify(teststr)), 'xml output is different from parsed text');
+    _doc:=nil;
   end;
 end;
 

@@ -3,440 +3,221 @@
   <ProjectSession>
     <PathDelim Value="\"/>
     <Version Value="9"/>
-    <BuildModes Active="Default"/>
-    <Units Count="36">
+    <Units Count="22">
       <Unit0>
         <Filename Value="XPTestSuite_idom2.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="119"/>
-        <CursorPos Y="144"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos Y="23"/>
+        <UsageCount Value="33"/>
+        <Loaded Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="Main.pas"/>
+        <Filename Value="domSetup.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Main"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="40"/>
-        <CursorPos X="88" Y="49"/>
-        <UsageCount Value="32"/>
+        <TopLine Value="81"/>
+        <CursorPos X="18" Y="95"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
-        <Filename Value="XPTest_idom2_Shared.pas"/>
+        <Filename Value="Main.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="128"/>
-        <CursorPos X="28" Y="135"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="42"/>
+        <CursorPos X="10" Y="40"/>
+        <UsageCount Value="33"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
+        <Filename Value="XPTest_idom2_Shared.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestDOM2Methods"/>
-        <TopLine Value="2878"/>
-        <CursorPos Y="2914"/>
-        <UsageCount Value="32"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="411"/>
+        <CursorPos X="21" Y="424"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
-        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
+        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestDomExceptions"/>
-        <EditorIndex Value="5"/>
-        <TopLine Value="287"/>
-        <CursorPos Y="317"/>
-        <UsageCount Value="32"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="31"/>
+        <CursorPos X="3" Y="19"/>
+        <UsageCount Value="33"/>
         <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
+        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="291"/>
+        <CursorPos X="44" Y="311"/>
+        <UsageCount Value="33"/>
+      </Unit5>
+      <Unit6>
         <Filename Value="XPTest_idom2_TestMemoryLeaks.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="64"/>
-        <CursorPos X="13" Y="81"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit5>
-      <Unit6>
+        <TopLine Value="82"/>
+        <CursorPos X="37" Y="92"/>
+        <UsageCount Value="33"/>
+      </Unit6>
+      <Unit7>
         <Filename Value="XPTest_idom2_TestPersist.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="12" Y="12"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit6>
-      <Unit7>
+        <TopLine Value="3"/>
+        <CursorPos X="9" Y="15"/>
+        <UsageCount Value="33"/>
+      </Unit7>
+      <Unit8>
         <Filename Value="XPTest_idom2_TestXPath.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <CursorPos X="27" Y="12"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="XPTest_idom2_TestXSLT"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="274"/>
-        <CursorPos Y="310"/>
-        <UsageCount Value="32"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <TopLine Value="237"/>
+        <CursorPos X="16" Y="259"/>
+        <UsageCount Value="33"/>
       </Unit8>
       <Unit9>
-        <Filename Value="domSetup.pas"/>
+        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="domSetup"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="6" Y="75"/>
-        <UsageCount Value="32"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="347"/>
+        <CursorPos Y="364"/>
+        <UsageCount Value="33"/>
       </Unit9>
       <Unit10>
-        <Filename Value="contrib\DomDocumentTests.pas"/>
+        <Filename Value="..\idom2.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="904"/>
-        <CursorPos X="9" Y="925"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <TopLine Value="1145"/>
+        <CursorPos X="23" Y="1160"/>
+        <UsageCount Value="33"/>
       </Unit10>
       <Unit11>
-        <Filename Value="contrib\DomImplementationTests.pas"/>
+        <Filename Value="..\idom2_ext.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="373"/>
-        <CursorPos X="101" Y="393"/>
-        <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="33"/>
       </Unit11>
       <Unit12>
+        <Filename Value="..\idom2_utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="33"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="..\libxmldom.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="879"/>
+        <CursorPos Y="905"/>
+        <UsageCount Value="33"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="..\msxml_impl.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="54"/>
+        <CursorPos X="30" Y="888"/>
+        <UsageCount Value="33"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="..\MSXML2_TLB.pas"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="18621"/>
+        <CursorPos X="17" Y="18640"/>
+        <UsageCount Value="33"/>
+      </Unit15>
+      <Unit16>
         <Filename Value="..\..\Open_libxml2\libxml2.pas"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="8"/>
-        <CursorPos X="16" Y="23"/>
+        <TopLine Value="13"/>
+        <CursorPos X="9" Y="25"/>
         <UsageCount Value="32"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="..\msxml_impl.pas"/>
-        <UnitName Value="msxml_impl"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="1536"/>
-        <CursorPos Y="1554"/>
-        <UsageCount Value="14"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit13>
-      <Unit14>
-        <Filename Value="..\MSXML2_TLB.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="66"/>
-        <CursorPos X="52" Y="79"/>
-        <UsageCount Value="11"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit14>
-      <Unit15>
-        <Filename Value="..\libxmldom.pas"/>
-        <UnitName Value="libxmldom"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="4398"/>
-        <CursorPos Y="4427"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit15>
-      <Unit16>
-        <Filename Value="..\..\Open_libxml2\libxml_xmlIO.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="146"/>
-        <CursorPos X="11" Y="167"/>
-        <UsageCount Value="11"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit16>
       <Unit17>
-        <Filename Value="..\..\Open_libxml2\libxml_parserInternals.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="315"/>
-        <CursorPos X="41" Y="329"/>
-        <UsageCount Value="12"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit17>
-      <Unit18>
-        <Filename Value="..\..\Open_libxslt\libxslt_namespaces.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="9"/>
-        <CursorPos X="117" Y="28"/>
-        <UsageCount Value="12"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit18>
-      <Unit19>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\testdecorator.pp"/>
-        <UnitName Value="testdecorator"/>
-        <EditorIndex Value="9"/>
-        <TopLine Value="101"/>
-        <CursorPos Y="106"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-      </Unit19>
-      <Unit20>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\testutils.pp"/>
-        <EditorIndex Value="-1"/>
-        <UsageCount Value="10"/>
-      </Unit20>
-      <Unit21>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\testregistry.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="24"/>
-        <CursorPos X="14" Y="133"/>
-        <UsageCount Value="10"/>
-      </Unit21>
-      <Unit22>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\fpcunit.pp"/>
-        <UnitName Value="fpcunit"/>
-        <EditorIndex Value="10"/>
-        <TopLine Value="891"/>
-        <CursorPos Y="909"/>
-        <UsageCount Value="15"/>
-        <Loaded Value="True"/>
-      </Unit22>
-      <Unit23>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpash.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="278"/>
-        <CursorPos X="20" Y="289"/>
-        <UsageCount Value="10"/>
-      </Unit23>
-      <Unit24>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\classesh.inc"/>
-        <EditorIndex Value="6"/>
-        <CursorPos X="48" Y="209"/>
-        <UsageCount Value="13"/>
-        <Loaded Value="True"/>
-      </Unit24>
-      <Unit25>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\DUnitCompatibleInterface.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="182"/>
-        <CursorPos Y="200"/>
-        <UsageCount Value="11"/>
-      </Unit25>
-      <Unit26>
-        <Filename Value="..\..\Open_helper\FastTime.pas"/>
+        <Filename Value="..\..\Open_libxslt\libxslt.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="43"/>
-        <CursorPos X="57" Y="61"/>
-        <UsageCount Value="10"/>
-        <DefaultSyntaxHighlighter Value="Delphi"/>
-      </Unit26>
-      <Unit27>
-        <Filename Value="C:\codetyphon\typhon\components\fpcunit\guitestrunner.pas"/>
+        <CursorPos X="3" Y="58"/>
+        <UsageCount Value="31"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="..\..\Open_helper\FastTime.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="13"/>
-        <UsageCount Value="11"/>
-      </Unit27>
-      <Unit28>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\sysutils\sysstrh.inc"/>
+        <TopLine Value="62"/>
+        <CursorPos Y="60"/>
+        <UsageCount Value="27"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="..\..\Open_helper\MicroTime.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="234"/>
-        <CursorPos X="10" Y="247"/>
-        <UsageCount Value="11"/>
-      </Unit28>
-      <Unit29>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\except.inc"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="27"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="contrib\DomDocumentTests.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="211"/>
-        <CursorPos Y="223"/>
-        <UsageCount Value="10"/>
-      </Unit29>
-      <Unit30>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\objpas.inc"/>
-        <EditorIndex Value="8"/>
-        <TopLine Value="227"/>
-        <CursorPos Y="245"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit30>
-      <Unit31>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\astrings.inc"/>
+        <TopLine Value="58"/>
+        <CursorPos X="11" Y="13"/>
+        <UsageCount Value="26"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="contrib\DomImplementationTests.pas"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="498"/>
-        <CursorPos Y="516"/>
-        <UsageCount Value="10"/>
-      </Unit31>
-      <Unit32>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\i386\i386.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="741"/>
-        <CursorPos Y="759"/>
-        <UsageCount Value="10"/>
-      </Unit32>
-      <Unit33>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\stringl.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="1110"/>
-        <CursorPos Y="1125"/>
-        <UsageCount Value="10"/>
-      </Unit33>
-      <Unit34>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\inc\wstrings.inc"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="200"/>
-        <CursorPos Y="218"/>
-        <UsageCount Value="10"/>
-      </Unit34>
-      <Unit35>
-        <Filename Value="C:\codetyphon\fpcsrc\rtl\objpas\classes\lists.inc"/>
-        <EditorIndex Value="11"/>
-        <TopLine Value="41"/>
-        <CursorPos Y="56"/>
-        <UsageCount Value="12"/>
-        <Loaded Value="True"/>
-      </Unit35>
+        <TopLine Value="12"/>
+        <CursorPos X="16" Y="13"/>
+        <UsageCount Value="26"/>
+      </Unit21>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
-      <Position1>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="127" Column="37" TopLine="97"/>
-      </Position1>
-      <Position2>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="17" Column="3"/>
-      </Position2>
-      <Position3>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="76" TopLine="58"/>
-      </Position3>
-      <Position4>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="128" TopLine="107"/>
-      </Position4>
-      <Position5>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="76" TopLine="58"/>
-      </Position5>
-      <Position6>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="444" TopLine="437"/>
-      </Position6>
-      <Position7>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="75" Column="6" TopLine="43"/>
-      </Position7>
-      <Position8>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1555" TopLine="1526"/>
-      </Position8>
-      <Position9>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="3254" TopLine="3236"/>
-      </Position9>
-      <Position10>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1555" TopLine="1526"/>
-      </Position10>
-      <Position11>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="3404" TopLine="3386"/>
-      </Position11>
-      <Position12>
-        <Filename Value="..\libxmldom.pas"/>
-        <Caret Line="4427" TopLine="4401"/>
-      </Position12>
-      <Position13>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="3560" TopLine="3542"/>
-      </Position13>
-      <Position14>
-        <Filename Value="..\libxmldom.pas"/>
-        <Caret Line="4427" TopLine="4401"/>
-      </Position14>
-      <Position15>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="3560" TopLine="3542"/>
-      </Position15>
-      <Position16>
-        <Filename Value="..\libxmldom.pas"/>
-        <Caret Line="4427" TopLine="4398"/>
-      </Position16>
-      <Position17>
-        <Filename Value="XPTest_idom2_TestDOM2Methods.pas"/>
-        <Caret Line="2914" TopLine="2878"/>
-      </Position17>
-      <Position18>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1555" TopLine="1526"/>
-      </Position18>
-      <Position19>
-        <Filename Value="..\libxmldom.pas"/>
-        <Caret Line="4427" Column="14" TopLine="4398"/>
-      </Position19>
-      <Position20>
-        <Filename Value="domSetup.pas"/>
-        <Caret Line="75" Column="6" TopLine="43"/>
-      </Position20>
-      <Position21>
-        <Filename Value="Main.pas"/>
-        <Caret Line="49" Column="88" TopLine="40"/>
-      </Position21>
-      <Position22>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1583" TopLine="1565"/>
-      </Position22>
-      <Position23>
-        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
-        <Caret Line="303" TopLine="285"/>
-      </Position23>
-      <Position24>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1583" TopLine="1565"/>
-      </Position24>
-      <Position25>
-        <Filename Value="..\msxml_impl.pas"/>
-        <Caret Line="1554" TopLine="1536"/>
-      </Position25>
-      <Position26>
-        <Filename Value="XPTest_idom2_TestDomExceptions.pas"/>
-        <Caret Line="317" TopLine="287"/>
-      </Position26>
-      <Position27>
-        <Filename Value="..\libxmldom.pas"/>
-        <Caret Line="4427" TopLine="4398"/>
-      </Position27>
-      <Position28>
-        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
-        <Caret Line="310" TopLine="292"/>
-      </Position28>
-      <Position29>
-        <Filename Value="C:\codetyphon\fpcsrc\packages\fcl-fpcunit\src\fpcunit.pp"/>
-        <Caret Line="909" TopLine="891"/>
-      </Position29>
-      <Position30>
-        <Filename Value="XPTest_idom2_TestXSLT.pas"/>
-        <Caret Line="310" TopLine="274"/>
-      </Position30>
-    </JumpHistory>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
+    <Watches Count="9">
       <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="..\libxmldom.pas"/>
-        <Line Value="4427"/>
+        <Expression Value="Value"/>
       </Item1>
-    </BreakPoints>
+      <Item2>
+        <Expression Value="fEncoding"/>
+      </Item2>
+      <Item3>
+        <Expression Value="p^"/>
+      </Item3>
+      <Item4>
+        <Expression Value="e^"/>
+      </Item4>
+      <Item5>
+        <Expression Value="'&quot;'"/>
+      </Item5>
+      <Item6>
+        <Expression Value="@result[1]"/>
+      </Item6>
+      <Item7>
+        <Expression Value="p"/>
+      </Item7>
+      <Item8>
+        <Expression Value="b - a + 2"/>
+      </Item8>
+      <Item9>
+        <Expression Value="c - b - 1"/>
+      </Item9>
+    </Watches>
   </Debugging>
 </CONFIG>

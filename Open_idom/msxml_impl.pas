@@ -881,7 +881,7 @@ begin
   index := fMsIntfList.indexOf(Pointer(msIntf as IUnknown));
   if index <> -1 then
   begin
-    result := fWrapperList.items[index];
+    result := TObject(fWrapperList.items[index]);
   end;
 end;
 
